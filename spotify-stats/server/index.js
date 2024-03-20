@@ -1,13 +1,40 @@
 const express = require('express');
 const path = require('path');
-var cors = require("cors");
+const cors = require('cors');
+const querystring = require('qs');
 const app = express();
-
 app.use(cors());
 // app.use(express.static(path.join(__dirname, '../react-app/build')));
 
 app.get('/dashboard', (req, res) => {
-    res.send('Hello World !');
+    // res.send('Hello World !');
+    var client_id = '3f15b10d57a549d789fcbe273f880b91';
+    // var redirect_uri = 'https://oauth.pstmn.io/v1/browser-callback';
+    var redirect_uri = 'http://localhost:3000/#/home';
+
+    // var state = generateRandomString(16);
+    var state = "";
+    var scope = 'user-read-private user-read-email';
+    const header = new Headers({ "Access-Control-Allow-Origin": "*" });
+    // res.send('https://accounts.spotify.com/authorize?' +
+    //     querystring.stringify({
+    //         response_type: 'code',
+    //         client_id: client_id,
+    //         scope: scope,
+    //         redirect_uri: redirect_uri,
+    //         state: state,
+    //         show_dialog: true
+    //     }), { header: header });
+
+    const url = "https://accounts.spotify.com/authorize?" +
+                    querystring.stringify({
+                    response_type: "code",
+                    client_id: client_id,
+                    scope,
+                    redirect_uri: redirect_uri,
+                    state,
+                });
+        res.send(url);
 });
 
 // This code makes sure that any request that does not matches a static file

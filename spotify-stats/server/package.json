@@ -11,7 +11,10 @@
   "author": "Neelesh Kolhe",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.8",
     "cors": "^2.8.5",
-    "express": "^4.18.3"
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "qs": "^6.12.0"
   }
 }
