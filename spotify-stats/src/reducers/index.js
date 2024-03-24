@@ -14,6 +14,7 @@ const profileReducer = (state = initialState, action) => {
     case "DECREMENT":
       return { ...state, counter: state.counter - 1 };
     case "SET_PROFILE":
+      console.log('SET_PROFILE payload: ', action.payload);
       return { ...state, profile: { displayName: action.payload.displayName, country: action.payload.country, email: action.payload.email } };
     default:
       return state;

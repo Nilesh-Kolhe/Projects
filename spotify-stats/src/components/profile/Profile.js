@@ -1,16 +1,14 @@
 import { useSelector } from 'react-redux';
-import './Dashboard.css';
-// import Counter from '../Counter';
+import './Profile.css';
 
-const Dashboard = () => {
+const Profile = () => {
 
     const { profile } = useSelector(state => state);
-    // const { counter } = useSelector(state => state);
-    console.log('Dashboard State Profile: ', profile);
+    console.log('Profile State Profile: ', profile);
 
     return (
-        <div className='dashboard-container'>
-            <p>This is Dashboard</p>
+        <div className='profile-container'>
+            <p>This is Profile</p>
             {/* <Counter profile={{ displayName: 'Nilesh', country: 'India', email: 'abc@gmail.com' }} /> */}
             <div className="counter_title">Profile
                 <p>Display Name: {profile.displayName}</p>
@@ -21,4 +19,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard;
+export default Profile;

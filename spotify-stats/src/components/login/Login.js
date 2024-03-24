@@ -1,21 +1,24 @@
 import './Login.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Dashboard from '../dashboard/Dashboard';
 
 const Login = () => {
 
     const clientId = "3f15b10d57a549d789fcbe273f880b91"; // Replace with your client ID
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
+    const dispatch = useDispatch();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    async function load() {
-
+    const load = async () => {
         if (!code) {
             redirectToAuthCodeFlow(clientId);
         } else {
             const accessToken = await getAccessToken(clientId, code);
-            const profile = await fetchProfile(accessToken);
-            console.log("Profile:", profile); // Profile data logs to console
-            populateUI(profile);
+            // const profile = await fetchProfile(accessToken);
+            await fetchProfile(accessToken);
+            // populateUI(profile);
         }
     }
 
@@ -36,14 +39,14 @@ const Login = () => {
         document.getElementById("url").setAttribute("href", profile.href);
     }
 
-    async function getAccessToken(clientId, code) {
+    const getAccessToken = async (clientId, code) => {
         const verifier = localStorage.getItem("verifier");
-
+        console.log('getAccessToken');
         const params = new URLSearchParams();
         params.append("client_id", clientId);
         params.append("grant_type", "authorization_code");
         params.append("code", code);
-        params.append("redirect_uri", "http://localhost:3000/dashboard");
+        params.append("redirect_uri", "http://localhost:3000/login");
         params.append("code_verifier", verifier);
 
         const result = await fetch("https://accounts.spotify.com/api/token", {
@@ -56,24 +59,22 @@ const Login = () => {
         return access_token;
     }
 
-    async function redirectToAuthCodeFlow(clientId) {
+    const redirectToAuthCodeFlow = async (clientId) => {
         const verifier = generateCodeVerifier(128);
         const challenge = await generateCodeChallenge(verifier);
-
+        console.log('redirectToAuthCodeFlow');
         localStorage.setItem("verifier", verifier);
-
         const params = new URLSearchParams();
         params.append("client_id", clientId);
         params.append("response_type", "code");
-        params.append("redirect_uri", "http://localhost:3000/dashboard");
+        params.append("redirect_uri", "http://localhost:3000/login");
         params.append("scope", "user-read-private user-read-email");
         params.append("code_challenge_method", "S256");
         params.append("code_challenge", challenge);
-
         document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
     }
 
-    function generateCodeVerifier(length) {
+    const generateCodeVerifier = (length) => {
         let text = '';
         let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -83,7 +84,7 @@ const Login = () => {
         return text;
     }
 
-    async function generateCodeChallenge(codeVerifier) {
+    const generateCodeChallenge = async (codeVerifier) => {
         const data = new TextEncoder().encode(codeVerifier);
         const digest = await window.crypto.subtle.digest('SHA-256', data);
         return btoa(String.fromCharCode.apply(null, [...new Uint8Array(digest)]))
@@ -92,12 +93,17 @@ const Login = () => {
             .replace(/=+$/, '');
     }
 
-    async function fetchProfile(token) {
+    const fetchProfile = async (token) => {
         const result = await fetch("https://api.spotify.com/v1/me", {
             method: "GET", headers: { Authorization: `Bearer ${token}` }
         });
 
-        return await result.json();
+        const profile = await result.json();
+        if (profile.error) return;
+        console.log("Profile:", profile); // Profile data logs to console
+        dispatch({ type: "SET_PROFILE", payload: { displayName: profile.display_name, country: profile.country, email: profile.email } })
+        setIsLoggedIn(true);
+        // return profile;
     }
 
     useEffect(() => {
@@ -106,32 +112,11 @@ const Login = () => {
         }
         loadData();
     });
-    
+
     return (
-        
-        <div className="home-container">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container">
-                    <h1>Display your Spotify profile data</h1>
-
-                    <section id="profile">
-                        <h2>Logged in as <span id="displayName"></span></h2>
-                        <span id="avatar"></span>
-                        <ul>
-                            <li>User ID: <span id="id"></span></li>
-                            <li>Email: <span id="email"></span></li>
-                            <li>Spotify URI: <a id="uri" href="#"></a></li>
-                            <li>Link: <a id="url" href="#"></a></li>
-                            <li>Profile Image: <span id="imgUrl"></span></li>
-                        </ul>
-                    </section>
-                </div>
-            </nav>
+        <div className='login-container'>
+            {isLoggedIn ? <Dashboard /> : <> </>}
         </div>
-
-        // <div className="login-container">
-        //     <p style={{fontSize: "xxx-large", fontWeight: "700", marginBottom: "2px"}}>Login to Spotify</p>
-        // </div>
     );
 }
 

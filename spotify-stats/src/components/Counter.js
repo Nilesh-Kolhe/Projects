@@ -1,16 +1,14 @@
-
-import React from "react";
+import { React } from "react";
 import { connect } from "react-redux";
 
 const Counter = ({ counter, profile, increment, decrement, setProfile }) => {
+
+    // const { profile } = useSelector(state => state.joke);
+    console.log('Profile from Counter: ', profile);
+
     return (
         <div>
             <p className="counter_title">Counter: {counter}</p>
-            <p className="counter_title">Profile
-                <p>Display Name: {profile.displayName}</p>
-                <p>Country: {profile.country}</p>
-                <p>Email: {profile.email}</p>
-            </p>
             <button className="button" onClick={increment}>
                 Increment
             </button>
@@ -24,7 +22,7 @@ const Counter = ({ counter, profile, increment, decrement, setProfile }) => {
     );
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     counter: state.counter,
     profile: state.profile
     //  Use 'counter: state.counter.counter' and replace the above line if you are using combineReducers to ensure that 'counter' matches the correct key in your store.

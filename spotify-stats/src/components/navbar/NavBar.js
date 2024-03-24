@@ -1,12 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.js";
 import './NavBar.css';
-import image from './logo-svg.svg';
+import image from './Spotify_Logo_CMYK_Green.png';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
     const baseUrl = "https://nilesh-kolhe.github.io/My/#";
     const [current, setCurrent] = useState("home");
+
+    const navigate = useNavigate();
 
     document.addEventListener("click", function (event) {
         var navbar = document.querySelector("nav div.container-fluid div#navbar");
@@ -19,11 +22,12 @@ const NavBar = () => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div className="container-fluid">
                     <a className="navbar-brand text-black" onClick={() => setCurrent("home")} href={`${baseUrl}/home`}>
                         <img src={`${image}`} alt="Logo" />
-                    </a>
+                    </a><span style={{ color: "#FFF", paddingTop: "5px" }}>|&nbsp;&nbsp;</span>
+                    <h5 style={{ paddingTop: "16px", color: "#FFF" }}>Dashboard</h5>
                     <button className="navbar-toggler collapsed"
                         style={{ backgroundColor: "#fff" }}
                         type="button"
@@ -36,16 +40,10 @@ const NavBar = () => {
                     <div className="navbar-collapse collapse" id="navbar">
                         <ul className="navbar-nav mb-lg-0 justify-content-lg-end" style={{ width: "100%" }}>
                             <li className="nav-item">
-                                <a className={current.includes("home") ? "nav-link current" : "nav-link"} onClick={() => setCurrent("home")} style={{ color: "black", fontWeight: "700", paddingRight: "7px" }} aria-current="page" href={`${baseUrl}/home`}>Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className={current.includes("education") ? "nav-link current" : "nav-link"} onClick={() => setCurrent("education")} style={{ color: "black", fontWeight: "700", paddingRight: "7px" }} href={`${baseUrl}/education`}>Education</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className={current.includes("work") ? "nav-link current" : "nav-link"} onClick={() => setCurrent("work")} style={{ color: "black", fontWeight: "700", paddingRight: "7px" }} href={`${baseUrl}/work`}>Work</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" onClick={() => setCurrent("contact")} style={{ color: "black", fontWeight: "700", paddingRight: "7px" }} href={`${baseUrl}/contact`}>Contact Me</a>
+                                {/* <a className="nav-link" style={{ color: "white" }} onClick={() => setCurrent("home")} aria-current="page" href={`${baseUrl}/home`}> */}
+                                <a className="nav-link" style={{ color: "white" }} onClick={() => navigate("/profile")} aria-current="page">
+                                    <i className="bi bi-person-circle h4 white"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
