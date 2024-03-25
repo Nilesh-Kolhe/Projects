@@ -8,19 +8,23 @@ import Dashboard from './components/dashboard/Dashboard';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Profile from './components/profile/Profile';
+import SideNav from './components/SideNav/SideNav';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/home" element={<Home />} />
-        </Routes>
+        <div style={{ display: 'flex', height: '100%' }}>
+          <SideNav />
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div >
   );

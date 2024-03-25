@@ -5,7 +5,7 @@ import Dashboard from '../dashboard/Dashboard';
 
 const Login = () => {
 
-    const clientId = "3f15b10d57a549d789fcbe273f880b91"; // Replace with your client ID
+    const clientId = "3f15b10d57a549d789fcbe273f880b91";
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     const dispatch = useDispatch();
@@ -68,7 +68,7 @@ const Login = () => {
         params.append("client_id", clientId);
         params.append("response_type", "code");
         params.append("redirect_uri", "http://localhost:3000/login");
-        params.append("scope", "user-read-private user-read-email");
+        params.append("scope", "user-read-private user-read-email user-top-read");
         params.append("code_challenge_method", "S256");
         params.append("code_challenge", challenge);
         document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
@@ -100,8 +100,23 @@ const Login = () => {
 
         const profile = await result.json();
         if (profile.error) return;
-        console.log("Profile:", profile); // Profile data logs to console
-        dispatch({ type: "SET_PROFILE", payload: { displayName: profile.display_name, country: profile.country, email: profile.email } })
+        console.log("Profile:", profile, ' Token: ', token); // Profile data logs to console
+        dispatch({
+            type: "SET_TOKEN",
+            payload: { token: token }
+        });
+        dispatch({
+            type: "SET_PROFILE",
+            payload: {
+                displayName: profile.display_name,
+                country: profile.country,
+                email: profile.email,
+                picture: profile.images[1].url,
+                product: profile.product,
+                type: profile.type,
+                uri: profile.uri
+            }
+        });
         setIsLoggedIn(true);
         // return profile;
     }
@@ -114,9 +129,9 @@ const Login = () => {
     });
 
     return (
-        <div className='login-container'>
-            {isLoggedIn ? <Dashboard /> : <> </>}
-        </div>
+        <>
+            {isLoggedIn ? <Dashboard /> : ''}
+        </>
     );
 }
 

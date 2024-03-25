@@ -1,9 +1,13 @@
-.login-container {
+.card-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    /* background-image: url("./img7.jpg"); */
     background-size: cover;
+}
+
+h6 {
+    padding: 5px 0px;
 }

@@ -1,7 +1,23 @@
-.nav-link:hover, .nav-link:active {
-    background-color: #FFF;
-    color: #000 !important;
-    border-radius: 5px;
+.nav-link:hover {
+    /* background-color: #FFF; */
+    /* color: #000 !important; */
+    /* border-radius: 5px; */
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: all 200ms ease-in;
+    /* scale: 1.05; */
+}
+
+.nav-link {
+    transition: all 200ms ease-out;
+}
+
+.nav-link:active {
+
+}
+
+nav {
+    background-color: #000;
 }
 
 .current {
