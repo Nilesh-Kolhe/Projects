@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { left } from '@popperjs/core';
 
 const NavBar = () => {
-    const baseUrl = "https://nilesh-kolhe.github.io/My/#";
+    const baseUrl = "https://nilesh-kolhe.github.io/Projects";
     const [current, setCurrent] = useState("home");
     const { profile } = useSelector(state => state);
 
@@ -43,7 +43,6 @@ const NavBar = () => {
                 <div className="navbar-collapse collapse" id="navbar">
                     <ul className="navbar-nav mb-lg-0 justify-content-lg-end" style={{ width: "100%" }}>
                         <li className="nav-item" style={{ backgroundColor: '#FFF', borderRadius: 5, color: '#000' }}>
-                            {/* <a className="nav-link" style={{ color: "white" }} onClick={() => setCurrent("home")} aria-current="page" href={`${baseUrl}/home`}> */}
                             <a className="nav-link" style={{ color: "white", display: "flex" }} onClick={() => navigate("/profile")} aria-current="page">
                                 <img src={profile.picture} alt="Profile"
                                     style={{
