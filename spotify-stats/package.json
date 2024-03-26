@@ -1,9 +1,8 @@
 {
   "name": "spotify-stats",
   "version": "0.1.0",
-  "homepage": "https://nilesh-kolhe.github.io/Projects/spotify-stats/login",
+  "homepage": "https://nilesh-kolhe.github.io/Projects/login",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.2.2",
