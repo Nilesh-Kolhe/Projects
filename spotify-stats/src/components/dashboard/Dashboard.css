@@ -9,7 +9,6 @@
     background-size: cover;
 }
 
-.song-container::-webkit-scrollbar {
+.song-container::-webkit-scrollbar, .recent-song::-webkit-scrollbar {
     display: none;
-    /* Safari and Chrome */
 }
