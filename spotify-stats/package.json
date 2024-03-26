@@ -1,7 +1,7 @@
 {
   "name": "spotify-stats",
   "version": "0.1.0",
-  "homepage": "https://nilesh-kolhe.github.io/Projects/spotify-stats",
+  "homepage": "https://nilesh-kolhe.github.io/Projects/spotify-stats/login",
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
