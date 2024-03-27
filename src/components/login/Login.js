@@ -12,6 +12,7 @@ const Login = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const load = async () => {
+        console.log('Login Component');
         if (!code) {
             redirectToAuthCodeFlow(clientId);
         } else {

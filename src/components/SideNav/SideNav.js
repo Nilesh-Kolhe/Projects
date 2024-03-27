@@ -8,13 +8,13 @@ const SideNav = () => {
     return (
         <div className='sidenav'>
             <ul className='side-nav-list'>
-                <li onClick={() => navigate("/dashboard")}>
+                <li onClick={() => navigate("https://nilesh-kolhe.github.io/Projects/#/dashboard")}>
                     <i class="bi bi-house-fill"></i>
                     <span style={{ fontWeight: 700, marginLeft: 10 }}> Home </span>
                 </li>
                 <li style={{backgroundColor: '#FFF', padding: 0.5, height: 0}}>
                 </li>
-                <li onClick={() => navigate("/home")}>
+                <li onClick={() => navigate("https://nilesh-kolhe.github.io/Projects/#/home")}>
                     <i class="bi bi-info-circle-fill"></i>
                     <span style={{ fontWeight: 700, marginLeft: 10 }}> About </span>
                 </li>
@@ -24,13 +24,6 @@ const SideNav = () => {
                 </li>
                 <li style={{backgroundColor: '#FFF', padding: 0.5, height: 0}}></li>
             </ul>
-            {/* <hr style={{ color: '#FFF' }} />
-            <a href="#"><i class="bi bi-house-fill"></i> <span style={{ fontWeight: 700, marginLeft: 10 }}> Home </span> </a>
-            <hr style={{ color: '#FFF' }} />
-            <a href="#"><i class="bi bi-info-circle-fill"></i><span style={{ fontWeight: 700, marginLeft: 10 }}> About </span></a>
-            <hr style={{ color: '#FFF' }} />
-            <a href="#"><i class="bi bi-bookmarks-fill"></i><span style={{ fontWeight: 700, marginLeft: 10 }}> API Docs </span></a>
-            <hr style={{ color: '#FFF', marginBottom: 0 }} /> */}
         </div>
     );
 }

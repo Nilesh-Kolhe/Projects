@@ -18,11 +18,11 @@ function App() {
         <div style={{ display: 'flex', height: '100%' }}>
           <SideNav />
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Navigate to="login" />} />
+            <Route path="login" element={<Login />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="home" element={<Home />} />
           </Routes>
         </div>
       </BrowserRouter>

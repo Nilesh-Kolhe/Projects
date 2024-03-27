@@ -72,6 +72,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         const loadData = async () => {
+            console.log('Dashboard Component');
             const topTracks = await getTopTracks();
             mapToMostPlayedSongState(topTracks);
             const recentlyPlayed = await getRecentlyPlayed();
