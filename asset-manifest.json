@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/Projects/static/css/main.4d63342f.css",
-    "main.js": "/Projects/static/js/main.8a59a612.js",
+    "main.js": "/Projects/static/js/main.d7a7875a.js",
     "static/js/453.be19674c.chunk.js": "/Projects/static/js/453.be19674c.chunk.js",
     "static/media/bootstrap-icons.woff?": "/Projects/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
     "static/media/bootstrap-icons.woff2?": "/Projects/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
     "static/media/Spotify_Logo_CMYK_Green.png": "/Projects/static/media/Spotify_Logo_CMYK_Green.8eef091b1fba251ca310.png",
     "index.html": "/Projects/index.html",
     "main.4d63342f.css.map": "/Projects/static/css/main.4d63342f.css.map",
-    "main.8a59a612.js.map": "/Projects/static/js/main.8a59a612.js.map",
+    "main.d7a7875a.js.map": "/Projects/static/js/main.d7a7875a.js.map",
     "453.be19674c.chunk.js.map": "/Projects/static/js/453.be19674c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4d63342f.css",
-    "static/js/main.8a59a612.js"
+    "static/js/main.d7a7875a.js"
   ]
 }
