@@ -42,8 +42,8 @@ const NavBar = () => {
 
                 <div className="navbar-collapse collapse" id="navbar">
                     <ul className="navbar-nav mb-lg-0 justify-content-lg-end" style={{ width: "100%" }}>
-                        <li className="nav-item" style={{ backgroundColor: '#FFF', borderRadius: 5, color: '#000' }}>
-                            <a className="nav-link" style={{ color: "white", display: "flex" }} onClick={() => navigate("https://nilesh-kolhe.github.io/Projects/#/profile")} aria-current="page">
+                        <li className="nav-item" style={{ backgroundColor: '#FFF', borderRadius: 5, color: '#000', width: 'fit-content' }}>
+                            <a className="nav-link" style={{ color: "white", display: "flex" }} onClick={() => navigate("profile")} aria-current="page">
                                 <img src={profile.picture} alt="Profile"
                                     style={{
                                         borderRadius: 30,

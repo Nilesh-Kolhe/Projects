@@ -9,6 +9,6 @@
     background-size: cover;
 }
 
-.song-container::-webkit-scrollbar, .recent-song::-webkit-scrollbar {
+.song-container::-webkit-scrollbar, .recent-song::-webkit-scrollbar, .song-name::-webkit-scrollbar {
     display: none;
 }

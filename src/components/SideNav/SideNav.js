@@ -8,13 +8,13 @@ const SideNav = () => {
     return (
         <div className='sidenav'>
             <ul className='side-nav-list'>
-                <li onClick={() => navigate("https://nilesh-kolhe.github.io/Projects/#/dashboard")}>
+                <li onClick={() => navigate("dashboard")}>
                     <i class="bi bi-house-fill"></i>
                     <span style={{ fontWeight: 700, marginLeft: 10 }}> Home </span>
                 </li>
                 <li style={{backgroundColor: '#FFF', padding: 0.5, height: 0}}>
                 </li>
-                <li onClick={() => navigate("https://nilesh-kolhe.github.io/Projects/#/home")}>
+                <li onClick={() => navigate("home")}>
                     <i class="bi bi-info-circle-fill"></i>
                     <span style={{ fontWeight: 700, marginLeft: 10 }}> About </span>
                 </li>
