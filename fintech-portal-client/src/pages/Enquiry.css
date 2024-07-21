@@ -1,0 +1,46 @@
+input[type=text],
+[type=submit],
+[type=radio],
+[type=email]
+ {
+    width: 100%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+    background-color: #000;
+    color: #FFF;
+}
+
+#enq {
+    height: 540px;
+    width: 470px;
+}
+
+/* .form-group {
+    padding: 10px;
+    border: 2px solid;
+    margin: 10px;
+}
+
+label.heading {
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    top: -20px;
+    // left: 20px;
+    background-color: white;
+} */
+
+.heading {
+    font-size: small;
+}
+
+.form-group > input {
+    border: solid 1px;
+}
