@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import background from './contact1.jpg';
+import background from './ivan-samkov.jpg';
 
 const Home = () => {
 
@@ -15,19 +15,14 @@ const Home = () => {
     console.log('Response: ', todos);
 
     return (
-        <div style={{ display: 'flex', width: '100%', height: '100%' }}>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-                <div id="info">
-                    <p>This is Info about the service one provided by the Fintech solutions</p>
-                </div>
-                <div id="image">
-                    <img src={background} />
-                </div>
+        <div style={{height: '650px'}}>
+            <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${background})`, backgroundSize: '1400px 700px', filter: 'blur(0px)', zIndex: '-1' }}>
             </div>
-            <div> </div>
-            <div> </div>
+            <div id="info" style={{ height: '100%', width: '100%', padding: '40px 10px' }}>
+                <h1>We do not Promise to Deliver</h1>
+                <h3>We Deliver the Promise</h3>
+            </div>
         </div>
-        // </div>
     );
 };
 

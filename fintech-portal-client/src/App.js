@@ -9,17 +9,15 @@ import Track from "./pages/Track";
 import TopNav from './components/TopNav';
 import Footer from './components/Footer';
 import './App.css';
-import background from './pages/stats1.jpg';
 import TopMostNav from './components/TopMostNav';
 
 const App = () => {
   return (
-    // <div className="App" style={{ backgroundImage: `url(${background})`, height: '100%', width: '100%' }}>
     <div className="App" style={{ height: '100%', width: '100%' }}>
       <BrowserRouter>
         <TopMostNav />
         <TopNav />
-        <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}>
           <Routes>
             <Route path="/" element={<Navigate to="personal/home" />} /> For Local
             <Route path="personal/home" element={<Home />} />
