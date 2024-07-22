@@ -29,7 +29,7 @@ const Home = () => {
                 </div>
                 <div>
                     <span style={{ fontSize: 'x-large', fontWeight: '300', padding: '0px 20px' }}>
-                        Earn on Every Loan Enquiry
+                        Earn on every loan enquiry
                     </span> <br />
                     <div style={{ padding: '0px 20px' }}>
                         <Button bg="green"> Enquire Now </Button>
