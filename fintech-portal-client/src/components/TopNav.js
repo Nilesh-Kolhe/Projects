@@ -20,9 +20,9 @@ const TopNav = () => {
         <nav id="top-nav-root" className="navbar navbar-expand-lg navbar-light">
             <div className="container-fluid">
                 <h5 style={{ paddingTop: "10px", color: "#000" }}>
-                    <img id="bank-logo" src={bank} />
-                </h5><span style={{ color: "#000", paddingTop: "2px" }}>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <h4 style={{ paddingTop: "10px", color: "#000" }}>Fintech</h4>
+                    {/* <img id="bank-logo" src={bank} /> */}
+                </h5><span style={{ color: "#000", paddingTop: "12px" }}>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <h5 style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "22px", color: "#000" }}>Frontiernext Solutions Private Limited</h5>
                 <div className="navbar-collapse collapse" id="top-navbar">
                     <ul className="navbar-nav mb-lg-0 justify-content-lg-end" style={{ width: "100%" }}>
                         <li onClick={() => navigate("personal/home")}> Home </li>
