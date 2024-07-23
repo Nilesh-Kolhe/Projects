@@ -1,10 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const mongodb = require('mongodb');
-// import mongodb from 'mongodb';
-// import { dirname, join} from 'path';
-// import { fileURLToPath } from 'url';
 
 const app = express();
 const PORT = process.env.PORT || 5000;

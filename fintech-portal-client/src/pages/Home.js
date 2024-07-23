@@ -10,7 +10,7 @@ const Home = () => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/todos')
+        axios.get(`${process.env.REACT_APP_SECRET_NAME}/todos`)
             .then(response => setTodos(response.data))
             .catch(error => console.error(error));
     }, []);

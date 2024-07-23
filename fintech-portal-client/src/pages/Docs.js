@@ -14,8 +14,8 @@ const Docs = () => {
     console.log('Docs Response: ', todos);
 
     return (
-        <div>
-            <h1>MERN Stack Todo App</h1>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
+            <h1>Data from MongoDB</h1>
             <ul>
                 {todos.map(todo => (
                     <li key={todo._id}>{todo.task} - {todo.completed ? 'true' : 'false'}</li>
