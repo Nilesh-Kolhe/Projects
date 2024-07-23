@@ -6,7 +6,9 @@ const Docs = () => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.FINTECH_SERVER_URL}/todos`)
+        const todosUri = `${process.env.REACT_APP_FINTECH_SERVER_URL}/todos`;
+        console.log('Todos URI: ', todosUri);
+        axios.get(todosUri)
             .then(response => setTodos(response.data))
             .catch(error => console.error(error));
     }, []);

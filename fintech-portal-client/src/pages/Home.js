@@ -10,7 +10,7 @@ const Home = () => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.FINTECH_SERVER_URL}/todos`)
+        axios.get(`${process.env.REACT_APP_FINTECH_SERVER_URL}/todos`)
             .then(response => setTodos(response.data))
             .catch(error => console.error(error));
     }, []);
