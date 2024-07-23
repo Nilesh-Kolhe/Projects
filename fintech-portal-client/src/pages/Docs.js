@@ -6,7 +6,7 @@ const Docs = () => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/todos')
+        axios.get(`${process.env.FINTECH_SERVER_URL}/todos`)
             .then(response => setTodos(response.data))
             .catch(error => console.error(error));
     }, []);
@@ -14,7 +14,7 @@ const Docs = () => {
     console.log('Docs Response: ', todos);
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
             <h1>Data from MongoDB</h1>
             <ul>
                 {todos.map(todo => (
