@@ -6,12 +6,6 @@ const Enquiry = () => {
 
     const [inputs, setInputs] = useState({});
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({ ...values, [name]: value }))
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(inputs);
@@ -42,34 +36,7 @@ const Enquiry = () => {
                     <label className="heading" for="email">Email ID</label>
                     <input type="email" id="email" name="email" />
                 </div>
-
-                {/* <div className="form-group">
-                    <label className="heading" for="type">Type</label>
-                    <input type="radio" id="self" name="type" value="self" />
-                    <label for="self">Self</label><br />
-                    <input type="radio" id="referral" name="type" value="referral" />
-                    <label for="referral">Referral</label><br />
-                </div> */}
-
                 <input type="submit" value="Submit" />
-
-                {/* <label>Enter your name:
-                <input
-                    type="text"
-                    name="username"
-                    value={inputs.username || ""}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>Enter your age:
-                <input
-                    type="number"
-                    name="age"
-                    value={inputs.age || ""}
-                    onChange={handleChange}
-                />
-            </label>
-            <input type="submit" /> */}
             </form>
         </div>
     );

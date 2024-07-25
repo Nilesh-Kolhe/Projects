@@ -4,10 +4,12 @@ import './TopNav.css';
 import { useNavigate, useLocation } from "react-router-dom";
 
 const TopNav = () => {
+
     const navigate = useNavigate();
     const location = useLocation();
     const route = location.pathname;
-    document.addEventListener("click", function (event) {
+    
+    document.addEventListener("click", (event) => {
         var navbar = document.querySelector("nav div.container-fluid div#top-navbar");
         var _opened = navbar.classList.contains("show");
         if (_opened === true) {
@@ -18,7 +20,7 @@ const TopNav = () => {
     return (
         <nav id="top-nav-root" className="navbar navbar-expand-md navbar-light bg-light" aria-label="top navbar">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: "#000" }}>Frontiernext</a>
+                <a className="navbar-brand" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: "#000" }}>Frontiernext</a>
                 <span id="separator" style={{ color: "#000" }}>|&nbsp;&nbsp;</span>
                 <h5 style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "10px", paddingLeft: "5px", color: "#000" }}>Frontiernext Solutions Private Limited</h5>
 
