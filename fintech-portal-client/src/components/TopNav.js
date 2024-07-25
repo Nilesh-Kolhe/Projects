@@ -1,34 +1,37 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../../node_modules/bootstrap/dist/js/bootstrap.js';
 import './TopNav.css';
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import bank from './sbi.jpg';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const TopNav = () => {
     const navigate = useNavigate();
-    // document.addEventListener("click", function (event) {
-    //     var navbar = document.querySelector("nav div.container-fluid div#navbar");
-    //     var _opened = navbar.classList.contains("show");
-    //     if (_opened === true) {
-    //         navbar.classList.remove('show');
-    //         navbar.classList.add('hide');
-    //     }
-    // });
+    const location = useLocation();
+    const route = location.pathname;
+    document.addEventListener("click", function (event) {
+        var navbar = document.querySelector("nav div.container-fluid div#top-navbar");
+        var _opened = navbar.classList.contains("show");
+        if (_opened === true) {
+            navbar.classList.toggle('show');
+        }
+    });
 
     return (
-        <nav id="top-nav-root" className="navbar navbar-expand-lg navbar-light">
+        <nav id="top-nav-root" className="navbar navbar-expand-md navbar-light bg-light" aria-label="top navbar">
             <div className="container-fluid">
-                <h5 style={{ paddingTop: "10px", color: "#000" }}>
-                    {/* <img id="bank-logo" src={bank} /> */}
-                </h5><span style={{ color: "#000", paddingTop: "12px" }}>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <h5 style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "22px", color: "#000" }}>Frontiernext Solutions Private Limited</h5>
-                <div className="navbar-collapse collapse" id="top-navbar">
-                    <ul className="navbar-nav mb-lg-0 justify-content-lg-end" style={{ width: "100%" }}>
-                        <li onClick={() => navigate("personal/home")}> Home </li>
-                        <li onClick={() => navigate("personal/enquiry")}> Enquiry </li>
-                        <li onClick={() => navigate("personal/docs")}> Docs </li>
-                        <li onClick={() => navigate("personal/track")}> Track </li>
+                <a className="navbar-brand" href="#" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: "#000" }}>Frontiernext</a>
+                <span id="separator" style={{ color: "#000" }}>|&nbsp;&nbsp;</span>
+                <h5 style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "10px", paddingLeft: "5px", color: "#000" }}>Frontiernext Solutions Private Limited</h5>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="true" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="top-navbar" className="navbar-collapse collapse">
+                    <ul className="navbar-nav me-auto mb-2 mb-md-0 justify-content-sm-end" style={{ width: "100%" }}>
+                        <li className={route.includes('home') === true ? 'nav-item current' : 'nav-item'} onClick={() => navigate("home")}> Home </li>
+                        <li className={route.includes('enquiry') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("enquiry")}> Enquiry </li>
+                        <li className={route.includes('docs') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("docs")}> Docs </li>
+                        <li className={route.includes('track') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("track")}> Track </li>
                     </ul>
                 </div>
             </div>

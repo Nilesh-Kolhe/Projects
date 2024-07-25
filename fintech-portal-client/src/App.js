@@ -19,11 +19,11 @@ const App = () => {
         <TopNav />
         <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}>
           <Routes>
-            <Route path="/" element={<Navigate to="personal/home" />} /> For Local
-            <Route path="personal/home" element={<Home />} />
-            <Route path="personal/enquiry" element={<Enquiry />} />
-            <Route path="personal/docs" element={<Docs />} />
-            {['personal/track', 'personal/track/:id'].map(path =>
+            <Route path="/" element={<Navigate to="home" />} /> For Local
+            <Route path="home" element={<Home />} />
+            <Route path="enquiry" element={<Enquiry />} />
+            <Route path="docs" element={<Docs />} />
+            {['track', 'track/:id'].map(path =>
               <Route path={path} element={<Track />} />
             )}
             {/* <Route path="*" element={<NoPage />} /> */}

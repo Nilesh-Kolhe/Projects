@@ -1,16 +1,10 @@
-.nav-link:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-    transition: all 200ms ease-in;
-}
-
-.nav-link {
-    transition: all 200ms ease-out;
-}
-
 #top-nav-root {
-    background-color: lightgrey;
+    background-color: lightgrey !important;
     height: 60px;
+}
+
+.container-fluid {
+    height: 100%;
 }
 
 .current {
@@ -24,11 +18,16 @@
     height: 87px;
 }
 
-#top-navbar li {
-    padding: 5px 12px;
+li.nav-item {
+    padding: 7px 12px;
     color: #000;
     font-weight: 100;
     font-size: medium;
+    align-content: center;
+}
+
+#top-navbar {
+    height: 100%;
 }
 
 #top-navbar li:hover {
@@ -42,10 +41,23 @@
 @media only screen
 and (min-width : 320px)
 and (max-width : 1024px){
-    #navbar {
-        background-color: whitesmoke;
+    ul.navbar-nav {
+        position: relative;
+        z-index: 1;
+        margin-top: 12px;
+        background-color: lightgrey;
+    }
+    .container-fluid {
+        padding-left: 1px;
     }
     li.nav-item {
         text-align: right;
+        border-radius: 0px;
+    }
+    li.nav-item:hover {
+        background-color: grey;
+    }
+    .navbar-brand, span#separator {
+        display: none;
     }
 }

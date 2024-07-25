@@ -23,7 +23,6 @@ const Enquiry = () => {
             </div>
 
             <form onSubmit={handleSubmit} style={{ backgroundColor: '#FFF', opacity: '80%',  margin: '35px 0px', padding: '15px 40px', border: '1px solid' }}>
-
                 <div className="form-group">
                     <label className="heading" for="fname">First Name</label>
                     <input type="text" id="fname" name="firstname" />

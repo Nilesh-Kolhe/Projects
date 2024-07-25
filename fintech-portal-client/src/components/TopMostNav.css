@@ -1,27 +1,6 @@
-.nav-link:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-    transition: all 200ms ease-in;
-}
-
-.nav-link {
-    transition: all 200ms ease-out;
-}
-
 #top-most-nav-root {
     background-color: #000;
     height: 30px;
-}
-
-.current {
-    background-color: black;
-    color: white !important;
-    border-radius: 5px;
-}
-
-img {
-    width: 170px;
-    height: 50px;
 }
 
 #top-most-navbar li {
@@ -32,16 +11,9 @@ img {
 }
 
 .white-highlight {
-    background-color: lightgrey;
+    background-color: lightgrey !important;
     color: #000 !important;
 }
-
-#top-most-navbar li:hover {
-    background-color: #FFF;
-    color: #000;
-    cursor: pointer;
-}
-
 
 @media only screen and (min-width : 320px) and (max-width : 1024px) {
     #navbar {
