@@ -11,7 +11,7 @@ const SubNav = () => {
 
     useEffect(() => {
         setPersonal(location.pathname.includes('personal'));
-        console.log('Includes Personal: ', isPersonal);
+        console.log('Location: ', location , ' Includes Personal: ', isPersonal);
     }, []);
 
     // document.addEventListener("click", function (event) {
