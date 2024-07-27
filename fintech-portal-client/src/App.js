@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 import Home from "./pages/Home";
 import Enquiry from "./pages/Enquiry";
-import Docs from "./pages/Docs";
+import About from "./pages/About";
+import Partners from "./pages/Partners";
 import Track from "./pages/Track";
 import TopNav from './components/TopNav';
 import Footer from './components/Footer';
@@ -14,23 +15,35 @@ import TopMostNav from './components/TopMostNav';
 const App = () => {
   return (
     <div className="App" style={{ height: '100%', width: '100%' }}>
-      <BrowserRouter>
+
+      <TopMostNav />
+      <TopNav />
+      <div style={{ height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
+        <Home />
+        <Partners />
+        <Enquiry />
+        <About />
+        <Track />
+      <Footer />
+      </div>
+
+      {/* <BrowserRouter>
         <TopMostNav />
         <TopNav />
         <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}>
           <Routes>
-            <Route path="/" element={<Navigate to="home" />} /> For Local
+            <Route path="/" element={<Navigate to="home" />} />
             <Route path="home" element={<Home />} />
+            <Route path="Partners" element={<Partners />} />
             <Route path="enquiry" element={<Enquiry />} />
-            <Route path="docs" element={<Docs />} />
+            <Route path="about" element={<About />} />
             {['track', 'track/:id'].map(path =>
               <Route path={path} element={<Track />} />
             )}
-            {/* <Route path="*" element={<NoPage />} /> */}
           </Routes>
         </div>
         <Footer />
-      </BrowserRouter >
+      </BrowserRouter > */}
     </div>
   );
 };

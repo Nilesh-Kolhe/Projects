@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-const Docs = () => {
+const About = () => {
 
     const [todos, setTodos] = useState([]);
 
@@ -13,7 +13,7 @@ const Docs = () => {
             .catch(error => console.error(error));
     }, []);
 
-    console.log('Docs Response: ', todos);
+    console.log('About Response: ', todos);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
@@ -27,4 +27,4 @@ const Docs = () => {
     );
 };
 
-export default Docs;
+export default About;

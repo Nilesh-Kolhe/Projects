@@ -5,10 +5,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const TopNav = () => {
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const route = location.pathname;
-    
+    // const navigate = useNavigate();
+    // const location = useLocation();
+    // const route = location.pathname;
+
     document.addEventListener("click", (event) => {
         var navbar = document.querySelector("nav div.container-fluid div#top-navbar");
         var _opened = navbar.classList.contains("show");
@@ -30,10 +30,20 @@ const TopNav = () => {
 
                 <div id="top-navbar" className="navbar-collapse collapse">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0 justify-content-sm-end" style={{ width: "100%" }}>
-                        <li className={route.includes('home') === true ? 'nav-item current' : 'nav-item'} onClick={() => navigate("home")}> Home </li>
-                        <li className={route.includes('enquiry') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("enquiry")}> Enquiry </li>
-                        <li className={route.includes('docs') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("docs")}> Docs </li>
-                        <li className={route.includes('track') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("track")}> Track </li>
+
+                        <li className='nav-item' onClick={() => { }}> Home </li>
+                        <li className='nav-item' onClick={() => { }}> Services </li>
+                        <li className='nav-item' onClick={() => { }}> Partners </li>
+                        <li className='nav-item' onClick={() => { }}> Enquiry </li>
+                        <li className='nav-item' onClick={() => { }}> About Us </li>
+                        <li className='nav-item' onClick={() => { }}> Track </li>
+
+                        {/* <li className={route.includes('home') === true ? 'nav-item current' : 'nav-item'} onClick={() => {}}> Home </li>
+                        <li className={route.includes('services') === true ? 'nav-item current' : 'nav-item'} onClick={() => {}}> Services </li>
+                        <li className={route.includes('partners') === true ? 'nav-item current' : 'nav-item'} onClick={() => {}}> Partners </li>
+                        <li className={route.includes('enquiry') ? 'nav-item current' : 'nav-item'} onClick={() => {}}> Enquiry </li>
+                        <li className={route.includes('about') ? 'nav-item current' : 'nav-item'} onClick={() => {}}> About Us </li>
+                        <li className={route.includes('track') ? 'nav-item current' : 'nav-item'} onClick={() => {}}> Track </li> */}
                     </ul>
                 </div>
             </div>

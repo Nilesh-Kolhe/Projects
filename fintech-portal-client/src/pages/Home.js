@@ -15,15 +15,16 @@ const Home = () => {
             .catch(error => console.error(error));
     }, []);
 
-    console.log('Response: ', todos);
+    console.log('Home Response: ', todos);
 
     return (
         <>
-            <div id="background-horizontal" style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${backgroundHorizontal})`, backgroundSize: '1366px 545px', zIndex: '-1' }}>
-            </div>
-            <div id="background-vertical" style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${backgroundVertical})`, zIndex: '-1' }}>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', padding: '40px 10px', rowGap: '150px' }}>
+            {/* <div id="background" style={{ width: '100%', height: '100%' }}> */}
+            {/* <div id="background-horizontal" style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${backgroundHorizontal})`, backgroundSize: '1366px 545px', zIndex: '-1' }}>
+            </div> */}
+            {/* <div id="background-vertical" style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${backgroundVertical})`, zIndex: '-1' }}>
+            </div> */}
+            <div id="background" style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', padding: '40px 10px', rowGap: '150px' }}>
                 <div className='info'>
                     <span style={{ fontSize: 'xxx-large', fontWeight: '500', fontVariantCaps: 'petite-caps', padding: '0px 2px' }} >Frontiernext</span> <br />
                     <span style={{ fontSize: 'xx-large', fontWeight: '300', padding: '0px 2px' }} >Your trusted partner for loan guidance</span>
@@ -32,12 +33,14 @@ const Home = () => {
                     <span style={{ fontSize: 'x-large', fontWeight: '300', padding: '0px 2px' }}>
                         Earn on every loan enquiry
                     </span> <br />
-                    <div style={{ padding: '0px 1px' }}>
+                    <div style={{ padding: '10px 1px' }}>
                         <Button bg="green"> Enquire Now </Button>
                     </div>
                 </div>
             </div>
+            {/* </div> */}
         </>
+
     );
 };
 
