@@ -9,10 +9,10 @@ app.use(cors());
 app.use(express.json());
 require('dotenv').config();
 
-// const {Twilio_SERVICE_SID, Twilio_ACCOUNT_SID, Twilio_AUTH_TOKEN } = process.env;
-// const client = require('twilio')(Twilio_ACCOUNT_SID,Twilio_AUTH_TOKEN, {
-//     lazyLoading: true
-// })
+// Add below to .env file
+// TWILIO_ACCOUNT_SID=AC363c848eabda91ece8584360bb9171cc
+// TWILIO_SERVICE_SID=VAf6465441a6573e4d350cbb99285bc6cd
+// TWILIO_AUTH_TOKEN=cc159a228ea540922a93542cb4481002
 
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN, {
     lazyLoading: true
