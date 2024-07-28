@@ -44,7 +44,6 @@ app.get('/todos', async (req, res) => {
 
 app.post('/sendOTP', async (req, res) => {
     const { countryCode, phoneNumber } = req.body;
-    console.log('Country Code: ', countryCode, ' Phone Number: ', phoneNumber);
     try {
         const otpResponse = await client.verify
             .services(process.env.TWILIO_SERVICE_SID)
