@@ -24,7 +24,7 @@ const Home = () => {
             </div> */}
             {/* <div id="background-vertical" style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${backgroundVertical})`, zIndex: '-1' }}>
             </div> */}
-            <div id="background" style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', padding: '40px 10px', rowGap: '150px' }}>
+            <div id="home" style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', padding: '40px 10px', rowGap: '150px' }}>
                 <div className='info'>
                     <span style={{ fontSize: 'xxx-large', fontWeight: '500', fontVariantCaps: 'petite-caps', padding: '0px 2px' }} >Frontiernext</span> <br />
                     <span style={{ fontSize: 'xx-large', fontWeight: '300', padding: '0px 2px' }} >Your trusted partner for loan guidance</span>

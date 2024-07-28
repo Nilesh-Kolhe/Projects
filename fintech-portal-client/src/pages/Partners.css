@@ -2,6 +2,11 @@
     height: 100px;
     width: 250px;
     margin: 0px 70px;
+    transition: transform .2s;
+}
+
+.bank-image:hover {
+    transform: scale(1.10);
 }
 
 #headline {
@@ -13,7 +18,7 @@
 }
 
 @media only screen and (min-width : 320px) and (max-width : 768px) {
-    
+
     .bank-image {
         height: 55px;
         width: 115px;

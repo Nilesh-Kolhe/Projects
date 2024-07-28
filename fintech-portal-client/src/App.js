@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 import Home from "./pages/Home";
 import Enquiry from "./pages/Enquiry";
+import Landing from "./pages/Landing";
 import About from "./pages/About";
 import Partners from "./pages/Partners";
 import Track from "./pages/Track";
@@ -16,34 +17,41 @@ const App = () => {
   return (
     <div className="App" style={{ height: '100%', width: '100%' }}>
 
-      <TopMostNav />
+      {/* <TopMostNav />
       <TopNav />
       <div style={{ height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
-        <Home />
-        <Partners />
-        <Enquiry />
-        <About />
-        <Track />
-      <Footer />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="landing" />} />
+            <Route path="landing" element={<Landing />} />
+            <Route path="enquiry" element={<Enquiry />} />
+          </Routes>
+        </BrowserRouter>
       </div>
+      <Footer /> */}
 
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <TopMostNav />
         <TopNav />
-        <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}>
+        {/* <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}> */}
+        <div style={{ height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
           <Routes>
-            <Route path="/" element={<Navigate to="home" />} />
+
+            <Route path="/" element={<Navigate to="landing" />} />
+            <Route path="landing" element={<Landing />} />
+            <Route path="enquiry" element={<Enquiry />} />
+
+            {/*<Route path="/" element={<Navigate to="home" />} />
             <Route path="home" element={<Home />} />
             <Route path="Partners" element={<Partners />} />
             <Route path="enquiry" element={<Enquiry />} />
             <Route path="about" element={<About />} />
             {['track', 'track/:id'].map(path =>
               <Route path={path} element={<Track />} />
-            )}
+            )} */}
           </Routes>
         </div>
-        <Footer />
-      </BrowserRouter > */}
+      </BrowserRouter >
     </div>
   );
 };
