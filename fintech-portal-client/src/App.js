@@ -36,7 +36,6 @@ const App = () => {
         {/* <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}> */}
         <div style={{ height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
           <Routes>
-
             <Route path="/" element={<Navigate to="landing" />} />
             <Route path="landing" element={<Landing />} />
             <Route path="enquiry" element={<Enquiry />} />

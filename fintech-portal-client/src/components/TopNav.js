@@ -32,7 +32,7 @@ const TopNav = () => {
 
                 <div id="top-navbar" className="navbar-collapse collapse">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0 justify-content-sm-end" style={{ width: "100%" }}>
-                        <li className={!route.includes('#') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")}> <a href='#home'>Home</a> </li>
+                        <li className={route.includes('home') || route === 'landing' ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")}> <a href='#home'>Home</a> </li>
                         <li className='nav-item' onClick={() => { }}> Services </li>
                         <li className={route.includes('partners') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")} > <a href='#partners'> Partners </a> </li>
                         <li className={route.includes('enquiry') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("enquiry")}> Enquiry </li>
