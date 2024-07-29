@@ -9,20 +9,14 @@ app.use(cors());
 app.use(express.json());
 require('dotenv').config();
 
-// Add below to .env file
-// TWILIO_ACCOUNT_SID=AC363c848eabda91ece8584360bb9171cc
-// TWILIO_SERVICE_SID=VAf6465441a6573e4d350cbb99285bc6cd
-// TWILIO_AUTH_TOKEN=cc159a228ea540922a93542cb4481002
-
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN, {
     lazyLoading: true
 })
 
-
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://admin-0:admin0@mern-stack-db.zijgsnb.mongodb.net/test_db?retryWrites=true&w=majority")
-    .then(res => console.log("Success ! "))
-    .catch(err => console.log("Error: ", err));
+mongoose.connect(process.env.MONGO_TEST_DB_URI)
+    .then(res => console.log("Connected to MongoDB !"))
+    .catch(err => console.log("Error Connecting to MongoDB ", err));
 
 const todoSchema = new mongoose.Schema({
     task: String,
@@ -46,7 +40,7 @@ app.post('/sendOTP', async (req, res) => {
     const { countryCode, phoneNumber } = req.body;
     try {
         const otpResponse = await client.verify
-            .services(process.env.TWILIO_SERVICE_SID)
+            .v2.services(process.env.TWILIO_SERVICE_SID)
             .verifications.create({
                 to: `+${countryCode}${phoneNumber}`,
                 channel: "sms",

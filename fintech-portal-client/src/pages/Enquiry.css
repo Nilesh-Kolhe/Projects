@@ -12,9 +12,14 @@ input[type=text],
     box-sizing: border-box;
 }
 
-input[type=submit]:hover {
+input[type=submit] {
     background-color: #000;
     color: #FFF;
+}
+
+input[type=submit]:hover {
+    background-color: #FFF;
+    color: #000;
 }
 
 #enq {
