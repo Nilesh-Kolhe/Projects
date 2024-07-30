@@ -7,15 +7,14 @@ const Button = styled.button`
     color: #FFF;
     background-color: ${(props) =>
         props.bg === "green" ? "green" : "#000"};
-    disabled: ${(props) => props.disabled};
-    ${(props) =>  
-        `background-color: #000;
-        color: #FFF;
-        border-color: green;
-    `};
+    pointer-events:${(props) => props.disabled ? 'none' : null};
+    &:disabled {
+        cursor: default;
+        opacity: 0.5;
+    };
     font-size: medium;
     padding: 5px 20px;
-    margin: px 0;
+    margin: 5px 0px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-weight: 400;

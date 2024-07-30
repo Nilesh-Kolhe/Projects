@@ -1,8 +1,7 @@
 input[type=text],
 [type=submit],
 [type=radio],
-[type=email]
- {
+[type=email] {
     width: 100%;
     padding: 5px 20px;
     margin: 2px 0;
@@ -27,6 +26,15 @@ input[type=submit]:hover {
     width: 470px;
 }
 
+#enquire {
+    background-color: '#FFF';
+    opacity: 80%;
+    margin: 15px 0px;
+    padding: 15px 25px;
+    width: 550px;
+    border: 1px solid;
+}
+
 .heading {
     font-size: small;
 }
@@ -35,6 +43,44 @@ input[type=submit]:hover {
     padding: 0px 15px;
 }
 
-.form-group > input {
+.form-group>input {
     border: solid 1px;
+}
+
+#head {
+    font-size: 'x-large';
+    font-weight: 500;
+    padding: 0px 2px;
+}
+
+#sub-head {
+    font-size: 'large';
+    font-weight: 200;
+    padding: '0px 2px';
+}
+
+#call-img-container {
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (min-width : 320px) and (max-width : 768px) {
+    #call-img-container {
+        display: none;
+    }
+
+    #enquire {
+        width: 350px;
+        margin: 15px 15px;
+        padding: 15px 15px;
+    }
+
+    #head {
+        padding: 0px 10px;
+    }
+
+    #sub-head {
+        font-size: 'medium';
+        padding: 0px 10px;
+    }
 }
