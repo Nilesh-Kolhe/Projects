@@ -1,13 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-// import background from './ivan-samkov.jpg';
-import backgroundHorizontal from './images/gradient_design_2.PNG';
-import backgroundVertical from './images/gradient_design_2_vertical.png';
-// import background from './images/Untitled_design_4.PNG';
 import Button from "../ui-components/Button";
+import { useNavigate } from "react-router-dom";
 import './Home.css';
 
 const Home = () => {
+    const navigate = useNavigate();
     const [todos, setTodos] = useState([]);
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_FINTECH_SERVER_URL}/todos`)
@@ -29,7 +27,7 @@ const Home = () => {
                         Earn on every loan enquiry
                     </span> <br />
                     <div style={{ padding: '10px 1px' }}>
-                        <Button bg="green"> Enquire Now </Button>
+                        <Button bg="green" onClick={() => {navigate("/enquiry")}} > Enquire Now </Button>
                     </div>
                 </div>
             </div>
