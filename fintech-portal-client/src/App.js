@@ -4,7 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 import Home from "./pages/Home";
 import Enquiry from "./pages/Enquiry";
-import Docs from "./pages/Docs";
+import Landing from "./pages/Landing";
+import About from "./pages/About";
+import Partners from "./pages/Partners";
 import Track from "./pages/Track";
 import TopNav from './components/TopNav';
 import Footer from './components/Footer';
@@ -14,22 +16,40 @@ import TopMostNav from './components/TopMostNav';
 const App = () => {
   return (
     <div className="App" style={{ height: '100%', width: '100%' }}>
+
+      {/* <TopMostNav />
+      <TopNav />
+      <div style={{ height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="landing" />} />
+            <Route path="landing" element={<Landing />} />
+            <Route path="enquiry" element={<Enquiry />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+      <Footer /> */}
+
       <BrowserRouter>
         <TopMostNav />
         <TopNav />
-        <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}>
+        {/* <div style={{ display: 'flex', height: '100%', width: '100%', margin: '0px 0px' }}> */}
+        <div style={{ height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
           <Routes>
-            <Route path="/" element={<Navigate to="home" />} /> For Local
-            <Route path="home" element={<Home />} />
+            <Route path="/" element={<Navigate to="landing" />} />
+            <Route path="landing" element={<Landing />} />
             <Route path="enquiry" element={<Enquiry />} />
-            <Route path="docs" element={<Docs />} />
+
+            {/*<Route path="/" element={<Navigate to="home" />} />
+            <Route path="home" element={<Home />} />
+            <Route path="Partners" element={<Partners />} />
+            <Route path="enquiry" element={<Enquiry />} />
+            <Route path="about" element={<About />} />
             {['track', 'track/:id'].map(path =>
               <Route path={path} element={<Track />} />
-            )}
-            {/* <Route path="*" element={<NoPage />} /> */}
+            )} */}
           </Routes>
         </div>
-        <Footer />
       </BrowserRouter >
     </div>
   );

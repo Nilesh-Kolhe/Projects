@@ -14,6 +14,12 @@
         padding: 10px;
         opacity: 88%;
     }
+
+    #home {
+        background-image: url('./images/gradient_design_2_vertical.png');
+        background-size: 470px;
+        left: 5px;
+    }
 }
 
 @media only screen and (min-width : 769px) {
@@ -25,5 +31,10 @@
 
     #background-horizontal {
         display: block;
+    }
+
+    #home {
+        background-image: url('./images/gradient_design_2.PNG');
+        left: 5px;
     }
 }

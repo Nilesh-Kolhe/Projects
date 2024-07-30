@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const Track = () => {
     const { id } = useParams();
     return (
-        <div>
+        <div id='track'>
             <h1>This is Tracking Page</h1>
             {id === undefined | null ?
                 <>

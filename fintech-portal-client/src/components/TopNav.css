@@ -9,8 +9,13 @@
 
 .current {
     background-color: black;
-    color: white !important;
+    color: #FFF;
     border-radius: 5px;
+
+    &>a {
+        color: #FFF !important;
+        text-decoration: none;
+    }
 }
 
 #bank-logo {
@@ -20,10 +25,14 @@
 
 li.nav-item {
     padding: 7px 12px;
-    color: #000;
     font-weight: 100;
     font-size: medium;
     align-content: center;
+
+    &>a {
+        color: #000;
+        text-decoration: none;
+    }
 }
 
 #top-navbar {
@@ -35,29 +44,36 @@ li.nav-item {
     color: #FFF;
     cursor: pointer;
     border-radius: 5px;
+    &>a {
+        color: #FFF;
+        text-decoration: none;
+    }
 }
 
 
-@media only screen
-and (min-width : 320px)
-and (max-width : 1024px){
+@media only screen and (min-width : 320px) and (max-width : 1024px) {
     ul.navbar-nav {
         position: relative;
         z-index: 1;
         margin-top: 12px;
         background-color: lightgrey;
     }
+
     .container-fluid {
         padding-left: 1px;
     }
+
     li.nav-item {
         text-align: right;
         border-radius: 0px;
     }
+
     li.nav-item:hover {
         background-color: grey;
     }
-    .navbar-brand, span#separator {
+
+    .navbar-brand,
+    span#separator {
         display: none;
     }
 }
