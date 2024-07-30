@@ -32,12 +32,12 @@ app.listen(PORT, () => {
 
 app.get('/todos', async (req, res) => {
     const todos = await todoModel.find();
-    console.log("Server Response: ", todos);
     res.json(todos);
 });
 
 app.post('/sendOTP', async (req, res) => {
     const { countryCode, phoneNumber } = req.body;
+    console.log('Country Code: ', countryCode, ' Phone Number: ', phoneNumber);
     try {
         const otpResponse = await client.verify
             .v2.services(process.env.TWILIO_SERVICE_SID)
@@ -53,9 +53,10 @@ app.post('/sendOTP', async (req, res) => {
 
 app.post('/verifyOTP', async (req, res) => {
     const { countryCode, phoneNumber, otp } = req.body;
+    console.log('Country Code: ', countryCode, ' Phone Number: ', phoneNumber, ' OTP: ', otp);
     try {
         const verifiedResponse = await client.verify
-            .services(process.env.TWILIO_SERVICE_SID)
+            .v2.services(process.env.TWILIO_SERVICE_SID)
             .verificationChecks.create({
                 to: `+${countryCode}${phoneNumber}`,
                 code: otp,

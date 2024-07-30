@@ -1,3 +1,4 @@
+import axios from 'axios';
 import './Enquiry.css';
 import { useState, useEffect, useRef } from "react";
 import contact from './images/Untitled_design_8.PNG';
@@ -11,10 +12,7 @@ const Enquiry = () => {
     let contactRef = useRef();
     let emailRef = useRef();
     let otpRef = useRef();
-
     let details = {};
-
-    const [isSendOtpDisabled, setIsSendOtpDisabled] = useState(false);
 
     const [isOtpDisabled, setIsOtpDisabled] = useState({
         isSendOtpDisabled: false,
@@ -28,6 +26,14 @@ const Enquiry = () => {
 
     const sendOTP = (event) => {
         // event.preventDefault();
+
+        axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/sendOTP`, {
+            countryCode: '+91',
+            phoneNumber: contactRef.current.value
+        })
+            .then(response => { console.log('sendOTP Response: ', response) })
+            .catch(error => console.error(error));
+
         setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: true }));
         setOtpMessage((prevState) => ({
             ...prevState, sendOtp: 'OTP Sent Successfully !'
@@ -40,17 +46,24 @@ const Enquiry = () => {
                 sendOtp: '',
                 verifyOtp: ''
             }))
-        ), 2000);
-        console.log('Send OTP: ', isOtpDisabled.isSendOtpDisabled);
+        ), 600000);
     }
 
     const verifyOTP = (event) => {
         // event.preventDefault();
-        setIsOtpDisabled((prevState) => ({ ...prevState, isVerifyOtpDisabled: true }));
-        setOtpMessage((prevState) => ({
-            ...prevState, verifyOtp: 'OTP Verified Successfully !'
-        }));
-        console.log('Verify OTP', isOtpDisabled.isVerifyOtpDisabled);
+        axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/verifyOTP`, {
+            countryCode: '+91',
+            phoneNumber: contactRef.current.value,
+            otp: otpRef.current.value
+        })
+            .then(response => {
+                console.log('sendOTP Response: ', response);
+                setIsOtpDisabled((prevState) => ({ ...prevState, isVerifyOtpDisabled: true }));
+                setOtpMessage((prevState) => ({
+                    ...prevState, verifyOtp: 'OTP Verified Successfully !'
+                }));
+            })
+            .catch(error => console.error(error));
     }
 
     const handleSubmit = (event) => {
