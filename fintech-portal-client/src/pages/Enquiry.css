@@ -1,7 +1,8 @@
 input[type=text],
 [type=submit],
 [type=radio],
-[type=email] {
+[type=email],
+select {
     width: 100%;
     padding: 5px 20px;
     margin: 2px 0;
@@ -27,7 +28,7 @@ input[type=submit]:hover {
 }
 
 #enquire {
-    background-color: '#FFF';
+    /* background-color: #FFF; */
     opacity: 80%;
     margin: 15px 0px;
     padding: 15px 25px;
@@ -47,21 +48,21 @@ input[type=submit]:hover {
     border: solid 1px;
 }
 
-#head {
-    font-size: 'x-large';
+.head {
+    font-size: x-large;
     font-weight: 500;
     padding: 0px 2px;
 }
 
-#sub-head {
-    font-size: 'large';
+.sub-head {
+    font-size: large;
     font-weight: 200;
-    padding: '0px 2px';
+    padding: 0px 2px;
 }
 
 #call-img-container {
     display: flex;
-    align-items: center;
+    margin-top: 90px;
 }
 
 @media only screen and (min-width : 320px) and (max-width : 768px) {
@@ -75,12 +76,12 @@ input[type=submit]:hover {
         padding: 15px 15px;
     }
 
-    #head {
+    .head {
         padding: 0px 10px;
     }
 
-    #sub-head {
-        font-size: 'medium';
+    .sub-head {
+        font-size: medium;
         padding: 0px 10px;
     }
 }
