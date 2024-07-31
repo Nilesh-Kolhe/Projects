@@ -1,17 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
+const otpRoutes = require('./routes/otp');
+const { error } = require('console');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-require('dotenv').config();
+app.use('/otp', otpRoutes);
 
-const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN, {
-    lazyLoading: true
-})
+// const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN, {
+//     lazyLoading: true
+// })
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_TEST_DB_URI)
@@ -23,7 +26,16 @@ const todoSchema = new mongoose.Schema({
     completed: Boolean,
 });
 
+const enquiriesSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    type: String,
+    email: String,
+    contact: Number
+});
+
 const todoModel = mongoose.model('todos', todoSchema);
+const enquiriesModel = mongoose.model('enquiries', enquiriesSchema);
 
 // Define routes and middleware
 app.listen(PORT, () => {
@@ -35,34 +47,29 @@ app.get('/todos', async (req, res) => {
     res.json(todos);
 });
 
-app.post('/sendOTP', async (req, res) => {
-    const { countryCode, phoneNumber } = req.body;
-    console.log('Country Code: ', countryCode, ' Phone Number: ', phoneNumber);
-    try {
-        const otpResponse = await client.verify
-            .v2.services(process.env.TWILIO_SERVICE_SID)
-            .verifications.create({
-                to: `+${countryCode}${phoneNumber}`,
-                channel: "sms",
-            });
-        res.status(200).send(`OTP send successfully!: ${JSON.stringify(otpResponse)}`);
-    } catch (error) {
-        res.status(error?.status || 400).send(error?.message || 'something went wrong!');
-    }
-});
+app.post('/submitEnquiry', async (req, res) => {
+    const { firstName, lastName, type, email, contact } = req.body;
+    console.log('First Name: ', firstName, ' Last Name: ', lastName, ' Type', type, ' Email: ', email, ' Contact: ', contact);
 
-app.post('/verifyOTP', async (req, res) => {
-    const { countryCode, phoneNumber, otp } = req.body;
-    console.log('Country Code: ', countryCode, ' Phone Number: ', phoneNumber, ' OTP: ', otp);
-    try {
-        const verifiedResponse = await client.verify
-            .v2.services(process.env.TWILIO_SERVICE_SID)
-            .verificationChecks.create({
-                to: `+${countryCode}${phoneNumber}`,
-                code: otp,
+    const enquiry = new enquiriesModel({
+        firstName: firstName,
+        lastName: lastName,
+        type: type,
+        email: email,
+        contact: contact
+    });
+
+    enquiry
+        .save()
+        .then(enquirySaved => {
+            // res.status(200).send(`OTP verified successfully!: ${JSON.stringify(verifiedResponse)}`);
+            res.status(201).json({
+                message: 'Enquiry saved successfully !',
+                post: enquirySaved
             });
-        res.status(200).send(`OTP verified successfully!: ${JSON.stringify(verifiedResponse)}`);
-    } catch (error) {
-        res.status(error?.status || 400).send(error?.message || 'something went wrong');
-    }
+        })
+        .catch(error => {
+            console.log('Error saving enquiry', error);
+            res.status(error?.status || 400).send(error?.message || 'something went wrong');
+        });
 });
