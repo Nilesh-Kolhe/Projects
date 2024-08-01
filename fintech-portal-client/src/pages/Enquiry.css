@@ -1,6 +1,5 @@
 input[type=text],
 [type=submit],
-[type=radio],
 [type=email],
 select {
     width: 100%;
@@ -10,6 +9,12 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.heading::after {
+    content: " *";
+    color: red;
+    font-size: medium;
 }
 
 input[type=submit] {
@@ -42,6 +47,11 @@ input[type=submit]:hover {
 
 .message {
     padding: 0px 15px;
+}
+
+.error-message {
+    color: red;
+    padding: 0px 2px;
 }
 
 .form-group>input {
