@@ -1,21 +1,15 @@
 import axios from 'axios';
 import './Enquiry.css';
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import contact from './images/Untitled_design_8.PNG';
 import call from './images/Enq.jpg';
 import Footer from '../components/Footer';
 import Button from '../ui-components/Button';
 
 const Enquiry = () => {
-    let fnameRef = useRef();
-    let lnameRef = useRef();
-    let typeRef = useRef();
-    let contactRef = useRef();
-    let emailRef = useRef();
-    let otpRef = useRef();
-
-    const [isEnquiryFormValid, setIsEnquiryFormValid] = useState(false);
     const [isEnquiryReceived, setIsEnquiryReceived] = useState(false);
+    const [isFormValid, setIsFormValid] = useState(false);
+    const [errors, setErrors] = useState({});
     const [isOtpDisabled, setIsOtpDisabled] = useState({
         isSendOtpDisabled: false,
         isVerifyOtpDisabled: false
@@ -25,135 +19,105 @@ const Enquiry = () => {
         verifyOtp: ''
     });
     const [formData, setFormData] = useState({
-        firstName: { value: '', message: '' },
-        lastName: { value: '', message: '' },
-        contact: { value: '', message: '' },
-        type: { value: '', message: '' },
-        email: { value: '', message: '' }
+        firstName: '',
+        lastName: '',
+        contact: '',
+        isContactVerified: '',
+        type: '',
+        email: ''
     });
-
-    useEffect(() => {
-        // fnameRef.current.focus();
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log('On Blur Name: ', name, ' Value: ', value);
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+
         switch (name) {
             case 'firstName':
                 if (!value) {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: 'First name is required'
-                        },
+                    setErrors({
+                        ...errors,
+                        [name]: 'First Name is Required !'
                     });
-                    setIsEnquiryFormValid(false);
-                } else {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: ''
-                        },
+                }
+                else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
                     });
-                    console.log('On Blur FirstName FormData: ', formData);
-                    setIsEnquiryFormValid(true);
                 }
                 break;
-
             case 'lastName':
                 if (!value) {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: 'Last name is required'
-                        },
+                    setErrors({
+                        ...errors,
+                        [name]: 'Last Name is Required !'
                     });
-                    setIsEnquiryFormValid(false);
-                } else {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: ''
-                        },
+                }
+                else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
                     });
-                    console.log('Handle Change FormData: ', formData);
-                    setIsEnquiryFormValid(true);
                 }
                 break;
-
             case 'contact':
                 if (!value) {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: 'Contact Number is required'
-                        },
+                    setErrors({
+                        ...errors,
+                        [name]: 'Contact number is Required !'
                     });
-                    setIsEnquiryFormValid(false);
                 } else if (value.length < 10) {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: 'Contact Number should be atleast 10 digits'
-                        },
+                    setErrors({
+                        ...errors,
+                        [name]: 'Contact number should be atleast 10 digits !'
                     });
-                    setIsEnquiryFormValid(false);
-                } else {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: ''
-                        },
+                }
+                else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
                     });
-                    console.log('Handle Change FormData: ', formData);
-                    setIsEnquiryFormValid(true);
                 }
                 break;
-
+            case 'type':
+                if (value === 'select') {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Please select enquiry type'
+                    });
+                } else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
+                    });
+                }
+                break;
             case 'email':
                 if (!value) {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: 'Email is required'
-                        },
+                    setErrors({
+                        ...errors,
+                        [name]: 'Email is Required !'
                     });
-                    setIsEnquiryFormValid(false);
                 } else if (!/\S+@\S+\.\S+/.test(value)) {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: 'Email is invalid'
-                        },
+                    setErrors({
+                        ...errors,
+                        [name]: 'Email is not valid !'
                     });
-                    setIsEnquiryFormValid(false);
                 } else {
-                    setFormData({
-                        ...formData,
-                        [name]: {
-                            value: value,
-                            message: ''
-                        },
+                    setErrors({
+                        ...errors,
+                        [name]: ''
                     });
-                    console.log('Handle Change FormData: ', formData);
-                    setIsEnquiryFormValid(true);
                 }
                 break;
-            default:
         }
     };
 
     const sendOTP = (event) => {
+        event.preventDefault();
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/otp/send`, {
             countryCode: '+91',
             phoneNumber: contactRef.current.value
@@ -163,7 +127,7 @@ const Enquiry = () => {
 
         setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: true }));
         setOtpMessage((prevState) => ({
-            ...prevState, sendOtp: 'OTP Sent Successfully !'
+            sendOtp: 'OTP Sent Successfully !'
         }));
 
         setTimeout(() => (setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: false })),
@@ -177,6 +141,7 @@ const Enquiry = () => {
     }
 
     const verifyOTP = (event) => {
+        event.preventDefault();
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/otp/verify`, {
             countryCode: '+91',
             phoneNumber: contactRef.current.value,
@@ -186,44 +151,54 @@ const Enquiry = () => {
                 console.log('sendOTP Response: ', response);
                 setIsOtpDisabled((prevState) => ({ ...prevState, isVerifyOtpDisabled: true }));
                 setOtpMessage((prevState) => ({
-                    ...prevState, verifyOtp: 'OTP Verified Successfully !'
+                    verifyOtp: 'OTP Verified Successfully !'
                 }));
+                setErrors({
+                    ...errors,
+                    isContactVerified: ''
+                });
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                setOtpMessage((prevState) => ({
+                    verifyOtp: 'Unable to verify OTP !'
+                }));
+                setErrors({
+                    ...errors,
+                    isContactVerified: 'Unable to verify contact number'
+                });
+                console.error('Error verifiying OTP ', error)
+            });
     }
 
-    const validateForm = () => {
-        let isValid = true;
-        console.log('Validate Form Data: ', formData);
-        for (const data in formData) {
-            console.log('Data: ', data, ' formData[data]', formData[data])
-            if (formData[data].message !== '') {
-                isValid = false;
-                break;
+    useEffect(() => {
+        console.log('Errors: ', errors);
+        if (Object.keys(errors).length === 6) {
+            let isValid = true;
+            for (var error in errors) {
+                if (errors[error] !== "") {
+                    isValid = false;
+                    break;
+                }
             }
+            setIsFormValid(isValid);
         }
-        return isValid;
-    }
+    }, [errors]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // setIsEnquiryFormValid(validateForm());
-        console.log('isForm Valid: ', isEnquiryFormValid, ' Submit Form Data: ', formData);
-
-        if (!isEnquiryFormValid) { return };
+        console.log('FormData: ', formData);
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, {
-            firstName: fnameRef.current.value,
-            lastName: lnameRef.current.value,
-            type: typeRef.current.value,
-            contact: contactRef.current.value,
-            email: emailRef.current.value
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            type: formData.type,
+            contact: formData.contact,
+            email: formData.email
         })
             .then(response => {
                 console.log('Save Enquiry Response: ', response);
                 setIsEnquiryReceived(true);
             })
             .catch(error => console.error(error));
-
     }
 
     return (
@@ -243,23 +218,22 @@ const Enquiry = () => {
                             <div className="form-group">
                                 <label className="heading" for="fname">First Name</label>
                                 <input
-                                    ref={fnameRef}
                                     type="text"
                                     id="fname"
                                     name="firstName"
-                                    defaultValue={formData.firstName.value}
+                                    className={errors.firstName && 'border-red'}
+                                    defaultValue={formData.firstName}
                                     onBlur={handleChange}
-                                    onFocus={(e) => setFormData({
-                                        ...formData,
-                                        [e.target.name]: {
-                                            value: e.target.value,
-                                            message: ''
-                                        },
-                                    })}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { firstName, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
                                 />
-                                {formData.firstName.message && (
+                                {errors.firstName && (
                                     <span className="error-message">
-                                        {formData.firstName.message}
+                                        {errors.firstName}
                                     </span>
                                 )}
                             </div>
@@ -267,23 +241,22 @@ const Enquiry = () => {
                             <div className="form-group">
                                 <label className="heading" for="lname">Last Name</label>
                                 <input
-                                    ref={lnameRef}
                                     type="text"
                                     id="lname"
                                     name="lastName"
-                                    defaultValue={formData.lastName.value}
+                                    className={errors.lastName && 'border-red'}
+                                    defaultValue={formData.lastName}
                                     onBlur={handleChange}
-                                    onFocus={(e) => setFormData({
-                                        ...formData,
-                                        [e.target.name]: {
-                                            value: e.target.value,
-                                            message: ''
-                                        },
-                                    })}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { lastName, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
                                 />
-                                {formData.lastName.message && (
+                                {errors.lastName && (
                                     <span className="error-message">
-                                        {formData.lastName.message}
+                                        {errors.lastName}
                                     </span>
                                 )}
                             </div>
@@ -291,45 +264,49 @@ const Enquiry = () => {
                             <div className="form-group">
                                 <label className="heading" for="type">Type</label>
                                 <select
-                                    id='enquiry-type'
-                                    ref={typeRef}
+                                    id='type'
                                     name="type"
-                                    defaultValue={formData.type.value}
+                                    className={errors.type && 'border-red'}
+                                    defaultValue={formData.type}
                                     onBlur={handleChange}
-                                    onFocus={(e) => setFormData({
-                                        ...formData,
-                                        [e.target.name]: {
-                                            value: e.target.value,
-                                            message: ''
-                                        },
-                                    })}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { type, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
                                 >
+                                    <option value="select">--select--</option>
                                     <option value="self">Self</option>
                                     <option value="other">Other</option>
                                 </select>
+                                {errors.type && (
+                                    <span className="error-message">
+                                        {errors.type}
+                                    </span>
+                                )}
                             </div>
 
                             <div className="form-group">
                                 <label className="heading" for="contact">Contact Number</label>
                                 <input
-                                    ref={contactRef}
                                     type="text"
                                     id="contact"
                                     name="contact"
-                                    defaultValue={formData.contact.value}
+                                    className={errors.contact && 'border-red'}
+                                    defaultValue={formData.contact}
                                     onBlur={handleChange}
-                                    onFocus={(e) => setFormData({
-                                        ...formData,
-                                        [e.target.name]: {
-                                            value: e.target.value,
-                                            message: ''
-                                        },
-                                    })}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { contact, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
                                 />
                                 <Button disabled={isOtpDisabled.isSendOtpDisabled} onClick={sendOTP} style={{ fontSize: 'small' }} >Send OTP</Button>
-                                {formData.contact.message && (
+                                {errors.contact && (
                                     <span className="error-message">
-                                        {formData.contact.message}
+                                        {errors.contact}
                                     </span>
                                 )}
                                 <label className='message'> {otpMessage.sendOtp} </label>
@@ -338,7 +315,6 @@ const Enquiry = () => {
                             <div className="form-group">
                                 <label className="heading" for="otp">OTP</label>
                                 <input
-                                    ref={otpRef}
                                     type="text"
                                     id="otp"
                                     name="otp" />
@@ -349,30 +325,28 @@ const Enquiry = () => {
                             <div className="form-group">
                                 <label className="heading" for="email">Email ID</label>
                                 <input
-                                    ref={emailRef}
                                     type="email"
                                     id="email"
                                     name="email"
-                                    defaultValue={formData.email.value}
+                                    className={errors.email && 'border-red'}
+                                    defaultValue={formData.email}
                                     onBlur={handleChange}
-                                    onFocus={(e) => setFormData({
-                                        ...formData,
-                                        [e.target.name]: {
-                                            value: e.target.value,
-                                            message: ''
-                                        },
-                                    })}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { email, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
                                 />
-                                {formData.email.message && (
+                                {errors.email && (
                                     <span className="error-message">
-                                        {formData.email.message}
+                                        {errors.email}
                                     </span>
                                 )}
                             </div>
 
-                            <Button disabled={!isEnquiryFormValid} type='button' bg="green" onClick={handleSubmit}> Submit </Button>
+                            <Button disabled={!isFormValid} type='button' bg="green" onClick={handleSubmit}> Submit </Button>
                             <Button> Reset </Button>
-
                         </form>
                     </div>
                 </> : <>

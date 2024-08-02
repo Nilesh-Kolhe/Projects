@@ -11,3 +11,11 @@
     padding-top: 10px;
     color: #000;
 }
+
+.footer-link {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
