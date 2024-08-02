@@ -3,11 +3,11 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '20px', height: '200px', backgroundColor: 'lightgray' }}>
+        <div id='footer-container' >
             <a className="navbar-brand" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: "#000" }}>Frontiernext logo</a>
             <h5 id="brand-name" style={{}}>Frontiernext Solutions Private Limited</h5>
             <span style={{ opacity: '60%', fontSize: 'medium', paddingBottom: '5px' }}>Office No. 101 TO 104, First Floor, Vikram Goldmine, OFF. F C Road, Pune 411004</span>
-            <div style={{ display: 'flex', columnGap: '15px' }}>
+            <div id='icons-container'>
                 <a className='footer-link' href='https://www.instagram.com' target="_blank"><i class="bi bi-instagram"></i></a>
                 <a className='footer-link' href='https://www.facebook.com' target="_blank"><i class="bi bi-facebook"></i></a>
                 <a className='footer-link' href='https://www.twitter.com' target="_blank"><i class="bi bi-twitter-x"></i></a>

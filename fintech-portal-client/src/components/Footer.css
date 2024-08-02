@@ -1,8 +1,27 @@
 @media only screen and (min-width : 320px) and (max-width : 768px) {
+    #footer-container {
+        align-items: start !important;
+    }
+
     #brand-name {
         font-size: larger !important;
         padding: 5px 0px;
     }
+}
+
+#footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    height: 200px;
+    background-color: lightgray;
+}
+
+#icons-container {
+    display: flex;
+    column-gap: 15px;
+    padding: 5px 5px;
 }
 
 #brand-name {
@@ -15,6 +34,7 @@
 .footer-link {
     text-decoration: none;
     color: inherit;
+
     &:hover {
         transform: scale(1.05);
     }
