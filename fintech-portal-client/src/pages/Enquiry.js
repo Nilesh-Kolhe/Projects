@@ -7,36 +7,129 @@ import Footer from '../components/Footer';
 import Button from '../ui-components/Button';
 
 const Enquiry = () => {
-    let fnameRef = useRef();
-    let lnameRef = useRef();
-    let typeRef = useRef();
-    let contactRef = useRef();
-    let emailRef = useRef();
     let otpRef = useRef();
-
     const [isEnquiryReceived, setIsEnquiryReceived] = useState(false);
-
+    const [isFormValid, setIsFormValid] = useState(false);
+    const [errors, setErrors] = useState({});
     const [isOtpDisabled, setIsOtpDisabled] = useState({
         isSendOtpDisabled: false,
         isVerifyOtpDisabled: false
     });
-
     const [otpMessage, setOtpMessage] = useState({
         sendOtp: '',
         verifyOtp: ''
     });
+    const initialData = {
+        firstName: '',
+        lastName: '',
+        contact: '',
+        isContactVerified: '',
+        type: '',
+        email: ''
+    };
+    const [formData, setFormData] = useState(initialData);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+
+        switch (name) {
+            case 'firstName':
+                if (!value) {
+                    setErrors({
+                        ...errors,
+                        [name]: 'First Name is Required !'
+                    });
+                }
+                else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
+                    });
+                }
+                break;
+            case 'lastName':
+                if (!value) {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Last Name is Required !'
+                    });
+                }
+                else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
+                    });
+                }
+                break;
+            case 'contact':
+                if (!value) {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Contact number is Required !'
+                    });
+                } else if (value.length < 10) {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Contact number should be atleast 10 digits !'
+                    });
+                }
+                else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
+                    });
+                }
+                break;
+            case 'type':
+                if (value === 'select') {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Please select enquiry type'
+                    });
+                } else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
+                    });
+                }
+                break;
+            case 'email':
+                if (!value) {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Email is Required !'
+                    });
+                } else if (!/\S+@\S+\.\S+/.test(value)) {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Email is not valid !'
+                    });
+                } else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
+                    });
+                }
+                break;
+        }
+    };
 
     const sendOTP = (event) => {
+        event.preventDefault();
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/otp/send`, {
             countryCode: '+91',
-            phoneNumber: contactRef.current.value
+            phoneNumber: formData.contact
         })
             .then(response => { console.log('sendOTP Response: ', response) })
             .catch(error => console.error(error));
 
         setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: true }));
         setOtpMessage((prevState) => ({
-            ...prevState, sendOtp: 'OTP Sent Successfully !'
+            sendOtp: 'OTP Sent Successfully !'
         }));
 
         setTimeout(() => (setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: false })),
@@ -50,28 +143,58 @@ const Enquiry = () => {
     }
 
     const verifyOTP = (event) => {
+        event.preventDefault();
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/otp/verify`, {
             countryCode: '+91',
-            phoneNumber: contactRef.current.value,
+            phoneNumber: formData.contact,
             otp: otpRef.current.value
         })
             .then(response => {
                 console.log('sendOTP Response: ', response);
                 setIsOtpDisabled((prevState) => ({ ...prevState, isVerifyOtpDisabled: true }));
                 setOtpMessage((prevState) => ({
-                    ...prevState, verifyOtp: 'OTP Verified Successfully !'
+                    verifyOtp: 'OTP Verified Successfully !'
                 }));
+                setErrors({
+                    ...errors,
+                    isContactVerified: ''
+                });
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                setOtpMessage((prevState) => ({
+                    verifyOtp: 'Unable to verify OTP !'
+                }));
+                setErrors({
+                    ...errors,
+                    isContactVerified: 'Unable to verify contact number'
+                });
+                console.error('Error verifiying OTP ', error)
+            });
     }
 
+    useEffect(() => {
+        console.log('Errors: ', errors);
+        if (Object.keys(errors).length === 6) {
+            let isValid = true;
+            for (var error in errors) {
+                if (errors[error] !== "") {
+                    isValid = false;
+                    break;
+                }
+            }
+            setIsFormValid(isValid);
+        }
+    }, [errors]);
+
     const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('FormData: ', formData);
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, {
-            firstName: fnameRef.current.value,
-            lastName: lnameRef.current.value,
-            type: typeRef.current.value,
-            contact: contactRef.current.value,
-            email: emailRef.current.value
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            type: formData.type,
+            contact: formData.contact,
+            email: formData.email
         })
             .then(response => {
                 console.log('Save Enquiry Response: ', response);
@@ -80,9 +203,15 @@ const Enquiry = () => {
             .catch(error => console.error(error));
     }
 
+    const resetFormData = (event) => {
+        event.preventDefault();
+        setErrors({});
+        setFormData(initialData);
+    }
+
     return (
         <>
-            <div style={{ display: 'flex', columnGap: '155px', height: '700px', width: '100%' }}>
+            <div style={{ display: 'flex', columnGap: '155px', height: '750px', width: '100%' }}>
                 <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${contact})`, filter: 'blur(2px)', zIndex: '-1' }}>
                 </div>
                 <div id='call-img-container'>
@@ -96,44 +225,131 @@ const Enquiry = () => {
                         <form id='enquire' name='Enquire Now'>
                             <div className="form-group">
                                 <label className="heading" for="fname">First Name</label>
-                                <input ref={fnameRef} type="text" id="fname" name="firstname" />
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    className={errors.firstName && 'border-red'}
+                                    defaultValue={formData.firstName}
+                                    onBlur={handleChange}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { firstName, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
+                                />
+                                {errors.firstName && (
+                                    <span className="error-message">
+                                        {errors.firstName}
+                                    </span>
+                                )}
                             </div>
 
                             <div className="form-group">
                                 <label className="heading" for="lname">Last Name</label>
-                                <input ref={lnameRef} type="text" id="lname" name="lastname" />
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    className={errors.lastName && 'border-red'}
+                                    defaultValue={formData.lastName}
+                                    onBlur={handleChange}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { lastName, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
+                                />
+                                {errors.lastName && (
+                                    <span className="error-message">
+                                        {errors.lastName}
+                                    </span>
+                                )}
                             </div>
 
                             <div className="form-group">
                                 <label className="heading" for="type">Type</label>
-                                <select id='enquiry-type' ref={typeRef}>
+                                <select
+                                    name="type"
+                                    className={errors.type && 'border-red'}
+                                    defaultValue={formData.type}
+                                    onBlur={handleChange}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { type, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
+                                >
+                                    <option value="select">--select--</option>
                                     <option value="self">Self</option>
                                     <option value="other">Other</option>
                                 </select>
+                                {errors.type && (
+                                    <span className="error-message">
+                                        {errors.type}
+                                    </span>
+                                )}
                             </div>
 
                             <div className="form-group">
                                 <label className="heading" for="contact">Contact Number</label>
-                                <input ref={contactRef} type="text" id="contact" name="contact" />
+                                <input
+                                    type="text"
+                                    name="contact"
+                                    className={errors.contact && 'border-red'}
+                                    defaultValue={formData.contact}
+                                    onBlur={handleChange}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { contact, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
+                                />
                                 <Button disabled={isOtpDisabled.isSendOtpDisabled} onClick={sendOTP} style={{ fontSize: 'small' }} >Send OTP</Button>
+                                {errors.contact && (
+                                    <span className="error-message">
+                                        {errors.contact}
+                                    </span>
+                                )}
                                 <label className='message'> {otpMessage.sendOtp} </label>
                             </div>
 
                             <div className="form-group">
                                 <label className="heading" for="otp">OTP</label>
-                                <input ref={otpRef} type="text" id="otp" name="otp" />
+                                <input
+                                    ref={otpRef}
+                                    type="text"
+                                    name="otp" />
                                 <Button disabled={!isOtpDisabled.isSendOtpDisabled || isOtpDisabled.isVerifyOtpDisabled} onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button>
                                 <label className='message'> {otpMessage.verifyOtp} </label>
                             </div>
 
                             <div className="form-group">
                                 <label className="heading" for="email">Email ID</label>
-                                <input ref={emailRef} type="email" id="email" name="email" />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className={errors.email && 'border-red'}
+                                    defaultValue={formData.email}
+                                    onBlur={handleChange}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { email, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
+                                />
+                                {errors.email && (
+                                    <span className="error-message">
+                                        {errors.email}
+                                    </span>
+                                )}
                             </div>
 
-                            <Button type='button' bg="green" onClick={handleSubmit}> Submit </Button>
-                            <Button> Reset </Button>
-
+                            <Button disabled={!isFormValid} type='button' bg="green" onClick={handleSubmit}> Submit </Button>
+                            <Button onClick={resetFormData}> Reset </Button>
                         </form>
                     </div>
                 </> : <>
@@ -146,9 +362,7 @@ const Enquiry = () => {
                     </div>
                 </>}
             </div>
-            <div>
-                <Footer />
-            </div>
+            <Footer />
         </>
     );
 };

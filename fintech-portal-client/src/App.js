@@ -39,15 +39,6 @@ const App = () => {
             <Route path="/" element={<Navigate to="landing" />} />
             <Route path="landing" element={<Landing />} />
             <Route path="enquiry" element={<Enquiry />} />
-
-            {/*<Route path="/" element={<Navigate to="home" />} />
-            <Route path="home" element={<Home />} />
-            <Route path="Partners" element={<Partners />} />
-            <Route path="enquiry" element={<Enquiry />} />
-            <Route path="about" element={<About />} />
-            {['track', 'track/:id'].map(path =>
-              <Route path={path} element={<Track />} />
-            )} */}
           </Routes>
         </div>
       </BrowserRouter >
