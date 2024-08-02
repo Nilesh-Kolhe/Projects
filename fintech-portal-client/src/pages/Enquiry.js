@@ -1,12 +1,13 @@
 import axios from 'axios';
 import './Enquiry.css';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import contact from './images/Untitled_design_8.PNG';
 import call from './images/Enq.jpg';
 import Footer from '../components/Footer';
 import Button from '../ui-components/Button';
 
 const Enquiry = () => {
+    let otpRef = useRef();
     const [isEnquiryReceived, setIsEnquiryReceived] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
     const [errors, setErrors] = useState({});
@@ -18,14 +19,15 @@ const Enquiry = () => {
         sendOtp: '',
         verifyOtp: ''
     });
-    const [formData, setFormData] = useState({
+    const initialData = {
         firstName: '',
         lastName: '',
         contact: '',
         isContactVerified: '',
         type: '',
         email: ''
-    });
+    };
+    const [formData, setFormData] = useState(initialData);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -120,7 +122,7 @@ const Enquiry = () => {
         event.preventDefault();
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/otp/send`, {
             countryCode: '+91',
-            phoneNumber: contactRef.current.value
+            phoneNumber: formData.contact
         })
             .then(response => { console.log('sendOTP Response: ', response) })
             .catch(error => console.error(error));
@@ -144,7 +146,7 @@ const Enquiry = () => {
         event.preventDefault();
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/otp/verify`, {
             countryCode: '+91',
-            phoneNumber: contactRef.current.value,
+            phoneNumber: formData.contact,
             otp: otpRef.current.value
         })
             .then(response => {
@@ -201,6 +203,12 @@ const Enquiry = () => {
             .catch(error => console.error(error));
     }
 
+    const resetFormData = (event) => {
+        event.preventDefault();
+        setErrors({});
+        setFormData(initialData);
+    }
+
     return (
         <>
             <div style={{ display: 'flex', columnGap: '155px', height: '750px', width: '100%' }}>
@@ -219,7 +227,6 @@ const Enquiry = () => {
                                 <label className="heading" for="fname">First Name</label>
                                 <input
                                     type="text"
-                                    id="fname"
                                     name="firstName"
                                     className={errors.firstName && 'border-red'}
                                     defaultValue={formData.firstName}
@@ -242,7 +249,6 @@ const Enquiry = () => {
                                 <label className="heading" for="lname">Last Name</label>
                                 <input
                                     type="text"
-                                    id="lname"
                                     name="lastName"
                                     className={errors.lastName && 'border-red'}
                                     defaultValue={formData.lastName}
@@ -264,7 +270,6 @@ const Enquiry = () => {
                             <div className="form-group">
                                 <label className="heading" for="type">Type</label>
                                 <select
-                                    id='type'
                                     name="type"
                                     className={errors.type && 'border-red'}
                                     defaultValue={formData.type}
@@ -291,7 +296,6 @@ const Enquiry = () => {
                                 <label className="heading" for="contact">Contact Number</label>
                                 <input
                                     type="text"
-                                    id="contact"
                                     name="contact"
                                     className={errors.contact && 'border-red'}
                                     defaultValue={formData.contact}
@@ -315,8 +319,8 @@ const Enquiry = () => {
                             <div className="form-group">
                                 <label className="heading" for="otp">OTP</label>
                                 <input
+                                    ref={otpRef}
                                     type="text"
-                                    id="otp"
                                     name="otp" />
                                 <Button disabled={!isOtpDisabled.isSendOtpDisabled || isOtpDisabled.isVerifyOtpDisabled} onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button>
                                 <label className='message'> {otpMessage.verifyOtp} </label>
@@ -326,7 +330,6 @@ const Enquiry = () => {
                                 <label className="heading" for="email">Email ID</label>
                                 <input
                                     type="email"
-                                    id="email"
                                     name="email"
                                     className={errors.email && 'border-red'}
                                     defaultValue={formData.email}
@@ -346,7 +349,7 @@ const Enquiry = () => {
                             </div>
 
                             <Button disabled={!isFormValid} type='button' bg="green" onClick={handleSubmit}> Submit </Button>
-                            <Button> Reset </Button>
+                            <Button onClick={resetFormData}> Reset </Button>
                         </form>
                     </div>
                 </> : <>
