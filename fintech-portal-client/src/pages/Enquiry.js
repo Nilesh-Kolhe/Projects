@@ -22,7 +22,6 @@ const Enquiry = () => {
     const initialData = {
         name: '',
         contact: '',
-        isContactVerified: '',
         type: '',
         email: ''
     };
