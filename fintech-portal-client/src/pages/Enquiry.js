@@ -22,6 +22,7 @@ const Enquiry = () => {
     const initialData = {
         name: '',
         contact: '',
+        isContactVerified: '',
         type: '',
         email: ''
     };
@@ -158,7 +159,7 @@ const Enquiry = () => {
 
     useEffect(() => {
         console.log('Errors: ', errors);
-        if (Object.keys(errors).length === 6) {
+        if (Object.keys(errors).length === 5) {
             let isValid = true;
             for (var error in errors) {
                 if (errors[error] !== "") {
