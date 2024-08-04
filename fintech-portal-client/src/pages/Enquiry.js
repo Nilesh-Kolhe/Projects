@@ -244,7 +244,7 @@ const Enquiry = () => {
                                 >
                                     <option value="select">--select--</option>
                                     <option value="self">Self</option>
-                                    <option value="other">Other</option>
+                                    <option value="referral">referral</option>
                                 </select>
                                 {errors.type && (
                                     <span className="error-message">
