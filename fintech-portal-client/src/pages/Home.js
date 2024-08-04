@@ -28,7 +28,7 @@ const Home = () => {
                         Earn on every loan enquiry
                     </span> <br />
                     <div style={{ padding: '10px 1px' }}>
-                        <Button bg="green" onClick={() => { navigate("/enquiry") }} > Enquire Now </Button>
+                        <Button bg="green" onClick={() => { navigate("/enquiry") }} > Apply Now </Button>
                     </div>
                 </div>
             </div>
