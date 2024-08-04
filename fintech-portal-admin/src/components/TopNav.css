@@ -36,8 +36,9 @@
     }
 
     #top-navbar {
+        height: 100%;
+
         &>ul {
-            background-color: lightgrey;
             width: 100%;
             height: 100%;
         }
@@ -70,24 +71,10 @@
         li.nav-item {
             text-align: right;
             border-radius: 0px;
-            padding-top: 5px;
-            padding-bottom: 5px;
         }
 
-        #top-navbar li.nav-item:hover {
-            background-color: lightgrey;
-            &>a {
-                color: #000;
-                ;
-            }
-        }
-
-        .current {
-            padding: 5px 5px;
-        }
-        
-        #services {
-            padding: 0px;
+        li.nav-item:hover {
+            background-color: grey;
         }
 
         .navbar-brand,

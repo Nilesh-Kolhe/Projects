@@ -19,7 +19,8 @@ const Home = () => {
         <>
             <div id="home" style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', padding: '40px 10px', rowGap: '150px' }}>
                 <div className='info'>
-                    <span style={{ fontSize: 'xxx-large', fontWeight: '500', fontVariantCaps: 'petite-caps', padding: '0px 2px' }} >Frontiernext</span> <br />
+                    <span className='info-head'>Frontiernext</span>
+                    <br />
                     <span style={{ fontSize: 'xx-large', fontWeight: '300', padding: '0px 2px' }} >Your trusted partner for loan guidance</span>
                 </div>
                 <div className='info'>
@@ -27,7 +28,7 @@ const Home = () => {
                         Earn on every loan enquiry
                     </span> <br />
                     <div style={{ padding: '10px 1px' }}>
-                        <Button bg="green" onClick={() => {navigate("/enquiry")}} > Enquire Now </Button>
+                        <Button bg="green" onClick={() => { navigate("/enquiry") }} > Enquire Now </Button>
                     </div>
                 </div>
             </div>

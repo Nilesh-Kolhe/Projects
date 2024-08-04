@@ -15,7 +15,7 @@ otpRouter.post('/send', async (req, res) => {
                 to: `+${countryCode}${phoneNumber}`,
                 channel: "sms",
             });
-        res.status(200).send(`OTP send successfully!: ${JSON.stringify(otpResponse)}`);
+        res.status(200).send(`OTP sent successfully!: ${JSON.stringify(otpResponse)}`);
     } catch (error) {
         res.status(error?.status || 400).send(error?.message || 'something went wrong!');
     }

@@ -1,0 +1,26 @@
+#top-most-nav-root {
+    background-color: #000;
+    height: 30px;
+}
+
+#top-most-navbar li {
+    padding: 5px 20px;
+    color: #FFF;
+    font-size: small;
+    font-weight: 200;
+}
+
+.white-highlight {
+    background-color: lightgrey !important;
+    color: #000 !important;
+}
+
+@media only screen and (min-width : 320px) and (max-width : 1024px) {
+    #navbar {
+        background-color: whitesmoke;
+    }
+
+    li.nav-item {
+        text-align: right;
+    }
+}

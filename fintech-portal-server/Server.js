@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const otpRoutes = require('./routes/otp');
-const { error } = require('console');
+// const userRoutes = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -11,10 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use('/otp', otpRoutes);
-
-// const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN, {
-//     lazyLoading: true
-// })
+// app.use('/user', userRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_TEST_DB_URI)
@@ -27,15 +24,21 @@ const todoSchema = new mongoose.Schema({
 });
 
 const enquiriesSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
+    name: String,
     type: String,
+    contact: Number,
     email: String,
-    contact: Number
+});
+
+const usersSchema = new mongoose.Schema({
+    name: String,
+    password: String,
+    role: Number
 });
 
 const todoModel = mongoose.model('todos', todoSchema);
 const enquiriesModel = mongoose.model('enquiries', enquiriesSchema);
+const usersModel = mongoose.model('users', usersSchema);
 
 // Define routes and middleware
 app.listen(PORT, () => {
@@ -45,6 +48,23 @@ app.listen(PORT, () => {
 app.get('/todos', async (req, res) => {
     const todos = await todoModel.find();
     res.json(todos);
+});
+
+app.post('/signin', async (req, res) => {
+    const { name, password } = req.body;
+    console.log('Name: ', name, ' Password: ', password);
+
+    const user = await usersModel.findOne({
+        name: name,
+        password: password
+    });
+    if (user) {
+        res.status(200).json(user);
+        console.log('Sign In User: ', user);
+    } else {
+        res.status(401).json("User not registered");
+        console.log("User is not Registered !");
+    }
 });
 
 app.post('/submitEnquiry', async (req, res) => {
@@ -72,4 +92,11 @@ app.post('/submitEnquiry', async (req, res) => {
             console.log('Error saving enquiry', error);
             res.status(error?.status || 400).send(error?.message || 'something went wrong');
         });
+});
+
+app.get('/getAllEnquiries', async (req, res) => {
+    console.log('Get All Enquiries !');
+
+    const enquiries = await enquiriesModel.find();
+    res.json(enquiries);
 });
