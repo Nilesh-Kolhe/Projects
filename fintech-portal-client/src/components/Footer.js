@@ -5,8 +5,9 @@ const Footer = () => {
     return (
         <div id='footer-container' >
             <a className="navbar-brand" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: "#000" }}>Frontiernext logo</a>
-            <h5 id="brand-name" style={{}}>Frontiernext Solutions Private Limited</h5>
-            <span style={{ opacity: '60%', fontSize: 'medium', paddingBottom: '5px' }}>Office No. 101 TO 104, First Floor, Vikram Goldmine, OFF. F C Road, Pune 411004</span>
+            <h5 id="brand-name">Frontiernext Solutions Private Limited</h5>
+            <span style={{ fontSize: 'medium', paddingBottom: '5px' }}>No. 184/A, Second Floor, First Main Road, Sharadha Colony, Basaveshwara Nagar, Bengaluru - 560079</span>
+            <span style={{ fontSize: 'large', fontWeight: '500', paddingBottom: '5px' }}>Toll Free: (080) - 41273280</span>
             <div id='icons-container'>
                 <a className='footer-link' href='https://www.instagram.com' target="_blank"><i class="bi bi-instagram"></i></a>
                 <a className='footer-link' href='https://www.facebook.com' target="_blank"><i class="bi bi-facebook"></i></a>

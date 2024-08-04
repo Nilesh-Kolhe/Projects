@@ -20,10 +20,9 @@ const Enquiry = () => {
         verifyOtp: ''
     });
     const initialData = {
-        firstName: '',
-        lastName: '',
+        name: '',
         contact: '',
-        isContactVerified: '',
+        contact: '',
         type: '',
         email: ''
     };
@@ -37,25 +36,11 @@ const Enquiry = () => {
         });
 
         switch (name) {
-            case 'firstName':
+            case 'name':
                 if (!value) {
                     setErrors({
                         ...errors,
-                        [name]: 'First Name is Required !'
-                    });
-                }
-                else {
-                    setErrors({
-                        ...errors,
-                        [name]: ''
-                    });
-                }
-                break;
-            case 'lastName':
-                if (!value) {
-                    setErrors({
-                        ...errors,
-                        [name]: 'Last Name is Required !'
+                        [name]: 'Name is Required !'
                     });
                 }
                 else {
@@ -190,8 +175,7 @@ const Enquiry = () => {
         event.preventDefault();
         console.log('FormData: ', formData);
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
+            name: formData.name,
             type: formData.type,
             contact: formData.contact,
             email: formData.email
@@ -224,16 +208,16 @@ const Enquiry = () => {
                         <span className='sub-head' >Please fill in the details  below to go to the next step</span>
                         <form id='enquire' name='Enquire Now'>
                             <div className="form-group">
-                                <label className="heading" for="fname">First Name</label>
+                                <label className="heading" for="fname">Name</label>
                                 <input
                                     type="text"
-                                    name="firstName"
-                                    className={errors.firstName && 'border-red'}
-                                    defaultValue={formData.firstName}
+                                    name="name"
+                                    className={errors.name && 'border-red'}
+                                    defaultValue={formData.name}
                                     onBlur={handleChange}
                                     onFocus={() => {
                                         setErrors(errors => {
-                                            const { firstName, ...rest } = errors;
+                                            const { name, ...rest } = errors;
                                             return rest;
                                         });
                                     }}
@@ -241,28 +225,6 @@ const Enquiry = () => {
                                 {errors.firstName && (
                                     <span className="error-message">
                                         {errors.firstName}
-                                    </span>
-                                )}
-                            </div>
-
-                            <div className="form-group">
-                                <label className="heading" for="lname">Last Name</label>
-                                <input
-                                    type="text"
-                                    name="lastName"
-                                    className={errors.lastName && 'border-red'}
-                                    defaultValue={formData.lastName}
-                                    onBlur={handleChange}
-                                    onFocus={() => {
-                                        setErrors(errors => {
-                                            const { lastName, ...rest } = errors;
-                                            return rest;
-                                        });
-                                    }}
-                                />
-                                {errors.lastName && (
-                                    <span className="error-message">
-                                        {errors.lastName}
                                     </span>
                                 )}
                             </div>

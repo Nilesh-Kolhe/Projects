@@ -1,0 +1,40 @@
+@media only screen and (min-width : 320px) and (max-width : 768px) {
+    #background-vertical {
+        display: block;
+        background-size: 495px;
+        left: 5px;
+    }
+
+    #background-horizontal {
+        display: none;
+    }
+
+    .info {
+        background-color: lightgrey;
+        padding: 10px;
+        opacity: 88%;
+    }
+
+    #home {
+        /* background-image: url('./images/gradient_design_2_vertical.png'); */
+        background-size: 470px;
+        left: 5px;
+    }
+}
+
+@media only screen and (min-width : 769px) {
+    #background-vertical {
+        display: none;
+        background-size: 495px;
+        left: 1px;
+    }
+
+    #background-horizontal {
+        display: block;
+    }
+
+    #home {
+        /* background-image: url('./images/gradient_design_2.PNG'); */
+        left: 5px;
+    }
+}

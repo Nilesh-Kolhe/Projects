@@ -3,7 +3,6 @@ import './Home.css';
 import Home from './Home';
 import Partners from './Partners';
 import About from './About';
-import Track from './Track';
 import Footer from '../components/Footer';
 
 const Landing = () => {
@@ -12,8 +11,7 @@ const Landing = () => {
         <>
             <Home />
             <Partners />
-            {/* <About />
-            <Track /> */}
+            <About />
             <Footer />
         </>
     );
