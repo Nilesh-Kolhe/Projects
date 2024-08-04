@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import './Login.css';
 import Button from '../ui-components/Button';
 
-const Login = ({loginChange}) => {
+const Login = ({ loginChange }) => {
     const navigate = useNavigate();
     const [todos, setTodos] = useState([]);
     useEffect(() => {
@@ -16,11 +16,9 @@ const Login = ({loginChange}) => {
     console.log('Admin Login Response: ', todos);
 
     return (
-        <div className="App" style={{ height: '100%', width: '100%' }}>
-            <div style={{ display: 'flex', columnGap: '50px', height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
-                <h2> This is Login </h2>
-                <Button onClick = {() => loginChange(true)}> Login </Button>
-            </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '400px', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
+            <h2> This is Login </h2>
+            <Button onClick={() => loginChange(true)}> Login </Button>
         </div>
     );
 };
