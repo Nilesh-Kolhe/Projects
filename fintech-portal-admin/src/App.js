@@ -12,7 +12,7 @@ import SideNav from './components/SideNav';
 const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  console.log('Is Logged in: ', isLoggedIn);
   return (
     <div className="App" style={{ height: '100%', width: '100%' }}>
       <BrowserRouter>
