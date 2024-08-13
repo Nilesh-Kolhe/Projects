@@ -10,22 +10,24 @@ import { Navigate } from 'react-router-dom';
 import SideNav from './components/SideNav';
 
 const App = () => {
+  const [profile, setProfile] = useState({});
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log('Is Logged in: ', isLoggedIn);
+  const setLoggedinProfile = (profile) => {
+    setProfile(profile);
+  }
+  
   return (
     <div className="App" style={{ height: '100%', width: '100%' }}>
       <BrowserRouter>
         <TopMostNav />
-        <TopNav />
-        {isLoggedIn ?
+        <TopNav profile={profile} />
+        {(Object.keys(profile).length > 1) ?
           <>
             <div style={{ display: 'flex', columnGap: '50px', height: '100%', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
               <SideNav />
               <div style={{ width: '100%', marginTop: '10px' }}>
                 <Routes>
                   <Route path="/" element={<Navigate to="home" />} />
-                  {/* <Route path="login" element={<Login />} /> */}
                   <Route path="home" element={<Home />} />
                   <Route path="enquiries" element={<Enquiry />} />
                 </Routes>
@@ -34,7 +36,11 @@ const App = () => {
           </>
           :
           <>
-            <Login loginChange={(loginStatus) => setIsLoggedIn(loginStatus)} />
+            <Login loginChange={(profile) => setLoggedinProfile(profile)} />
+            {profile.message ??
+              <div>
+                <span className='login-error-message'> {profile.message} </span>
+              </div>}
           </>}
       </BrowserRouter >
     </div>

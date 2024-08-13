@@ -1,0 +1,46 @@
+#login {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.login-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60px;
+}
+
+.login-form-group > input[type=text],
+[type=submit],
+[type=email],
+[type=password],
+select {
+    width: 70%;
+    padding: 5px;
+    margin: 2px 0;
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-heading {
+    width: 80px;
+    text-align: left;
+}
+
+.login-container {
+    background-color: lightgrey;
+    padding: 20px 30px;
+}
+
+.login-error-message {
+    font-size: small;
+    color: red;
+    padding: 0px 20px;
+}
+
+.border-red {
+    border-color: red !important;
+}

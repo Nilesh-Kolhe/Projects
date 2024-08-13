@@ -31,6 +31,7 @@ const enquiriesSchema = new mongoose.Schema({
 });
 
 const usersSchema = new mongoose.Schema({
+    email: String,
     name: String,
     password: String,
     role: Number
@@ -51,19 +52,15 @@ app.get('/todos', async (req, res) => {
 });
 
 app.post('/signin', async (req, res) => {
-    const { name, password } = req.body;
-    console.log('Name: ', name, ' Password: ', password);
-
+    const { email, password } = req.body;
     const user = await usersModel.findOne({
-        name: name,
+        email: email,
         password: password
     });
     if (user) {
         res.status(200).json(user);
-        console.log('Sign In User: ', user);
     } else {
-        res.status(401).json("User not registered");
-        console.log("User is not Registered !");
+        res.status(401).send("Incorrect Credentials");
     }
 });
 

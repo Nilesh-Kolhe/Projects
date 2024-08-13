@@ -1,13 +1,8 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../../node_modules/bootstrap/dist/js/bootstrap.js';
 import './TopNav.css';
-import { useNavigate, useLocation } from "react-router-dom";
 
-const TopNav = () => {
-
-    const navigate = useNavigate();
-    // const location = useLocation();
-    // const route = location.pathname;
+const TopNav = (props) => {
     const route = window.location.href.split('/')[3];
     console.log('Route: ', route);
 
@@ -35,15 +30,8 @@ const TopNav = () => {
                 <div style={{marginRight: '15px'}} className="dropdown">
                     <a href="#" className="d-flex align-items-center link-dark text-decoration-none" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="" width="32" height="32" style={{ marginRight: '12px' }} className="rounded-circle me-2" />
-                        <span>Admin</span>
+                        <span style={{fontSize: 'medium', fontWeight: '500'}}>{props.profile.name}</span>
                     </a>
-                    {/* <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a claclassName="dropdown-item" href="#">New project...</a></li>
-                        <li><a className="dropdown-item" href="#">Settings</a></li>
-                        <li><a className="dropdown-item" href="#">Profile</a></li>
-                        <li><hr className="dropdown-divider" /></li>
-                        <li><a className="dropdown-item" href="#">Sign out</a></li>
-                    </ul> */}
                 </div>
 
             </div>
