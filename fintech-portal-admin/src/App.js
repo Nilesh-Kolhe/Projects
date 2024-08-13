@@ -13,10 +13,9 @@ const App = () => {
   const [profile, setProfile] = useState({});
 
   const setLoggedinProfile = (profile) => {
-    console.log('profile: ', profile);
     setProfile(profile);
   }
-  console.log('Is Logged in: ', (Object.keys(profile).length > 1), ' Profile: ', profile);
+  
   return (
     <div className="App" style={{ height: '100%', width: '100%' }}>
       <BrowserRouter>

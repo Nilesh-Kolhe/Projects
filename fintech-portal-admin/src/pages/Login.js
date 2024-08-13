@@ -53,6 +53,8 @@ const Login = ({ loginChange }) => {
                     });
                 }
                 break;
+            default:
+                break;
         }
     };
 
@@ -77,7 +79,7 @@ const Login = ({ loginChange }) => {
                 password: loginData.password
             })
             .then(response => loginChange(response.data))
-            .catch(error => loginChange({message: error.response.data}));
+            .catch(error => loginChange({ message: error.response.data }));
     }
 
     return (
