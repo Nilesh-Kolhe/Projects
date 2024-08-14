@@ -14,8 +14,9 @@ const App = () => {
 
   const setLoggedinProfile = (profile) => {
     setProfile(profile);
+    console.log('Profile: ', profile);
   }
-  
+
   return (
     <div className="App" style={{ height: '100%', width: '100%' }}>
       <BrowserRouter>
@@ -37,12 +38,11 @@ const App = () => {
           :
           <>
             <Login loginChange={(profile) => setLoggedinProfile(profile)} />
-            {profile.message ??
-              <div>
-                <span className='login-error-message'> {profile.message} </span>
-              </div>}
           </>}
       </BrowserRouter >
+      <div style={{ color: 'red', fontSize: 'medium' }}>
+        {profile.message ?? profile.message}
+      </div>
     </div>
   );
 }

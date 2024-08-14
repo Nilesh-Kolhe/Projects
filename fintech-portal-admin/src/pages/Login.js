@@ -83,8 +83,8 @@ const Login = ({ loginChange }) => {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '450px', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
-            <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${contact})`, backgroundSize: 'cover', zIndex: '-1' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'end', height: '370px', width: '100%', margin: '0px 0px', overflow: 'auto' }}>
+            <div style={{ position: 'absolute', top: '0px', width: '100%', height: '100%', backgroundImage: `url(${contact})`, backgroundSize: 'cover', zIndex: '-1' }}>
             </div>
             <span style={{ backgroundColor: 'lightgrey', fontWeight: '600', fontFamily: 'auto', fontSize: 'xx-large', padding: '5px 20px' }}> Admin Login </span>
             <div className='login-container'>
@@ -103,6 +103,7 @@ const Login = ({ loginChange }) => {
                                         const { email, ...rest } = errors;
                                         return rest;
                                     });
+                                    loginChange({});
                                 }}
                             />
                         </div>
@@ -130,6 +131,7 @@ const Login = ({ loginChange }) => {
                                         const { password, ...rest } = errors;
                                         return rest;
                                     });
+                                    loginChange({});
                                 }}
                             />
                         </div>
