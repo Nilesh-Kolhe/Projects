@@ -5,27 +5,32 @@ import contact from './images/Untitled_design_8.PNG';
 import call from './images/Enq.jpg';
 import Footer from '../components/Footer';
 import Button from '../ui-components/Button';
+import { useParams } from "react-router-dom";
 
 const Enquiry = () => {
     let otpRef = useRef();
     const [isEnquiryReceived, setIsEnquiryReceived] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
+    const { contact } = useParams();
+    console.log('URL Contact: ', contact);
     const [errors, setErrors] = useState({});
+    console.log('Errors: ', errors);
     const [isOtpDisabled, setIsOtpDisabled] = useState({
         isSendOtpDisabled: false,
         isVerifyOtpDisabled: false
     });
-    const [otpMessage, setOtpMessage] = useState({
+    const initialOtpmessageState = {
         sendOtp: '',
         verifyOtp: ''
-    });
-    const initialData = {
-        name: '',
+    };
+    const [otpMessage, setOtpMessage] = useState(initialOtpmessageState);
+    const initialFormData = {
+        // name: '',
         contact: '',
         type: '',
-        email: ''
+        // email: ''
     };
-    const [formData, setFormData] = useState(initialData);
+    const [formData, setFormData] = useState(initialFormData);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,22 +38,22 @@ const Enquiry = () => {
             ...formData,
             [name]: value,
         });
-
+        console.log('Handle Change Form Data: ', formData);
         switch (name) {
-            case 'name':
-                if (!value) {
-                    setErrors({
-                        ...errors,
-                        [name]: 'Name is Required !'
-                    });
-                }
-                else {
-                    setErrors({
-                        ...errors,
-                        [name]: ''
-                    });
-                }
-                break;
+            // case 'name':
+            //     if (!value) {
+            //         setErrors({
+            //             ...errors,
+            //             [name]: 'Name is Required !'
+            //         });
+            //     }
+            //     else {
+            //         setErrors({
+            //             ...errors,
+            //             [name]: ''
+            //         });
+            //     }
+            //     break;
             case 'contact':
                 if (!value) {
                     setErrors({
@@ -81,24 +86,43 @@ const Enquiry = () => {
                     });
                 }
                 break;
-            case 'email':
+            case 'referral':
                 if (!value) {
                     setErrors({
                         ...errors,
-                        [name]: 'Email is Required !'
+                        [name]: 'Referral contact number is Required !'
                     });
-                } else if (!/\S+@\S+\.\S+/.test(value)) {
+                } else if (value.length < 10) {
                     setErrors({
                         ...errors,
-                        [name]: 'Email is not valid !'
+                        [name]: 'Referral contact number should be atleast 10 digits !'
                     });
-                } else {
+                }
+                else {
                     setErrors({
                         ...errors,
                         [name]: ''
                     });
                 }
                 break;
+            // case 'email':
+            //     if (!value) {
+            //         setErrors({
+            //             ...errors,
+            //             [name]: 'Email is Required !'
+            //         });
+            //     } else if (!/\S+@\S+\.\S+/.test(value)) {
+            //         setErrors({
+            //             ...errors,
+            //             [name]: 'Email is not valid !'
+            //         });
+            //     } else {
+            //         setErrors({
+            //             ...errors,
+            //             [name]: ''
+            //         });
+            //     }
+            //     break;
         }
     };
 
@@ -123,7 +147,7 @@ const Enquiry = () => {
                 sendOtp: '',
                 verifyOtp: ''
             }))
-        ), 600000);
+        ), 600000); // 600000
     }
 
     const verifyOTP = (event) => {
@@ -158,7 +182,7 @@ const Enquiry = () => {
 
     useEffect(() => {
         console.log('Errors: ', errors);
-        if (Object.keys(errors).length === 5) {
+        if (Object.keys(errors).length === (formData.type === 'referral' ? 4 : 3)) {
             let isValid = true;
             for (var error in errors) {
                 if (errors[error] !== "") {
@@ -172,13 +196,18 @@ const Enquiry = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('FormData: ', formData);
-        axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, {
+        console.log('Handle Submit FormData: ', formData);
+        let body = {
             name: formData.name,
             type: formData.type,
             contact: formData.contact,
             email: formData.email
-        })
+        };
+        body = {
+            ...body,
+            ...(formData.type === 'referral' ? { referral: formData.referral } : {})
+        }
+        axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, body)
             .then(response => {
                 console.log('Save Enquiry Response: ', response);
                 setIsEnquiryReceived(true);
@@ -189,7 +218,8 @@ const Enquiry = () => {
     const resetFormData = (event) => {
         event.preventDefault();
         setErrors({});
-        setFormData(initialData);
+        setOtpMessage(initialOtpmessageState);
+        setFormData(initialFormData);
     }
 
     return (
@@ -211,15 +241,15 @@ const Enquiry = () => {
                                 <input
                                     type="text"
                                     name="name"
-                                    className={errors.name && 'border-red'}
-                                    defaultValue={formData.name}
+                                    className={errors.name && 'border-red'} //
+                                    defaultValue={formData.name} //
                                     onBlur={handleChange}
                                     onFocus={() => {
                                         setErrors(errors => {
                                             const { name, ...rest } = errors;
                                             return rest;
                                         });
-                                    }}
+                                    }} //
                                 />
                                 {errors.firstName && (
                                     <span className="error-message">
@@ -229,12 +259,13 @@ const Enquiry = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className="heading" for="type">Type</label>
+                                <label className="heading mandatory" for="type">Type</label>
                                 <select
                                     name="type"
                                     className={errors.type && 'border-red'}
                                     defaultValue={formData.type}
-                                    onBlur={handleChange}
+                                    onBlur={handleChange} //
+                                    onChange={handleChange}
                                     onFocus={() => {
                                         setErrors(errors => {
                                             const { type, ...rest } = errors;
@@ -244,22 +275,46 @@ const Enquiry = () => {
                                 >
                                     <option value="select">--select--</option>
                                     <option value="self">Self</option>
-                                    <option value="referral">referral</option>
+                                    <option value="referral">Referral</option>
                                 </select>
                                 {errors.type && (
                                     <span className="error-message">
                                         {errors.type}
                                     </span>
                                 )}
+                                {formData.type === 'referral' && (<>
+                                    <label className='heading mandatory' for="fname">Referral Number</label>
+                                    <input
+                                        type="text"
+                                        name="referral"
+                                        className={errors.referral && 'border-red'}
+                                        // defaultValue={formData.referral}
+                                        onBlur={handleChange}
+                                        onFocus={() => {
+                                            setErrors(errors => {
+                                                const { referral, ...rest } = errors;
+                                                return rest;
+                                            });
+                                        }}
+                                    />
+                                </>)}
+                                {errors.referral && (
+                                    <span className="error-message">
+                                        {errors.referral}
+                                    </span>
+                                )}
+
                             </div>
 
                             <div className="form-group">
-                                <label className="heading" for="contact">Contact Number</label>
+                                <label className='heading mandatory' for="contact">Contact Number</label>
                                 <input
                                     type="text"
                                     name="contact"
                                     className={errors.contact && 'border-red'}
                                     defaultValue={formData.contact}
+                                    // value={formData.contact}
+                                    // readOnly={formData.contact}
                                     onBlur={handleChange}
                                     onFocus={() => {
                                         setErrors(errors => {
@@ -278,21 +333,22 @@ const Enquiry = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className="heading" for="otp">OTP</label>
+                                <label className='heading mandatory' for="otp">OTP</label>
                                 <input
                                     ref={otpRef}
                                     type="text"
                                     name="otp" />
                                 <Button disabled={!isOtpDisabled.isSendOtpDisabled || isOtpDisabled.isVerifyOtpDisabled} onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button>
+                                {/* <Button onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button> */}
                                 <label className='message'> {otpMessage.verifyOtp} </label>
                             </div>
 
                             <div className="form-group">
-                                <label className="heading" for="email">Email ID</label>
+                                <label className='heading' for="email">Email ID</label>
                                 <input
                                     type="email"
                                     name="email"
-                                    className={errors.email && 'border-red'}
+                                    className={errors.email && 'border-red'} //
                                     defaultValue={formData.email}
                                     onBlur={handleChange}
                                     onFocus={() => {
@@ -300,7 +356,7 @@ const Enquiry = () => {
                                             const { email, ...rest } = errors;
                                             return rest;
                                         });
-                                    }}
+                                    }} //
                                 />
                                 {errors.email && (
                                     <span className="error-message">
@@ -318,7 +374,11 @@ const Enquiry = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'lightgrey', width: '100%', padding: '30px 30px', opacity: '80%' }}>
                             <span className='head' style={{ fontSize: 'xx-large' }}> Enquiry Received ! </span>
                             <span className='sub-head' style={{ fontSize: 'x-large' }}> Our team will get back to you shortly. </span>
-                            <Button type='button' bg='green' onClick={() => setIsEnquiryReceived(false)} style={{ fontSize: 'large', width: '250px' }}> Submit Another Enquiry </Button>
+                            <Button type='button' bg='green' onClick={(e) => {
+                                resetFormData(e);
+                                setIsEnquiryReceived(false);
+                            }}
+                                style={{ fontSize: 'large', width: '250px' }}> Submit Another Enquiry </Button>
                         </div>
                     </div>
                 </>}

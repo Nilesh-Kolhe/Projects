@@ -15,7 +15,7 @@ select {
     border-color: red !important;
 }
 
-.heading::after {
+.mandatory::after {
     content: " *";
     color: red;
     font-size: medium;
