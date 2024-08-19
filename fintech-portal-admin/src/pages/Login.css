@@ -35,12 +35,6 @@ select {
     padding: 20px 30px;
 }
 
-.login-error-message {
-    font-size: small;
-    color: red;
-    padding: 0px 20px;
-}
-
 .border-red {
     border-color: red !important;
 }

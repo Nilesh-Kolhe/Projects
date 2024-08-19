@@ -21,7 +21,10 @@ const App = () => {
             <Route path="/" element={<Navigate to="landing" />} />
             <Route path="landing" element={<Landing />} />
             <Route path="aboutus" element={<AboutUs />} />
-            <Route path="enquiry" element={<Enquiry />} />
+            {/* <Route path="enquiry" element={<Enquiry />} /> */}
+            {['enquiry', 'enquiry/:contact'].map(path =>
+              <Route path={path} element={<Enquiry />} />
+            )}
           </Routes>
         </div>
       </BrowserRouter >
