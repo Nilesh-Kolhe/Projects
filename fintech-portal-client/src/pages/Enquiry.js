@@ -13,8 +13,9 @@ const Enquiry = () => {
     const [isFormValid, setIsFormValid] = useState(false);
     const { contact } = useParams();
     console.log('URL Contact: ', contact);
+    const [isReferred] = useState(contact !== undefined);
+    const TXT_REFERRAL = 'referral';
     const [errors, setErrors] = useState({});
-    console.log('Errors: ', errors);
     const [isOtpDisabled, setIsOtpDisabled] = useState({
         isSendOtpDisabled: false,
         isVerifyOtpDisabled: false
@@ -26,8 +27,8 @@ const Enquiry = () => {
     const [otpMessage, setOtpMessage] = useState(initialOtpmessageState);
     const initialFormData = {
         // name: '',
-        contact: '',
-        type: '',
+        contact: contact || '',
+        type: isReferred ? TXT_REFERRAL : '',
         // email: ''
     };
     const [formData, setFormData] = useState(initialFormData);
@@ -147,7 +148,7 @@ const Enquiry = () => {
                 sendOtp: '',
                 verifyOtp: ''
             }))
-        ), 600000); // 600000
+        ), 600000); // 1000
     }
 
     const verifyOTP = (event) => {
@@ -181,8 +182,9 @@ const Enquiry = () => {
     }
 
     useEffect(() => {
-        console.log('Errors: ', errors);
-        if (Object.keys(errors).length === (formData.type === 'referral' ? 4 : 3)) {
+        console.log('UseEffect Errors: ', errors);
+        const numberOfErrors = (formData.type === TXT_REFERRAL ? 4 : 3);
+        if (Object.keys(errors).length === numberOfErrors) {
             let isValid = true;
             for (var error in errors) {
                 if (errors[error] !== "") {
@@ -193,6 +195,16 @@ const Enquiry = () => {
             setIsFormValid(isValid);
         }
     }, [errors]);
+
+    useEffect(() => {
+        console.log('Initial UseEffect Errors: ', errors);
+        if (isReferred) {
+            setErrors({
+                ...errors,
+                contact: ''
+            });
+        }
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -205,8 +217,9 @@ const Enquiry = () => {
         };
         body = {
             ...body,
-            ...(formData.type === 'referral' ? { referral: formData.referral } : {})
-        }
+            ...(formData.type === TXT_REFERRAL ? { referral: formData.referral } : {})
+        };
+        console.log('Body: ', body);
         axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, body)
             .then(response => {
                 console.log('Save Enquiry Response: ', response);
@@ -237,7 +250,7 @@ const Enquiry = () => {
                         <span className='sub-head' >Please fill in the details  below to go to the next step</span>
                         <form id='enquire' name='Enquire Now'>
                             <div className="form-group">
-                                <label className="heading" for="fname">Name</label>
+                                <label className="heading" htmlFor="fname">Name</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -259,11 +272,39 @@ const Enquiry = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className="heading mandatory" for="type">Type</label>
+                                <label className='heading mandatory' htmlFor="contact">Contact Number</label>
+                                <input
+                                    type="text"
+                                    name="contact"
+                                    className={errors.contact && 'border-red'}
+                                    // defaultValue={formData.contact}
+                                    value={formData.contact}
+                                    readOnly={formData.contact}
+                                    onBlur={handleChange}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { contact, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }}
+                                />
+                                {!isReferred ? <>
+                                    <Button disabled={isOtpDisabled.isSendOtpDisabled} onClick={sendOTP} style={{ fontSize: 'small' }} >Send OTP</Button>
+                                    {errors.contact && (
+                                        <span className="error-message">
+                                            {errors.contact}
+                                        </span>
+                                    )}
+                                    <label className='message'> {otpMessage.sendOtp} </label>
+                                </> : <></>}
+                            </div>
+
+                            <div className="form-group">
+                                <label className="heading mandatory" htmlFor="type">Type</label>
                                 <select
                                     name="type"
                                     className={errors.type && 'border-red'}
-                                    defaultValue={formData.type}
+                                    value={formData.type}
                                     onBlur={handleChange} //
                                     onChange={handleChange}
                                     onFocus={() => {
@@ -282,8 +323,8 @@ const Enquiry = () => {
                                         {errors.type}
                                     </span>
                                 )}
-                                {formData.type === 'referral' && (<>
-                                    <label className='heading mandatory' for="fname">Referral Number</label>
+                                {formData.type === TXT_REFERRAL && (<>
+                                    <label className='heading mandatory' htmlFor="fname">Referral Number</label>
                                     <input
                                         type="text"
                                         name="referral"
@@ -298,42 +339,19 @@ const Enquiry = () => {
                                         }}
                                     />
                                 </>)}
+                                {isReferred ? <>
+                                    <Button disabled={isOtpDisabled.isSendOtpDisabled} onClick={sendOTP} style={{ fontSize: 'small' }} >Send OTP</Button>
+                                    <label className='message'> {otpMessage.sendOtp} </label>
+                                </> : <></>}
                                 {errors.referral && (
                                     <span className="error-message">
                                         {errors.referral}
                                     </span>
                                 )}
-
                             </div>
 
                             <div className="form-group">
-                                <label className='heading mandatory' for="contact">Contact Number</label>
-                                <input
-                                    type="text"
-                                    name="contact"
-                                    className={errors.contact && 'border-red'}
-                                    defaultValue={formData.contact}
-                                    // value={formData.contact}
-                                    // readOnly={formData.contact}
-                                    onBlur={handleChange}
-                                    onFocus={() => {
-                                        setErrors(errors => {
-                                            const { contact, ...rest } = errors;
-                                            return rest;
-                                        });
-                                    }}
-                                />
-                                <Button disabled={isOtpDisabled.isSendOtpDisabled} onClick={sendOTP} style={{ fontSize: 'small' }} >Send OTP</Button>
-                                {errors.contact && (
-                                    <span className="error-message">
-                                        {errors.contact}
-                                    </span>
-                                )}
-                                <label className='message'> {otpMessage.sendOtp} </label>
-                            </div>
-
-                            <div className="form-group">
-                                <label className='heading mandatory' for="otp">OTP</label>
+                                <label className='heading mandatory' htmlFor="otp">OTP</label>
                                 <input
                                     ref={otpRef}
                                     type="text"
@@ -344,7 +362,7 @@ const Enquiry = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className='heading' for="email">Email ID</label>
+                                <label className='heading' htmlFor="email">Email ID</label>
                                 <input
                                     type="email"
                                     name="email"
@@ -381,8 +399,9 @@ const Enquiry = () => {
                                 style={{ fontSize: 'large', width: '250px' }}> Submit Another Enquiry </Button>
                         </div>
                     </div>
-                </>}
-            </div>
+                </>
+                }
+            </div >
             <Footer />
         </>
     );
