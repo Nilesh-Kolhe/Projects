@@ -17,7 +17,7 @@ const Home = () => {
 
     return (
         <>
-            <div id="home" style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', padding: '40px 10px', rowGap: '150px' }}>
+            <div id="home">
                 <div className='info'>
                     <span className='info-head'>Frontiernext</span>
                     <br />

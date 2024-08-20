@@ -33,6 +33,12 @@
         background-image: url('./images/gradient_design_2_vertical.png');
         background-size: 470px;
         left: 5px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        padding: 40px 2px;
+        row-gap: 150px;
     }
 }
 
@@ -64,5 +70,11 @@
     #home {
         background-image: url('./images/gradient_design_2.PNG');
         left: 5px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        padding: 40px 10px;
+        row-gap: 150px;
     }
 }
