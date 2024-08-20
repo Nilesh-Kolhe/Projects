@@ -16,7 +16,7 @@
     }
 
     .info-head {
-        font-size: 68px;
+        font-size: 60px;
         font-weight: 500;
         font-family: ui-serif;
         padding: 0px 2px;
@@ -31,7 +31,7 @@
 
     #home {
         background-image: url('./images/gradient_design_2_vertical.png');
-        background-size: 470px;
+        background-size: 500px;
         left: 5px;
         display: flex;
         flex-direction: column;
