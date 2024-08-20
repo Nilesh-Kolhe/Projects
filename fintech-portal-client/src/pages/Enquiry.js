@@ -1,7 +1,7 @@
 import axios from 'axios';
 import './Enquiry.css';
 import { useState, useEffect, useRef } from "react";
-import contact from './images/Untitled_design_8.PNG';
+import ContactBackground from './images/Contact.PNG';
 import call from './images/Enq.jpg';
 import Footer from '../components/Footer';
 import Button from '../ui-components/Button';
@@ -237,8 +237,8 @@ const Enquiry = () => {
 
     return (
         <>
-            <div style={{ display: 'flex', columnGap: '155px', height: '750px', width: '100%' }}>
-                <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${contact})`, filter: 'blur(2px)', zIndex: '-1' }}>
+            <div id='enquiry-container'>
+                <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${ContactBackground})`, filter: 'blur(2px)', zIndex: '-1' }}>
                 </div>
                 <div id='call-img-container'>
                     <img src={call} style={{ height: '350px', width: '350px' }} />
