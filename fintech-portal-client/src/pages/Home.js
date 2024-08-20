@@ -13,8 +13,6 @@ const Home = () => {
             .catch(error => console.error(error));
     }, []);
 
-    console.log('Home Response: ', todos);
-
     return (
         <>
             <div id="home">
