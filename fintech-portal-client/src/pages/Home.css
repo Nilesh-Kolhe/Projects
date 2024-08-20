@@ -16,11 +16,17 @@
     }
 
     .info-head {
-        font-size: 70px;
+        font-size: 68px;
         font-weight: 500;
         font-family: ui-serif;
         padding: 0px 2px;
         color: cadetblue;
+    }
+
+    .info-sub-head {
+        font-size: x-large;
+        font-weight: 300;
+        padding: 0px 2px;
     }
 
     #home {
@@ -47,6 +53,12 @@
         font-family: ui-serif;
         padding: 0px 2px;
         color: cadetblue;
+    }
+
+    .info-sub-head {
+        font-size: xx-large;
+        font-weight: 300;
+        padding: 0px 2px;
     }
 
     #home {

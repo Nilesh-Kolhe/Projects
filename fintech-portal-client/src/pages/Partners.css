@@ -22,8 +22,8 @@
     .bank-image {
         height: 55px;
         width: 115px;
-        margin: 0px;
-        margin-right: 10px;
+        margin: 0px 4px;
+        padding: 0px;
     }
 
     #headline {
