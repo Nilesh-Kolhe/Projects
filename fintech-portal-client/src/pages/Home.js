@@ -21,7 +21,7 @@ const Home = () => {
                 <div className='info'>
                     <span className='info-head'>Frontiernext</span>
                     <br />
-                    <span style={{ fontSize: 'xx-large', fontWeight: '300', padding: '0px 2px' }} >Your trusted partner for loan guidance</span>
+                    <span className='info-sub-head' >Your trusted partner for loan guidance</span>
                 </div>
                 <div className='info'>
                     <span style={{ fontSize: 'x-large', fontWeight: '300', padding: '0px 2px' }}>
