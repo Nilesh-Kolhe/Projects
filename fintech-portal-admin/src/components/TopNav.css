@@ -78,7 +78,8 @@
         }
 
         .navbar-brand,
-        span#separator {
+        span#separator,
+        .dropdown {
             display: none;
         }
     }
