@@ -28,7 +28,7 @@ const AboutUs = () => {
                 <div style={{ padding: '20px 50px', opacity: '90%' }}>
                     <h1 style={{ marginBottom: '25px' }}>Our Team</h1>
                     <div id='team-container'>
-                        <div className='profile-card' style={{ marginLeft: '0px' }}>
+                        <div className='profile-card'>
                             <img className='profile-pic' src={ProfilePic} />
                             <span style={{ fontWeight: '700', fontSize: 'larger' }}>Vivek</span>
                             <span className='designation'>Founder</span>

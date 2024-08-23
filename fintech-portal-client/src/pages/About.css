@@ -72,6 +72,9 @@
     #team-container {
         display: flex;
         flex-direction: column;
+        & span :nth-child(1) {
+            margin-left: 0px;
+        }
     }
 
     .info-para {
@@ -80,5 +83,10 @@
 
     #about-para {
         width: 100%;
+        font-weight: 200;
+    }
+
+    .profile-card {
+        margin: 20px 20px;
     }
 }
