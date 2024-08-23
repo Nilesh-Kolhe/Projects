@@ -1,0 +1,70 @@
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    background-color: lightgrey;
+}
+
+#about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    row-gap: 20px;
+}
+
+#who-we-are {
+    position: absolute;
+    top: 218px;
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+#about-para {
+    padding: 20px;
+    padding-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 50%;
+    height: 160px;
+    font-weight: 400;
+    font-size: medium;
+}
+
+.info-para {
+    padding-right: 100px;
+}
+
+#team-container {
+    display: flex;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    background-color: lightgrey;
+    border-radius: 30px;
+    padding: 20px;
+    /* border-style: solid;
+    border-width: 1px; */
+    margin: 0px 20px;
+}
+
+.profile-pic {
+    height: 250px;
+    width: 250px;
+    border-radius: 125px;
+}
+
+.designation {
+    font-weight: 400;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}

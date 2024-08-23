@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from '../ui-components/Button';
 import { useNavigate } from "react-router-dom";
+import AboutBackground from './images/Whoweare-1.jpg';
+import './About.css';
 
 const About = () => {
 
@@ -18,13 +20,13 @@ const About = () => {
     console.log('About Response: ', todos);
 
     return (
-        <div id="about" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-            <h1>This is About Page</h1>
-            <ul>
-                {todos.map(todo => (
-                    <li key={todo._id}>{todo.task} - {todo.completed ? 'true' : 'false'}</li>
-                ))}
-            </ul>
+        <div id="about">
+            <div style={{ width: '100%', height: '100%', backgroundImage: `url(${AboutBackground})`, backgroundSize: '1350px 910px' }}>
+            </div>
+            <p id='about-para'>
+                <span style={{ fontWeight: '700' }}>Finwizz</span> is the partner to top Premier Institutions serving you with the best possible deals
+                from the basket of loans we provide. Your trust is our biggest asset – Something you can bank on !
+            </p>
             <Button onClick={() => navigate("/aboutus")}>Read More</Button>
         </div>
     );

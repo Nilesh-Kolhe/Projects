@@ -133,22 +133,42 @@ const Enquiry = () => {
             countryCode: '+91',
             phoneNumber: formData.contact
         })
-            .then(response => { console.log('sendOTP Response: ', response) })
-            .catch(error => console.error(error));
+            .then(response => {
+                console.log('sendOTP Response: ', response);
+                setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: true }));
+                setOtpMessage(() => ({
+                    sendOtp: 'OTP Sent Successfully !'
+                }));
 
-        setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: true }));
-        setOtpMessage((prevState) => ({
-            sendOtp: 'OTP Sent Successfully !'
-        }));
+                setTimeout(() => (setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: false })),
+                    (setIsOtpDisabled((prevState) => ({ ...prevState, isVerifyOtpDisabled: false }))),
+                    setOtpMessage((prevState) => ({
+                        ...prevState,
+                        sendOtp: '',
+                        verifyOtp: ''
+                    }))
+                ), 600000); // 1000
+            })
+            .catch(error => {
+                console.error(error);
+                setOtpMessage(() => ({
+                    sendOtp: 'Unable to send OTP'
+                }));
+            });
 
-        setTimeout(() => (setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: false })),
-            (setIsOtpDisabled((prevState) => ({ ...prevState, isVerifyOtpDisabled: false }))),
-            setOtpMessage((prevState) => ({
-                ...prevState,
-                sendOtp: '',
-                verifyOtp: ''
-            }))
-        ), 600000); // 1000
+        // setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: true }));
+        // setOtpMessage(() => ({
+        //     sendOtp: 'OTP Sent Successfully !'
+        // }));
+
+        // setTimeout(() => (setIsOtpDisabled((prevState) => ({ ...prevState, isSendOtpDisabled: false })),
+        //     (setIsOtpDisabled((prevState) => ({ ...prevState, isVerifyOtpDisabled: false }))),
+        //     setOtpMessage((prevState) => ({
+        //         ...prevState,
+        //         sendOtp: '',
+        //         verifyOtp: ''
+        //     }))
+        // ), 600000); // 1000
     }
 
     const verifyOTP = (event) => {
@@ -277,8 +297,8 @@ const Enquiry = () => {
                                     type="text"
                                     name="contact"
                                     className={errors.contact && 'border-red'}
-                                    // defaultValue={formData.contact}
-                                    value={formData.contact}
+                                    defaultValue={!isReferred ? formData.contact : undefined}
+                                    value={isReferred ? formData.contact : undefined}
                                     readOnly={formData.contact}
                                     onBlur={handleChange}
                                     onFocus={() => {
