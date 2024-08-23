@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import card from './images/gr-hand.PNG';
 import ProfilePic from './images/Syeed-Haseeb.jpg';
 import './About.css';
 import Footer from '../components/Footer';
+import { useLocation } from "react-router-dom";
 
 const AboutUs = () => {
+    const refContainer = useRef(null);
+    useEffect(() => refContainer.current.scrollIntoView({ behavior: "instant" }), []);
     return (
         <>
-            <div id='about-container'>
+            <div id='about-container' ref={refContainer}>
                 <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, backgroundImage: `url(${card})`, zIndex: '-1', backgroundSize: '1375px 610px' }}>
                 </div>
                 <div style={{ padding: '20px 50px', backgroundColor: 'lightgrey', marginTop: '50px' }}>
