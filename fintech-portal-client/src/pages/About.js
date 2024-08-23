@@ -24,7 +24,7 @@ const About = () => {
             <div style={{ width: '100%', height: '100%', backgroundImage: `url(${AboutBackground})`, backgroundSize: '1350px 910px' }}>
             </div>
             <p id='about-para'>
-                <span style={{ fontWeight: '700' }}>Finwizz</span> is the partner to top Premier Institutions serving you with the best possible deals
+                <span style={{ fontWeight: '700' }}>Frontiernext</span> is the partner to top Premier Institutions serving you with the best possible deals
                 from the basket of loans we provide. Your trust is our biggest asset – Something you can bank on !
             </p>
             <Button onClick={() => navigate("/aboutus")}>Read More</Button>
