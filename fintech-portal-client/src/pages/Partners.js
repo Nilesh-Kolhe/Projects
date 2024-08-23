@@ -23,8 +23,8 @@ const Partners = () => {
     }, []);
 
     return (
-        <div id="partners" style={{ display: 'flex', flexDirection: 'column', rowGap: '30px', alignItems: 'center', width: '100%', height: '700px' }}>
-            <span id='headline' style={{ fontWeight: '500', fontVariantCaps: 'petite-caps', padding: '30px 2px' }} >Our Partners</span>
+        <div id="partners">
+            <span id='headline'>Our Partners</span>
             <span id='sub-heading' style={{ fontStyle: 'italic', fontWeight: '100' }} >&quot;Empowering your financial journey with trusted partnership from leading banks.&quot;</span>
             <div style={{ display: 'flex', rowGap: '40px', flexDirection: 'column', alignItems: 'center' }}>
                 <div>
