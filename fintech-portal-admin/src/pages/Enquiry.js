@@ -11,7 +11,6 @@ import "ag-grid-community/styles/ag-theme-material.css";
 
 
 const Enquiry = () => {
-
     const quickFilterText = '';
     const gridRef = useRef();
 
@@ -19,19 +18,27 @@ const Enquiry = () => {
     const [rowData, setRowData] = useState([]);
     // Column Definitions: Defines the columns to be displayed.
     const [colDefs, setColDefs] = useState([
-        { field: "_id", headerName: 'id' },
-        { field: "firstName" },
-        { field: "lastName" },
-        { field: "email" },
-        { field: "contact" },
-        { field: "type" }
+        { field: '_id', headerName: 'id', width: '300px', fontWeight: 'bold', fontSize: '100px' },
+        { field: 'firstName', width: '125px' },
+        { field: 'lastName', width: '125px' },
+        { field: 'email', width: '250px' },
+        { field: 'contact', width: '200px' },
+        { field: "type", width: '100px' }
     ]);
-    const defaultColDef = () => { 
+    const defaultColDef = () => {
         return {
-            width: 150,
             cellStyle: { fontWeight: 'bold' },
         };
     };
+    const paginationOptions = {
+        pagination: true,
+        paginationPageSize: 5,
+        paginationPageSizeSelector: [10, 15, 20, 25, 50, 100]
+    }
+    // const pagination = true;
+    // const paginationPageSize = 5;
+    // const paginationPageSizeSelector = [10, 15, 20, 25, 50, 100];
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_FINTECH_SERVER_URL}/getAllEnquiries`)
             .then(response => {
@@ -49,7 +56,7 @@ const Enquiry = () => {
     }, []);
 
     return (
-        <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
+        <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
             <span className='head'>Enquiries Received</span>
             <input
                 type="text"
@@ -71,6 +78,9 @@ const Enquiry = () => {
                     columnDefs={colDefs}
                     defaultColDef={defaultColDef}
                     quickFilterText={quickFilterText}
+                    pagination={paginationOptions.pagination}
+                    paginationPageSize={paginationOptions.paginationPageSize}
+                    paginationPageSizeSelector={paginationOptions.paginationPageSizeSelector}
                 />
             </div>
         </div>
