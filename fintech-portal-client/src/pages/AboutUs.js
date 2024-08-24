@@ -16,7 +16,7 @@ const AboutUs = () => {
                 <div style={{ padding: '20px 50px', backgroundColor: 'lightgrey', marginTop: '50px' }}>
                     <h1 style={{ marginBottom: '25px' }}>Who we are !</h1>
                     <p className='info-para'>
-                        The dynamic journey of Finwizz is hinged on one simple philosophy that everyone deserves to live their lives to their fullest potential.
+                        The dynamic journey of Frontiernext is hinged on one simple philosophy that everyone deserves to live their lives to their fullest potential.
                     </p>
                     <p className='info-para'>
                         The seed that was sown way back in 2005 by three passionate individuals from the banking sector has reaped numerous milestones as we walk through the journey of making transformative impact in the lives of people. Yet, the most valuable asset we’ve reaped is the unwavering faith of our customers borne from our credibility to help them make responsible decisions about their finance.
@@ -30,26 +30,26 @@ const AboutUs = () => {
                     <div id='team-container'>
                         <div className='profile-card'>
                             <img className='profile-pic' src={ProfilePic} />
-                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Vivek</span>
+                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Ketan</span>
                             <span className='designation'>Founder</span>
                             <p style={{ textAlign: 'center' }}>
-                                Vivek co-founded Finance Buddha in 2012 after having more than a decade entrepreneurial experience in financial services, telecom and manufacturing. In 2012 he discontinued other ventures to focus on financial services. He currently manages the unsecured business.
+                                Ketan co-founded Finance Buddha in 2012 after having more than a decade entrepreneurial experience in financial services, telecom and manufacturing. In 2012 he discontinued other ventures to focus on financial services. He currently manages the unsecured business.
                             </p>
                         </div>
                         <div className='profile-card'>
                             <img className='profile-pic' src={ProfilePic} />
-                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>ABC</span>
+                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Mohan</span>
                             <span className='designation'>Co-Founder</span>
                             <p style={{ textAlign: 'center' }}>
-                                After spending 8 years at Citibank he co-founded Finance Buddha in 2012 along with Vivek. At Citibank, he had set up the most profitable retail asset franchise within the bank, accounting for over 45% of the country's volumes in personal loans. At Finance Buddha he manages mortgage business and is responsible for overall marketing initiatives.
+                                After spending 8 years at Citibank he co-founded Finance Buddha in 2012 along with Ketan. At Citibank, he had set up the most profitable retail asset franchise within the bank, accounting for over 45% of the country's volumes in personal loans. At Finance Buddha he manages mortgage business and is responsible for overall marketing initiatives.
                             </p>
                         </div>
                         <div className='profile-card'>
                             <img className='profile-pic' src={ProfilePic} />
-                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Parag</span>
+                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Shrijith</span>
                             <span className='designation'>Co-Founder</span>
                             <p style={{ textAlign: 'center' }}>
-                                Parag has 10 years experience in investment management roles in India and South East Asian countries. Before joining Finance Buddha in 2013 he was Vice President - Investments at Masan Group in Vietnam. Masan is the largest private sector conglomerate in Vietnam with a market cap in excess of USD 3.5 billion and having interests across FMCG, Banking, Mining etc.
+                                Shrijith has 10 years experience in investment management roles in India and South East Asian countries. Before joining Finance Buddha in 2013 he was Vice President - Investments at Masan Group in Vietnam. Masan is the largest private sector conglomerate in Vietnam with a market cap in excess of USD 3.5 billion and having interests across FMCG, Banking, Mining etc.
                             </p>
                         </div>
                     </div>
