@@ -4,7 +4,7 @@ input[type=text],
 select {
     width: 100%;
     padding: 5px 20px;
-    margin: 2px 0;
+    margin: 5px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -37,22 +37,29 @@ input[type=submit]:hover {
 }
 
 #enquire {
-    opacity: 80%;
+    /* opacity: 80%; */
     margin: 15px 0px;
-    padding: 15px 25px;
-    width: 550px;
-    border: 1px solid;
+    padding: 15px 0px;
+    width: 525px;
+    /* border: 1px solid; */
 }
 
 #enquiry-container {
     display: flex;
-    column-gap: 155px;
+    justify-content: center;
+    column-gap: 100px;
     height: 750px;
     width: 100%;
 }
 
+.g__map {
+    width: 45vw;
+    height: 80vh;
+    margin: 2vw 0vw;
+}
+
 .heading {
-    font-size: small;
+    font-size: medium;
 }
 
 .message {
@@ -66,12 +73,14 @@ input[type=submit]:hover {
     padding: 0px 2px;
 }
 
-.form-group>input {
+.form-group > input {
     border: solid 1px;
+    height: 40px;
 }
 
 .head {
-    font-size: x-large;
+    font-size: xx-large;
+    color: blue;
     font-weight: 500;
     padding: 0px 2px;
 }

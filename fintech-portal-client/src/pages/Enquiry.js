@@ -6,6 +6,7 @@ import call from './images/Enq.jpg';
 import Footer from '../components/Footer';
 import Button from '../ui-components/Button';
 import { useParams } from "react-router-dom";
+import GMap from '../components/GMap';
 
 const Enquiry = () => {
     let otpRef = useRef();
@@ -258,22 +259,26 @@ const Enquiry = () => {
     return (
         <>
             <div id='enquiry-container'>
-                <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${ContactBackground})`, filter: 'blur(2px)', zIndex: '-1' }}>
-                </div>
-                <div id='call-img-container'>
+                {/* <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${ContactBackground})`, filter: 'blur(2px)', zIndex: '-1' }}>
+                </div> */}
+                {/* <div id='call-img-container'>
                     <img src={call} style={{ height: '350px', width: '350px' }} />
+                </div> */}
+                <div className='g__map'>
+                    <GMap />
                 </div>
                 {!isEnquiryReceived ? <>
                     <div style={{ marginTop: '30px' }}>
-                        <span className='head'>Post an Enquiry</span>
+                        <span className='head'>Apply for Loans</span>
                         <br />
-                        <span className='sub-head' >Please fill in the details  below to go to the next step</span>
+                        {/* <span className='sub-head' >Please fill in the details  below to go to the next step</span> */}
                         <form id='enquire' name='Enquire Now'>
                             <div className="form-group">
-                                <label className="heading" htmlFor="fname">Name</label>
+                                <label className="heading" htmlFor="fname">Your Name</label>
                                 <input
                                     type="text"
                                     name="name"
+                                    placeholder='Your name'
                                     className={errors.name && 'border-red'} //
                                     defaultValue={formData.name} //
                                     onBlur={handleChange}
@@ -292,10 +297,11 @@ const Enquiry = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className='heading mandatory' htmlFor="contact">Contact Number</label>
+                                <label className='heading mandatory' htmlFor="contact">Mobile Number</label>
                                 <input
                                     type="text"
                                     name="contact"
+                                    placeholder='Your mobile number'
                                     className={errors.contact && 'border-red'}
                                     defaultValue={!isReferred ? formData.contact : undefined}
                                     value={isReferred ? formData.contact : undefined}
@@ -334,7 +340,7 @@ const Enquiry = () => {
                                         });
                                     }}
                                 >
-                                    <option value="select">--select--</option>
+                                    <option value="select">--select type--</option>
                                     <option value="self">Self</option>
                                     <option value="referral">Referral</option>
                                 </select>
@@ -348,6 +354,7 @@ const Enquiry = () => {
                                     <input
                                         type="text"
                                         name="referral"
+                                        placeholder='Your referral number'
                                         className={errors.referral && 'border-red'}
                                         // defaultValue={formData.referral}
                                         onBlur={handleChange}
@@ -375,7 +382,9 @@ const Enquiry = () => {
                                 <input
                                     ref={otpRef}
                                     type="text"
-                                    name="otp" />
+                                    name="otp"
+                                    placeholder='Enter OTP'
+                                />
                                 <Button disabled={!isOtpDisabled.isSendOtpDisabled || isOtpDisabled.isVerifyOtpDisabled} onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button>
                                 {/* <Button onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button> */}
                                 <label className='message'> {otpMessage.verifyOtp} </label>
@@ -386,6 +395,7 @@ const Enquiry = () => {
                                 <input
                                     type="email"
                                     name="email"
+                                    placeholder='Your email ID'
                                     className={errors.email && 'border-red'} //
                                     defaultValue={formData.email}
                                     onBlur={handleChange}
