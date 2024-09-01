@@ -25,7 +25,7 @@ const AboutUs = () => {
                         Over the years our services have enhanced, we have evolved and our business has grown. But what has remained as solid as a rock is our core philosophy of making loans accessible to people from all walks of life. 1000 fulfilled dreams across the country and crores of loans later, we give ourselves a pat on the back knowing someone, somewhere is living a life of their dreams with the support of FINWIZZ.
                     </p>
                 </div>
-                <div style={{ padding: '20px 20px', opacity: '90%' }}>
+                <div style={{ padding: '20px 40px', opacity: '90%' }}>
                     <h1 style={{ marginBottom: '25px' }}>Our Team</h1>
                     <div id='team-container'>
                         <div className='profile-card'>
