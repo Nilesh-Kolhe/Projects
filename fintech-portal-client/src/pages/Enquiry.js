@@ -259,19 +259,21 @@ const Enquiry = () => {
     return (
         <>
             <div id='enquiry-container'>
-                {/* <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${ContactBackground})`, filter: 'blur(2px)', zIndex: '-1' }}>
-                </div> */}
-                {/* <div id='call-img-container'>
-                    <img src={call} style={{ height: '350px', width: '350px' }} />
-                </div> */}
-                <div className='g__map'>
-                    <GMap />
+                <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: `url(${ContactBackground})`, filter: 'blur(5px)', zIndex: '-1' }}>
                 </div>
+                <div id='call-img-container'>
+                    <div style={{ textAlign: 'justify' }}>
+                        <p className='head'> How can we help you ?</p>
+                        <p>As an investment banking firm in India, we raise funds strategically from a variety of sources, including Domestic or International Fund Houses, and Govt. Banks, Private Banks, Cooperative Banks, and NBFCs.</p>
+                    </div>
+                    <img src={call} style={{ height: '250px', width: '250px', borderRadius: '250px', marginTop: '50px' }} />
+                </div>
+
                 {!isEnquiryReceived ? <>
                     <div style={{ marginTop: '30px' }}>
-                        <span className='head'>Apply for Loans</span>
-                        <br />
+                        <span className='head'>Submit an Enquiry</span>
                         {/* <span className='sub-head' >Please fill in the details  below to go to the next step</span> */}
+                        <br />
                         <form id='enquire' name='Enquire Now'>
                             <div className="form-group">
                                 <label className="heading" htmlFor="fname">Your Name</label>
