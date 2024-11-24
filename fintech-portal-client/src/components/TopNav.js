@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './TopNav.css';
 import { useNavigate } from "react-router-dom";
+import fnt from '../pages/images/fnt.jpeg';
 
 const TopNav = () => {
 
@@ -18,18 +19,20 @@ const TopNav = () => {
     // });
 
     return (
-        <nav id="top-nav-root" className="navbar navbar-expand-md navbar-light bg-light" aria-label="top navbar">
+        <nav id="top-nav-root" className="navbar navbar-expand-md navbar-light" aria-label="top navbar">
             <div className="container-fluid">
-                <a className="navbar-brand" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: '#000' }}>Frontiernext</a>
+                <a className="navbar-brand" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: '#000' }}>
+                    <img src={fnt} width="95px" height="85px"/>
+                </a>
                 <span id="separator" style={{ color: "#000" }}>|&nbsp;&nbsp;</span>
-                <h5 style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "10px", paddingLeft: "5px", color: "#000" }}>Frontiernext Solutions Private Limited</h5>
+                <h5 style={{ fontWeight: 100, fontSize: 'large', paddingTop: "10px", paddingLeft: "5px"}}>Frontiernext Solutions Private Limited</h5>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="true" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div id="top-navbar" className="navbar-collapse collapse">
-                    <ul className="navbar-nav me-auto mb-md-0 justify-content-sm-end">
+                    <ul className="navbar-nav me-auto mb-md-0 justify-content-sm-center">
                         <li className={route.includes('home') || route === 'landing' ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")}> <a href='#home'>Home</a> </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="services" data-bs-toggle="dropdown" aria-expanded="false">
