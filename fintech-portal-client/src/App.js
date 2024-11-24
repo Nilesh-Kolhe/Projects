@@ -8,6 +8,7 @@ import AboutUs from "./pages/AboutUs";
 import TopNav from './components/TopNav';
 import './App.css';
 import TopMostNav from './components/TopMostNav';
+import PersonalLoan from './pages/PersonalLoan';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             {['enquiry', 'enquiry/:contact'].map(path =>
               <Route path={path} element={<Enquiry />} />
             )}
+            <Route path="personalloan" element={<PersonalLoan />} />
           </Routes>
         </div>
       </BrowserRouter >

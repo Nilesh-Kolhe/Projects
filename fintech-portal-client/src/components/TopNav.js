@@ -34,12 +34,13 @@ const TopNav = () => {
                 <div id="top-navbar" className="navbar-collapse collapse">
                     <ul className="navbar-nav me-auto mb-md-0 justify-content-sm-center">
                         <li className={route.includes('home') || route === 'landing' ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")}> <a href='#home'>Home</a> </li>
+                        <li className={(route.includes('about') || route.includes('aboutus')) ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")}> <a href='#about'> About Us </a> </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="services" data-bs-toggle="dropdown" aria-expanded="false">
                                 Services
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="services">
-                                <li className='nav-item'><a className="nav-link" href="#">Personal Loan</a></li>
+                                <li className='nav-item' onClick={() => { navigate("/personalloan") }} ><a className="nav-link" href="#">Personal Loan</a></li>
                                 <li className='nav-item'><a className="nav-link" href="#">Business Loan</a></li>
                                 <li className='nav-item'><a className="nav-link" href="#">Home Loan</a></li>
                                 <li className='nav-item'><a className="nav-link" href="#">Commercial Property Loan</a></li>
@@ -49,8 +50,7 @@ const TopNav = () => {
                             </ul>
                         </li>
                         {/* <li className={route.includes('partners') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")} > <a href='#partners'> Partners </a> </li> */}
-                        <li className={route.includes('enquiry') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("enquiry")}> Enquiry </li>
-                        <li className={(route.includes('about') || route.includes('aboutus')) ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")}> <a href='#about'> About Us </a> </li>
+                        <li className={route.includes('enquiry') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("enquiry")}> Resources </li>
                         <li className='nav-item' onClick={() => navigate("landing")}> <a href='#track'> Track </a> </li>
                     </ul>
                 </div>
