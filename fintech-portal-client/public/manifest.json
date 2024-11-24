@@ -3,18 +3,18 @@
   "name": "Frontiernext Solutions Private Limited",
   "icons": [
     {
-      "src": "fnt.jpeg",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image"
+      "type": "image/x-icon"
     },
     {
       "src": "fnt.jpeg",
-      "type": "image",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
       "src": "fnt.jpeg",
-      "type": "image",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
