@@ -13,7 +13,7 @@ const AboutUs = () => {
             <div id='about-container' ref={refContainer}>
                 <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, backgroundImage: `url(${card})`, zIndex: '-1', backgroundSize: '1375px 610px' }}>
                 </div>
-                <div style={{ padding: '20px 50px', backgroundColor: 'lightgrey', marginTop: '50px' }}>
+                <div style={{ padding: '15px 50px', backgroundColor: 'lightgrey', margin: '14px' }}>
                     <h1 style={{ marginBottom: '25px' }}>Who we are !</h1>
                     <p className='info-para'>
                         The dynamic journey of Frontiernext is hinged on one simple philosophy that everyone deserves to live their lives to their fullest potential.
@@ -25,7 +25,7 @@ const AboutUs = () => {
                         Over the years our services have enhanced, we have evolved and our business has grown. But what has remained as solid as a rock is our core philosophy of making loans accessible to people from all walks of life. 1000 fulfilled dreams across the country and crores of loans later, we give ourselves a pat on the back knowing someone, somewhere is living a life of their dreams with the support of FINWIZZ.
                     </p>
                 </div>
-                <div style={{ padding: '20px 40px', opacity: '90%' }}>
+                {/* <div style={{ padding: '20px 40px', opacity: '90%' }}>
                     <h1 style={{ marginBottom: '25px' }}>Our Team</h1>
                     <div id='team-container'>
                         <div className='profile-card'>
@@ -53,7 +53,7 @@ const AboutUs = () => {
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             <Footer />
         </>
