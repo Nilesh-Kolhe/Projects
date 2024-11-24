@@ -93,6 +93,5 @@ app.post('/submitEnquiry', async (req, res) => {
 
 app.get('/getAllEnquiries', async (req, res) => {
     const enquiries = await enquiriesModel.find();
-    console.log('Get All Enquiries ! ', enquiries);
     res.json(enquiries);
 });
