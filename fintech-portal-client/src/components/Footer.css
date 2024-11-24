@@ -13,9 +13,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 20px;
-    height: 225px;
-    background-color: lightgray;
+    background-color: rgb(61, 61, 61);
+    color: #fff;
+}
+
+.footer-sub-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-sub-section {
+    width: 280px;
+    margin: 10px;
+}
+
+.copyright {
+    color: #fff;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #191919;
+}
+
+.footer-heading {
+    font-size: larger;
+    font-weight: 700;
 }
 
 #icons-container {
@@ -34,8 +59,9 @@
 .footer-link {
     text-decoration: none;
     color: inherit;
+    font-size: x-large;
 
     &:hover {
-        transform: scale(1.05);
+        transform: scale(1.15);
     }
 }
