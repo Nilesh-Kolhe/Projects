@@ -9,7 +9,7 @@ const CorporateOffice = () => {
             </p>
             <p>
                 <i className='bi bi-envelope' style={{ paddingRight: '8px' }}></i>
-                <label> Mumbai@terkarcapital.com </label>
+                <label> connect@frontiernext.org </label>
             </p>
             <p>
                 <i className='bi bi-telephone' style={{ paddingRight: '8px' }}></i>
