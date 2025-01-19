@@ -4,9 +4,6 @@ const OperationalPresence = () => {
     return (
         <div className='footer-sub-section'>
             <p className='footer-heading'> Find Us Online </p>
-            {/* <p>
-                Delhi | Bengaluru | Chennai | Kolkata | Ahmedabad | Surat
-            </p> */}
             <div id='icons-container'>
                 <a className='footer-link' href='https://www.linkedin.com' target="_blank"><i className='bi bi-linkedin'></i></a>
                 <a className='footer-link' href='https://www.facebook.com' target="_blank"><i className='bi bi-facebook'></i></a>
