@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Button from '../ui-components/Button';
-import { useNavigate } from "react-router-dom";
-import AboutBackground from './images/Whoweare-1.jpg';
 import './Loan.css';
 import Footer from '../components/Footer';
 
