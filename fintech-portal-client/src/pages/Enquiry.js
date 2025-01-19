@@ -107,6 +107,20 @@ const Enquiry = () => {
                     });
                 }
                 break;
+                case 'location':
+                if (!value) {
+                    setErrors({
+                        ...errors,
+                        [name]: 'Location is Required !'
+                    });
+                } else {
+                    setErrors({
+                        ...errors,
+                        [name]: ''
+                    });
+                }
+                break;
+
             // case 'email':
             //     if (!value) {
             //         setErrors({
@@ -204,7 +218,7 @@ const Enquiry = () => {
 
     useEffect(() => {
         console.log('UseEffect Errors: ', errors);
-        const numberOfErrors = (formData.type === TXT_REFERRAL ? 4 : 3);
+        const numberOfErrors = (formData.type === TXT_REFERRAL ? 5 : 4);
         if (Object.keys(errors).length === numberOfErrors) {
             let isValid = true;
             for (var error in errors) {
@@ -230,20 +244,26 @@ const Enquiry = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Handle Submit FormData: ', formData);
-        let body = {
+        let enquiryBody = {
             name: formData.name,
+            location: formData.location,
             type: formData.type,
             contact: formData.contact,
             email: formData.email
         };
-        body = {
-            ...body,
+
+        enquiryBody = {
+            ...enquiryBody,
             ...(formData.type === TXT_REFERRAL ? { referral: formData.referral } : {})
         };
-        console.log('Body: ', body);
-        axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, body)
+        console.log('Body: ', enquiryBody);
+        axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/submitEnquiry`, enquiryBody)
             .then(response => {
                 console.log('Save Enquiry Response: ', response);
+                const smsBody = {
+                    enquiryId: response.id
+                };
+                axios.post(`${process.env.REACT_APP_FINTECH_SERVER_URL}/sms/send`, smsBody)
                 setIsEnquiryReceived(true);
             })
             .catch(error => console.error(error));
@@ -264,9 +284,9 @@ const Enquiry = () => {
                 <div id='call-img-container'>
                     <div style={{ textAlign: 'justify' }}>
                         <p className='head'> How can we help you ?</p>
-                        <p>As an investment banking firm in India, we raise funds strategically from a variety of sources, including Domestic or International Fund Houses, and Govt. Banks, Private Banks, Cooperative Banks, and NBFCs.</p>
+                        <p style={{marginTop: '40px'}}>As an investment banking firm in India, we raise funds strategically from a variety of sources, including Domestic or International Fund Houses, and Govt. Banks, Private Banks, Cooperative Banks, and NBFCs.</p>
                     </div>
-                    <img src={call} style={{ height: '250px', width: '250px', borderRadius: '250px', marginTop: '50px' }} />
+                    <img src={call} style={{ height: '250px', width: '250px', borderRadius: '250px', marginTop: '55px' }} />
                 </div>
 
                 {!isEnquiryReceived ? <>
@@ -298,6 +318,76 @@ const Enquiry = () => {
                                 )}
                             </div>
 
+                            <div style={{display: 'flex', columnGap: '20px'}}>
+                                <div className="form-group" style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+                                    <label className='heading' htmlFor="location">Location</label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        placeholder='Your location'
+                                        className={errors.location && 'border-red'} //
+                                        defaultValue={formData.location}
+                                        onBlur={handleChange}
+                                        onFocus={() => {
+                                            setErrors(errors => {
+                                                const { location, ...rest } = errors;
+                                                return rest;
+                                            });
+                                        }}
+                                    />
+                                    {errors.location && (
+                                        <span className="error-message">
+                                            {errors.location}
+                                        </span>
+                                    )}
+                                </div>
+                                <div className="form-group" style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+                                    <label className='heading' htmlFor="location">Product</label>
+                                    <input
+                                        type="text"
+                                        name="product"
+                                        placeholder='Product'
+                                        className={errors.product && 'border-red'} //
+                                        defaultValue={formData.product}
+                                        onBlur={handleChange}
+                                        onFocus={() => {
+                                            setErrors(errors => {
+                                                const { product, ...rest } = errors;
+                                                return rest;
+                                            });
+                                        }}
+                                    />
+                                    {errors.product && (
+                                        <span className="error-message">
+                                            {errors.product}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <label className='heading' htmlFor="email">Email ID</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder='Your email ID'
+                                    className={errors.email && 'border-red'} //
+                                    defaultValue={formData.email}
+                                    onBlur={handleChange}
+                                    onFocus={() => {
+                                        setErrors(errors => {
+                                            const { email, ...rest } = errors;
+                                            return rest;
+                                        });
+                                    }} //
+                                />
+                                {errors.email && (
+                                    <span className="error-message">
+                                        {errors.email}
+                                    </span>
+                                )}
+                            </div>
+
                             <div className="form-group">
                                 <label className='heading mandatory' htmlFor="contact">Mobile Number</label>
                                 <input
@@ -325,6 +415,19 @@ const Enquiry = () => {
                                     )}
                                     <label className='message'> {otpMessage.sendOtp} </label>
                                 </> : <></>}
+                            </div>
+
+                            <div className="form-group">
+                                <label className='heading mandatory' htmlFor="otp">OTP</label>
+                                <input
+                                    ref={otpRef}
+                                    type="text"
+                                    name="otp"
+                                    placeholder='Enter OTP'
+                                />
+                                <Button disabled={!isOtpDisabled.isSendOtpDisabled || isOtpDisabled.isVerifyOtpDisabled} onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button>
+                                {/* <Button onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button> */}
+                                <label className='message'> {otpMessage.verifyOtp} </label>
                             </div>
 
                             <div className="form-group">
@@ -379,41 +482,7 @@ const Enquiry = () => {
                                 )}
                             </div>
 
-                            <div className="form-group">
-                                <label className='heading mandatory' htmlFor="otp">OTP</label>
-                                <input
-                                    ref={otpRef}
-                                    type="text"
-                                    name="otp"
-                                    placeholder='Enter OTP'
-                                />
-                                <Button disabled={!isOtpDisabled.isSendOtpDisabled || isOtpDisabled.isVerifyOtpDisabled} onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button>
-                                {/* <Button onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button> */}
-                                <label className='message'> {otpMessage.verifyOtp} </label>
-                            </div>
-
-                            <div className="form-group">
-                                <label className='heading' htmlFor="email">Email ID</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder='Your email ID'
-                                    className={errors.email && 'border-red'} //
-                                    defaultValue={formData.email}
-                                    onBlur={handleChange}
-                                    onFocus={() => {
-                                        setErrors(errors => {
-                                            const { email, ...rest } = errors;
-                                            return rest;
-                                        });
-                                    }} //
-                                />
-                                {errors.email && (
-                                    <span className="error-message">
-                                        {errors.email}
-                                    </span>
-                                )}
-                            </div>
+                            
 
                             <Button disabled={!isFormValid} type='button' bg="green" onClick={handleSubmit}> Submit </Button>
                             <Button onClick={resetFormData}> Reset </Button>
