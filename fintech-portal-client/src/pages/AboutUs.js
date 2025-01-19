@@ -22,7 +22,7 @@ const AboutUs = () => {
                         The seed that was sown way back in 2005 by three passionate individuals from the banking sector has reaped numerous milestones as we walk through the journey of making transformative impact in the lives of people. Yet, the most valuable asset we’ve reaped is the unwavering faith of our customers borne from our credibility to help them make responsible decisions about their finance.
                     </p>
                     <p className='info-para'>
-                        Over the years our services have enhanced, we have evolved and our business has grown. But what has remained as solid as a rock is our core philosophy of making loans accessible to people from all walks of life. 1000 fulfilled dreams across the country and crores of loans later, we give ourselves a pat on the back knowing someone, somewhere is living a life of their dreams with the support of FINWIZZ.
+                        Over the years our services have enhanced, we have evolved and our business has grown. But what has remained as solid as a rock is our core philosophy of making loans accessible to people from all walks of life. 1000 fulfilled dreams across the country and crores of loans later, we give ourselves a pat on the back knowing someone, somewhere is living a life of their dreams with the support of Frontiernext.
                     </p>
                 </div>
                 {/* <div style={{ padding: '20px 40px', opacity: '90%' }}>
