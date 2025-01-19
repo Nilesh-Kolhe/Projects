@@ -24,10 +24,11 @@
 .footer-sub-container {
     display: flex;
     flex-direction: row;
+    column-gap: 20px;
 }
 
 .footer-sub-section {
-    width: 280px;
+    width: 350px;
     margin: 10px;
 }
 

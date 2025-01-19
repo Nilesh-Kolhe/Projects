@@ -7,17 +7,15 @@ const HeadOffice = () => {
             <div className='footer-sub-section'>
                 <p className='footer-heading'> Head Office </p>
                 <p>
-                    Castle Eleganza, 103, Bhonde Colony, Dr.Ketkar Road, Erandwane, Pune – 411004, MH-India
+                    No. 184/A, Second Floor, First Main Road, Sharadha Colony, Basaveshwara Nagar, Bengaluru - 560079
                 </p>
                 <p>
                     <i className='bi bi-envelope' style={{ paddingRight: '8px' }}></i>
-                    <label>
-                        Yes@terkarcapital.com
-                    </label>
+                    <label> connect@frontiernext.org </label>
                 </p>
                 <p>
                     <i className='bi bi-telephone' style={{ paddingRight: '8px' }}></i>
-                    <label>+91 8308629820</label>
+                    <label>(080) - 41273280</label>
                 </p>
             </div>
         </div>
