@@ -27,17 +27,17 @@ const Partners = () => {
             <span id='headline'>Our Partners</span>
             <span id='sub-heading' style={{ fontStyle: 'italic', fontWeight: '100' }} >&quot;Empowering your financial journey with trusted partnership from leading banks.&quot;</span>
             <div style={{ display: 'flex', rowGap: '40px', flexDirection: 'column', alignItems: 'center' }}>
-                <div>
+                <div id="bank-list">
                     <img className='bank-image' src={SBI} />
                     <img className='bank-image' src={ICICI} />
                     <img className='bank-image' src={Yes} />
                 </div>
-                <div>
+                <div id="bank-list">
                     <img className='bank-image' src={Indian} />
                     <img className='bank-image' src={Axis} />
                     <img className='bank-image' src={Kotak} />
                 </div>
-                <div>
+                <div id="bank-list">
                     <img className='bank-image' src={BOI} />
                     <img className='bank-image' src={CBI} />
                 </div>

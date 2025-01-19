@@ -3,6 +3,10 @@
         align-items: start !important;
     }
 
+    .footer-sub-container {
+        flex-direction: column !important;
+    }
+
     #brand-name {
         font-size: larger !important;
         padding: 5px 0px;

@@ -45,7 +45,7 @@ const Enquiry = () => {
                 console.log('Enquiries: ', response.data);
                 setRowData(response.data);
             })
-            .catch(error => console.error('Error Quering Enquiries !', error));
+            .catch(error => console.error('Error Querying Enquiries !', error));
     }, []);
 
     const onFilterTextBoxChanged = useCallback(() => {
