@@ -7,8 +7,8 @@ import Landing from "./pages/Landing";
 import AboutUs from "./pages/AboutUs";
 import TopNav from './components/TopNav';
 import './App.css';
-import TopMostNav from './components/TopMostNav';
 import PersonalLoan from './pages/PersonalLoan';
+import Track from './pages/Track';
 
 const App = () => {
   return (
@@ -25,6 +25,9 @@ const App = () => {
             {/* <Route path="enquiry" element={<Enquiry />} /> */}
             {['enquiry', 'enquiry/:contact'].map(path =>
               <Route path={path} element={<Enquiry />} />
+            )}
+            {['track', 'track/:id'].map(path =>
+              <Route path={path} element={<Track />} />
             )}
             <Route path="personalloan" element={<PersonalLoan />} />
           </Routes>

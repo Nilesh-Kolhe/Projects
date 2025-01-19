@@ -51,7 +51,7 @@ const TopNav = () => {
                         </li>
                         {/* <li className={route.includes('partners') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("landing")} > <a href='#partners'> Partners </a> </li> */}
                         <li className={route.includes('enquiry') ? 'nav-item current' : 'nav-item'} onClick={() => navigate("enquiry")}> Resources </li>
-                        <li className='nav-item' onClick={() => navigate("landing")}> <a href='#track'> Track </a> </li>
+                        <li className='nav-item' onClick={() => navigate("track")}> Track </li>
                     </ul>
                 </div>
             </div>
