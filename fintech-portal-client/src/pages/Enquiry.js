@@ -343,7 +343,30 @@ const Enquiry = () => {
                                 </div>
                                 <div className="form-group" style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
                                     <label className='heading' htmlFor="location">Product</label>
-                                    <input
+                                    <select
+                                        name="product"
+                                        className={errors.product && 'border-red'}
+                                        value={formData.product}
+                                        onBlur={handleChange} //
+                                        onChange={handleChange}
+                                        onFocus={() => {
+                                            setErrors(errors => {
+                                                const { product, ...rest } = errors;
+                                                return rest;
+                                            });
+                                        }}
+                                        style={{height: '35px', padding: '5px 10px', margin: '3px 0px'}}
+                                    >
+                                        <option value="select">--select type--</option>
+                                        <option value="self"> Personal Loan </option>
+                                        <option value="referral"> Business Loan </option>
+                                        <option value="referral"> Home Loan </option>
+                                        <option value="referral"> Auto Loan </option>
+                                        <option value="referral"> Credit Card </option>
+                                        <option value="referral"> Working Capital </option>
+                                    </select>
+                                    
+                                    {/* <input
                                         type="text"
                                         name="product"
                                         placeholder='Product'
@@ -356,7 +379,7 @@ const Enquiry = () => {
                                                 return rest;
                                             });
                                         }}
-                                    />
+                                    /> */}
                                     {errors.product && (
                                         <span className="error-message">
                                             {errors.product}
@@ -444,6 +467,7 @@ const Enquiry = () => {
                                             return rest;
                                         });
                                     }}
+                                    style={{height: '35px', padding: '5px 10px', margin: '3px 0px'}}
                                 >
                                     <option value="select">--select type--</option>
                                     <option value="self">Self</option>

@@ -3,8 +3,8 @@ import './Footer.css';
 
 const HeadOffice = () => {
     return (
-        <div id='footer-container' >
-            <div className='footer-sub-section'>
+        // <div id='footer-container' >
+            <div className='footer-sub-section' style={{width: '400px'}}>
                 <p className='footer-heading'> Head Office </p>
                 <p>
                     No. 184/A, Second Floor, First Main Road, Sharadha Colony, Basaveshwara Nagar, Bengaluru - 560079
@@ -18,7 +18,7 @@ const HeadOffice = () => {
                     <label>(080) - 41273280</label>
                 </p>
             </div>
-        </div>
+        // </div>
     );
 };
 

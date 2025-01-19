@@ -2,7 +2,7 @@ import React from 'react';
 
 const CorporateOffice = () => {
     return (
-        <div className='footer-sub-section'>
+        <div className='footer-sub-section' style={{width: '400px'}}>
             <p className='footer-heading'> Corporate Office</p>
             <p>
                 No. 184/A, Second Floor, First Main Road, Sharadha Colony, Basaveshwara Nagar, Bengaluru - 560079
