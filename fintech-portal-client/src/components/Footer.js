@@ -11,7 +11,7 @@ const Footer = () => {
             <div className='footer-sub-container'>
                 <HeadOffice />
                 <CorporateOffice />
-                {/* <BrancheOffice /> */}
+                <BrancheOffice />
                 <OperationalPresence />
             </div>
             {/* <a className="navbar-brand" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: "#000" }}>Frontiernext logo</a>
