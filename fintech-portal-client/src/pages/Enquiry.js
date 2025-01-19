@@ -292,7 +292,6 @@ const Enquiry = () => {
                 {!isEnquiryReceived ? <>
                     <div style={{ marginTop: '30px' }}>
                         <span className='head'>Submit an Enquiry</span>
-                        {/* <span className='sub-head' >Please fill in the details  below to go to the next step</span> */}
                         <br />
                         <form id='enquire' name='Enquire Now'>
                             <div className="form-group">
@@ -365,21 +364,6 @@ const Enquiry = () => {
                                         <option value="referral"> Credit Card </option>
                                         <option value="referral"> Working Capital </option>
                                     </select>
-                                    
-                                    {/* <input
-                                        type="text"
-                                        name="product"
-                                        placeholder='Product'
-                                        className={errors.product && 'border-red'} //
-                                        defaultValue={formData.product}
-                                        onBlur={handleChange}
-                                        onFocus={() => {
-                                            setErrors(errors => {
-                                                const { product, ...rest } = errors;
-                                                return rest;
-                                            });
-                                        }}
-                                    /> */}
                                     {errors.product && (
                                         <span className="error-message">
                                             {errors.product}
@@ -449,7 +433,6 @@ const Enquiry = () => {
                                     placeholder='Enter OTP'
                                 />
                                 <Button disabled={!isOtpDisabled.isSendOtpDisabled || isOtpDisabled.isVerifyOtpDisabled} onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button>
-                                {/* <Button onClick={verifyOTP} style={{ fontSize: 'small' }} >Verify OTP</Button> */}
                                 <label className='message'> {otpMessage.verifyOtp} </label>
                             </div>
 
@@ -505,9 +488,6 @@ const Enquiry = () => {
                                     </span>
                                 )}
                             </div>
-
-                            
-
                             <Button disabled={!isFormValid} type='button' bg="green" onClick={handleSubmit}> Submit </Button>
                             <Button onClick={resetFormData}> Reset </Button>
                         </form>

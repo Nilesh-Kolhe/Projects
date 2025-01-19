@@ -25,35 +25,6 @@ const AboutUs = () => {
                         Over the years our services have enhanced, we have evolved and our business has grown. But what has remained as solid as a rock is our core philosophy of making loans accessible to people from all walks of life. 1000 fulfilled dreams across the country and crores of loans later, we give ourselves a pat on the back knowing someone, somewhere is living a life of their dreams with the support of Frontiernext.
                     </p>
                 </div>
-                {/* <div style={{ padding: '20px 40px', opacity: '90%' }}>
-                    <h1 style={{ marginBottom: '25px' }}>Our Team</h1>
-                    <div id='team-container'>
-                        <div className='profile-card'>
-                            <img className='profile-pic' src={ProfilePic} />
-                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Ketan</span>
-                            <span className='designation'>Founder</span>
-                            <p style={{ textAlign: 'center' }}>
-                                Ketan co-founded Finance Buddha in 2012 after having more than a decade entrepreneurial experience in financial services, telecom and manufacturing. In 2012 he discontinued other ventures to focus on financial services. He currently manages the unsecured business.
-                            </p>
-                        </div>
-                        <div className='profile-card'>
-                            <img className='profile-pic' src={ProfilePic} />
-                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Mohan</span>
-                            <span className='designation'>Co-Founder</span>
-                            <p style={{ textAlign: 'center' }}>
-                                After spending 8 years at Citibank he co-founded Finance Buddha in 2012 along with Ketan. At Citibank, he had set up the most profitable retail asset franchise within the bank, accounting for over 45% of the country's volumes in personal loans. At Finance Buddha he manages mortgage business and is responsible for overall marketing initiatives.
-                            </p>
-                        </div>
-                        <div className='profile-card'>
-                            <img className='profile-pic' src={ProfilePic} />
-                            <span style={{ fontWeight: '700', fontSize: 'larger' }}>Shrijith</span>
-                            <span className='designation'>Co-Founder</span>
-                            <p style={{ textAlign: 'center' }}>
-                                Shrijith has 10 years experience in investment management roles in India and South East Asian countries. Before joining Finance Buddha in 2013 he was Vice President - Investments at Masan Group in Vietnam. Masan is the largest private sector conglomerate in Vietnam with a market cap in excess of USD 3.5 billion and having interests across FMCG, Banking, Mining etc.
-                            </p>
-                        </div>
-                    </div>
-                </div> */}
             </div>
             <Footer />
         </>
