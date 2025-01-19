@@ -11,7 +11,7 @@ const PersonalLoan = () => {
     return (
         <>
             <div className="loan-container">
-                <p className='head'>Benefits of Personal Loan</p>
+                <p className='head' style={{textAlign: 'center'}}>Benefits of Personal Loan</p>
                 <p>
                     Personal loans offer several benefits, making them an attractive option for many individuals. Let’s look at some of the advantages:
                     <h5>Versatile Usage</h5>
