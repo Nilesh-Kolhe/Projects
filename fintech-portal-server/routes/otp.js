@@ -2,7 +2,7 @@ const { error } = require('console');
 const express = require('express');
 const otpRouter = express.Router();// create a router
 
-const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN, {
+const client = require('twilio')(process.env.TWILIO_FRONTIERNEXT_ACCOUNT_SID, process.env.TWILIO_FRONTIERNEXT_AUTH_TOKEN, {
     lazyLoading: true
 })
 
@@ -10,7 +10,7 @@ otpRouter.post('/send', async (req, res) => {
     const { countryCode, phoneNumber } = req.body;
     try {
         // const otpResponse = await client.verify
-        //     .v2.services(process.env.TWILIO_SERVICE_SID)
+        //     .v2.services(process.env.TWILIO_FRONTIERNEXT_SERVICE_ID)
         //     .verifications.create({
         //         to: `+${countryCode}${phoneNumber}`,
         //         channel: "sms",
@@ -57,7 +57,7 @@ otpRouter.post('/verify', async (req, res) => {
     const { countryCode, phoneNumber, otp } = req.body;
     try {
         // const verifiedResponse = await client.verify
-        //     .v2.services(process.env.TWILIO_SERVICE_SID)
+        //     .v2.services(process.env.TWILIO_FRONTIERNEXT_SERVICE_ID)
         //     .verificationChecks.create({
         //         to: `+${countryCode}${phoneNumber}`,
         //         code: otp,
