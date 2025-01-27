@@ -1,7 +1,7 @@
 const express = require('express');
 const uerRouter = express.Router();// create a router
 
-const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN, {
+const client = require('twilio')(process.env.TWILIO_FRONTIERNEXT_ACCOUNT_SID, process.env.TWILIO_FRONTIERNEXT_AUTH_TOKEN, {
     lazyLoading: true
 })
 
@@ -10,7 +10,7 @@ uerRouter.post('/singin', async (req, res) => {
     console.log('Name: ', name, ' Password: ', password);
     try {
         const otpResponse = await client.verify
-            .v2.services(process.env.TWILIO_SERVICE_SID)
+            .v2.services(process.env.TWILIO_FRONTIERNEXT_SERVICE_ID)
             .verifications.create({
                 to: `+${countryCode}${phoneNumber}`,
                 channel: "sms",
@@ -26,7 +26,7 @@ uerRouter.post('/create', async (req, res) => {
     console.log('Country Code: ', countryCode, ' Phone Number: ', phoneNumber);
     try {
         const otpResponse = await client.verify
-            .v2.services(process.env.TWILIO_SERVICE_SID)
+            .v2.services(process.env.TWILIO_FRONTIERNEXT_SERVICE_ID)
             .verifications.create({
                 to: `+${countryCode}${phoneNumber}`,
                 channel: "sms",
