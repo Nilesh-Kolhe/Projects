@@ -14,7 +14,7 @@ app.use('/otp', otpRoutes);
 // app.use('/user', userRoutes);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_TEST_DB_URI)
+mongoose.connect(process.env.MONGO_FRONTIERNEXT_DB_URI)
     .then(res => console.log("Connected to MongoDB !"))
     .catch(err => console.log("Error Connecting to MongoDB ", err));
 
