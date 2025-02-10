@@ -1,20 +1,33 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../../node_modules/bootstrap/dist/js/bootstrap.js';
-import './TopMostNav.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.js";
+import { Link } from "react-router-dom";
 
 const TopMostNav = () => {
-    
-    return (
-            <nav id="top-most-nav-root" className="navbar navbar-expand-sm navbar-light" aria-label="top most navbar">
-            <div className="container-fluid">
-                <div className="navbar-collapse collapse" id="top-most-navbar">
-                    <ul className="navbar-nav justify-content-sm-end" style={{ width: "100%" }}>
-                        <li> contact us on (080)-412 732 80 </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    );
-}
+  return (
+    <nav
+      id="top-most-nav-root"
+      className="container navbar navbar-expand-sm navbar-light"
+      aria-label="top most navbar"
+    >
+      <div className="container-fluid">
+        <ul className="navbar-nav justify-content-sm-end w-100">
+          <li className="nav-item">
+            <Link to={"/"} className="text-black nav-link">
+              {" "}
+              Support{" "}
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to={"/"} className="text-black nav-link">
+              {" "}
+              Contact Us{" "}
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+};
 
 export default TopMostNav;

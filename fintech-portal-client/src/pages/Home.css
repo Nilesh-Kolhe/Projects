@@ -1,81 +1,81 @@
-@media only screen and (min-width : 320px) and (max-width : 1024px) {
-    #background-vertical {
-        display: block;
-        background-size: 495px;
-        left: 5px;
-    }
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+  #background-vertical {
+    display: block;
+    background-size: 495px;
+    left: 5px;
+  }
 
-    #background-horizontal {
-        display: none;
-    }
+  #background-horizontal {
+    display: none;
+  }
 
-    .info {
-        background-color: lightgrey;
-        padding: 5px;
-        opacity: 88%;
-    }
+  .info {
+    background-color: lightgrey;
+    padding: 5px;
+    opacity: 88%;
+  }
 
-    .info-head {
-        font-size: 64px;
-        font-weight: 500;
-        font-family: ui-serif;
-        padding: 0px 2px;
-        color: cadetblue;
-    }
+  .info-head {
+    font-size: 64px;
+    font-weight: 500;
+    font-family: ui-serif;
+    padding: 0px 2px;
+    color: cadetblue;
+  }
 
-    .info-sub-head {
-        font-size: x-large;
-        font-weight: 300;
-        padding: 0px 2px;
-    }
+  .info-sub-head {
+    font-size: x-large;
+    font-weight: 300;
+    padding: 0px 2px;
+  }
 
-    #home {
-        background-image: url('./images/gradient_design_2_vertical.png');
-        background-size: 500px;
-        left: 5px;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-        padding: 40px 2px;
-        row-gap: 150px;
-    }
+  #home {
+    /* background-image: url('./images/gradient_design_2_vertical.png'); */
+    background-size: 500px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 40px 2px;
+    row-gap: 150px;
+  }
 }
 
-@media only screen and (min-width : 1025px) {
-    #background-vertical {
-        display: none;
-        background-size: 495px;
-        left: 1px;
-    }
+@media only screen and (min-width: 1025px) {
+  #background-vertical {
+    display: none;
+    background-size: 495px;
+    left: 1px;
+  }
 
-    #background-horizontal {
-        display: block;
-    }
+  #background-horizontal {
+    display: block;
+  }
 
-    .info-head {
-        font-size: 90px;
-        font-weight: 500;
-        font-family: ui-serif;
-        padding: 0px 2px;
-        color: cadetblue;
-    }
+  .info-head {
+    font-size: 90px;
+    font-weight: 500;
+    font-family: ui-serif;
+    padding: 0px 2px;
+    color: cadetblue;
+  }
 
-    .info-sub-head {
-        font-size: xx-large;
-        font-weight: 300;
-        padding: 0px 2px;
-    }
+  .info-sub-head {
+    font-size: xx-large;
+    font-weight: 300;
+    padding: 0px 2px;
+  }
 
-    #home {
-        background-image: url('./images/gradient_design_2.PNG');
-        left: 5px;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-        padding: 40px 10px;
-        row-gap: 150px;
-        background-size: 1520px 750px;
-    }
+  #home {
+    /* background-image: url('./images/gradient_design_2.PNG'); */
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 40px 10px;
+    row-gap: 150px;
+    background-size: 1520px 750px;
+  }
 }
