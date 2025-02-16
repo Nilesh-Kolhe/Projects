@@ -19,8 +19,6 @@ const About = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  console.log("About Response: ", todos);
-
   return (
     <div className="w-full overflow-hidden shadow-md rounded-3xl -mt-10">
       <div className="p-6">
@@ -34,10 +32,10 @@ const About = () => {
           </div>
           <div className="space-y-4 container">
             <p className="text-lg">
-              <span className="font-bold text-violet-400">Frontiernext</span> is
+              <span className="font-bold text-blue-600">Capital Flex</span> is
               the partner to top Premier Institutions serving you with the best
               possible deals from the basket of loans we provide. Your trust is
-              our biggest asset – Something you can bank on!
+              our biggest asset, Something you can bank on!
             </p>
 
             <div className="flex justify-start">
@@ -45,11 +43,11 @@ const About = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => navigate("/aboutus")}
-                className="group relative bg-gradient-to-r from-violet-500 to-violet-600 
+                className="group relative bg-gradient-to-r from-blue-500 to-blue-600 
                             text-sm font-semibold uppercase inline-flex items-center gap-2 
                             text-white rounded-xl px-4 py-3.5 shadow-lg 
                             transition-all duration-300 ease-in-out
-                            hover:shadow-violet-500/40 hover:-translate-y-0.5
+                            hover:shadow-blue-500/40 hover:-translate-y-0.5
                             active:translate-y-0.5"
               >
                 Read More

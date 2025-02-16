@@ -19,7 +19,7 @@ const HeroSection = () => {
       <div className="container relative mx-auto px-4 pt-20">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-700 to-blue-700 bg-clip-text text-transparent">
-            Frontiernext
+            Capital Flex
           </h1>
           <p className="text-xl md:text-2xl font-medium text-gray-600 mb-8">
             Your Trusted Partner for Loan Guidance

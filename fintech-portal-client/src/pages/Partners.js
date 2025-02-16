@@ -33,7 +33,7 @@ const Partners = () => {
   // }, []);
 
   return (
-    <div className="container mx-auto px-4 py-12 mt-48 mb-12">
+    <div className="container mx-auto px-4 py-12 mt-10 mb-12">
       <div className="space-y-8">
         <div className="text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold font-mono text-gray-500">
