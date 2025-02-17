@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const LoanCard = ({ icon, title, description }) => (
+const LoanCard = ({ icon, title, description, route }) => (
   <div className="bg-white p-8 rounded-3xl shadow-sm">
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-4">
@@ -13,14 +14,18 @@ const LoanCard = ({ icon, title, description }) => (
       </div>
       <p className="text-gray-500 text-base leading-relaxed">{description}</p>
       <div className="flex gap-6">
-        <button className="text-blue-500 text-md font-medium flex items-center hover:text-blue-700 transition-colors">
-          Apply Now
-          <i className="bi bi-chevron-right w-6 h-6 pt-0.5" />
-        </button>
-        <button className="text-emerald-600 text-md font-medium flex items-center hover:text-emerald-700">
-          Learn More
-          <i className="bi bi-chevron-right w-6 h-6 pt-0.5" />
-        </button>
+        <Link to={"/enquiry"} className="no-underline">
+          <button className="text-blue-500 text-md font-medium flex items-center hover:text-blue-700 transition-colors">
+            Apply Now
+            <i className="bi bi-chevron-right w-6 h-6 pt-0.5" />
+          </button>
+        </Link>
+        <Link to={route} className="no-underline">
+          <button className="text-emerald-600 text-md font-medium flex items-center hover:text-emerald-700">
+            Learn More
+            <i className="bi bi-chevron-right w-6 h-6 pt-0.5" />
+          </button>
+        </Link>
       </div>
     </div>
   </div>
@@ -34,7 +39,7 @@ const CarouselDots = ({ total, current, onDotClick }) => (
         key={index}
         onClick={() => onDotClick(index)}
         className={`h-2 rounded-full transition-all duration-300 ${
-          index === current ? "w-8 bg-violet-500" : "w-2 bg-gray-300"
+          index === current ? "w-8 bg-blue-500" : "w-2 bg-gray-300"
         }`}
       />
     ))}
@@ -47,68 +52,48 @@ const LoanProductsGrid = ({ totalItemsPerPages }) => {
 
   const products = [
     {
-      icon: <i className="bi bi-cash-coin text-violet-500" />,
+      icon: <i className="bi bi-cash-coin text-blue-500" />,
       title: "Personal Loan",
       description: "Quick and easy finances at competitive interest rates.",
+      route: "/personalloan",
     },
     {
-      icon: <i className="bi bi-car-front text-violet-500" />,
-      title: "Used Car Loan",
-      description: "Get up to 95% of your car value and book your dream car.",
-    },
-    {
-      icon: <i className="bi bi-house text-violet-500" />,
-      title: "Home Loan",
-      description: "Affordable Home loan online in less that 10 minute",
-    },
-    {
-      icon: <i className="bi bi-building text-violet-500" />,
+      icon: <i className="bi bi-building text-blue-500" />,
       title: "Business Loan",
       description: "Get loans upto Rs. 90 lakhs to grow your business.",
+      route: "/businessloan",
     },
     {
-      icon: <i className="bi bi-credit-card text-violet-500" />,
+      icon: <i className="bi bi-house text-blue-500" />,
+      title: "Home Loan",
+      description: "Affordable Home loan online in less that 10 minute",
+      route: "/homeloan",
+    },
+    {
+      icon: <i className="bi bi-car-front text-blue-500" />,
+      title: "Auto Vehicle Loan",
+      description: "Get up to 95% of your car value and book your dream car.",
+      route: "/autovehicleloan",
+    },
+    {
+      icon: <i className="bi bi-credit-card text-blue-500" />,
       title: "Loan Against Property",
       description:
         "Get loans against your property at attractive interest rates.",
+      route: "/loanagainstproperty",
     },
     {
-      icon: <i className="bi bi-credit-card-2-front text-violet-500" />,
-      title: "Credit Card",
-      description: "Get a credit card with a limit of up to Rs. 2 lakhs.",
+      icon: <i className="bi bi-credit-card-2-front text-blue-500" />,
+      title: "Commercial Vehicle Loan",
+      description: "Get a affordable Commercial Vehicle Loan.",
+      route: "/commercialvehicleloan",
     },
     {
-      icon: <i className="bi bi-piggy-bank text-violet-500" />,
-      title: "Savings Account",
-      description: "Open a savings account with attractive interest rates.",
-    },
-    {
-      icon: <i className="bi bi-wallet2 text-violet-500" />,
-      title: "Digital Wallet",
+      icon: <i className="bi bi-wallet2 text-blue-500" />,
+      title: "Working Capital",
       description:
         "Secure and convenient digital wallet for all your transactions.",
-    },
-    {
-      icon: <i className="bi bi-shield-lock text-violet-500" />,
-      title: "Insurance",
-      description:
-        "Comprehensive insurance plans to protect you and your family.",
-    },
-    {
-      icon: <i className="bi bi-currency-exchange text-violet-500" />,
-      title: "Forex Services",
-      description: "Get the best rates for your foreign exchange needs.",
-    },
-    {
-      icon: <i className="bi bi-phone text-violet-500" />,
-      title: "Mobile Banking",
-      description:
-        "Manage your finances on the go with our mobile banking app.",
-    },
-    {
-      icon: <i className="bi bi-graph-up-arrow text-violet-500" />,
-      title: "Investment Plans",
-      description: "Grow your wealth with our tailored investment plans.",
+      route: "/workingcapital",
     },
   ];
 
@@ -130,7 +115,7 @@ const LoanProductsGrid = ({ totalItemsPerPages }) => {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
       <h2 className="text-4lg font-bold font-mono text-center mb-12 text-gray-500">
-        Explore our <span className="text-gray-900">Products</span>
+        Explore Our <span className="text-gray-900">Product's</span>
       </h2>
 
       <div className="relative">
@@ -141,20 +126,23 @@ const LoanProductsGrid = ({ totalItemsPerPages }) => {
           <i className="bi bi-chevron-left "> </i>
         </button>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative">
           {getCurrentPageItems().map((product, index) => (
             <LoanCard
               key={index}
               icon={product.icon}
               title={product.title}
               description={product.description}
+              route={product.route}
             />
           ))}
         </div>
 
         <button
           onClick={nextPage}
-          className="absolute -right-5 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center z-10 hover:bg-gray-50 transition-colors"
+          className="absolute -right-5 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 
+                  bg-white rounded-full shadow-lg flex items-center justify-center z-10 
+                  hover:bg-gray-50 transition-colors"
         >
           <i className="bi bi-chevron-right"></i>
         </button>

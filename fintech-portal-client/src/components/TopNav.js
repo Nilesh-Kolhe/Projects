@@ -1,35 +1,43 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import fnt from "../pages/images/fnt.jpeg";
-
-import React, { useState } from "react";
 
 const TopNav = () => {
   const navigate = useNavigate();
   const route = window.location.href.split("/")[3];
   const [isOpen, setIsOpen] = useState(false);
-
-  // document.addEventListener("click", (event) => {
-  //     var navbar = document.querySelector("nav div.container-fluid div#top-navbar");
-  //     var _opened = navbar.classList.contains("show");
-  //     if (_opened === true) {
-  //         navbar.classList.toggle('show');
-  //     }
-  // });
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const navItems = [
+  const productItems = [
     { label: "Personal Loan", path: "/personalloan" },
     { label: "Business Loan", path: "/businessloan" },
     { label: "Home Loan", path: "/homeloan" },
-    { label: "Apply", path: "/enquiry" },
+    { label: "Auto Loan", path: "/autoloan" },
+    { label: "Loan Againest Property", path: "/loanagainestproperty" },
+    { label: "Commercial Vehicle Loan", path: "/commercialvehicleloan" },
+    { label: "Working Capital Loan", path: "/workingcapitalloan" },
+  ];
+
+  const navItems = [
+    { label: "Home", path: "/landing" },
+    {
+      label: "Our Products",
+      path: "/personalloan",
+      hasDropdown: true,
+      dropdownItems: productItems,
+    },
+    { label: "About Us", path: "/aboutus" },
+    { label: "Contact Us", path: "/contact" },
     { label: "Track", path: "/track" },
+    { label: "Refer & Earn", path: "/refer" },
   ];
 
   return (
-    <nav className="container bg-gradient-to-r from-indigo-500 via-purple-500 to-red-300 sticky top-5 z-50 rounded-4">
+    <nav className="container bg-gradient-to-r from-blue-500 to-blue-700 sticky top-5 z-50 rounded-4">
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <svg
           className="w-full h-full"
@@ -54,29 +62,76 @@ const TopNav = () => {
                 />
               </Link>
             </div>
-
-            <Link to="/" className="text-decoration-none">
-              <h5 className="ml-3 mt-2.5 text-white font-serif font-light hidden xl:text-lg md:block md:text-xs">
-                Frontiernext Solutions Private Limited
-              </h5>
-            </Link>
+            <h5 className="ml-3 mt-2.5 text-white font-serif font-light hidden xl:text-lg md:block md:text-xs">
+              Capital Flex
+            </h5>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
               {navItems.map((item) => (
-                <button
-                  key={item.path}
-                  onClick={() => navigate(item.path)}
-                  className={`${
-                    route.includes(item.path.slice(1))
-                      ? "bg-white text-green-500"
-                      : "text-white hover:bg-gray-900"
-                  } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
-                >
-                  {item.label}
-                </button>
+                <div key={item.path} className="relative">
+                  {item.hasDropdown ? (
+                    <div>
+                      <button
+                        onMouseEnter={() => setIsProductsOpen(true)}
+                        onMouseLeave={() => setIsProductsOpen(false)}
+                        className={`${
+                          route.includes(item.path.slice(1))
+                            ? "bg-white text-green-500"
+                            : "text-white hover:bg-gray-700"
+                        } px-3 py-2 rounded-md text-sm font-medium transition-colors 
+                        duration-200 flex items-center`}
+                      >
+                        {item.label}
+                        <svg
+                          className="w-4 h-4 ml-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      {isProductsOpen && (
+                        <div
+                          onMouseEnter={() => setIsProductsOpen(true)}
+                          onMouseLeave={() => setIsProductsOpen(false)}
+                          className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                        >
+                          <div className="py-1">
+                            {item.dropdownItems.map((dropdownItem) => (
+                              <button
+                                key={dropdownItem.path}
+                                onClick={() => navigate(dropdownItem.path)}
+                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              >
+                                {dropdownItem.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => navigate(item.path)}
+                      className={`${
+                        route.includes(item.path.slice(1))
+                          ? "bg-white text-green-500"
+                          : "text-white hover:bg-gray-700"
+                      } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+                    >
+                      {item.label}
+                    </button>
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -88,7 +143,7 @@ const TopNav = () => {
               className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-gray-400 focus:outline-none"
             >
               <svg
-                className="h-6 w-6 "
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -119,20 +174,68 @@ const TopNav = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => {
-                  navigate(item.path);
-                  setIsOpen(false);
-                }}
-                className={`${
-                  route.includes(item.path.slice(1))
-                    ? "bg-white text-green-500"
-                    : "text-white hover:bg-gray-900"
-                } block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200`}
-              >
-                {item.label}
-              </button>
+              <div key={item.path}>
+                {item.hasDropdown ? (
+                  <>
+                    <button
+                      onClick={() => setIsProductsOpen(!isProductsOpen)}
+                      className={`${
+                        route.includes(item.path.slice(1))
+                          ? "bg-white text-green-500"
+                          : "text-white hover:bg-gray-900"
+                      } px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center justify-between`}
+                    >
+                      {item.label}
+                      <svg
+                        className={`w-4 h-4 transform ${
+                          isProductsOpen ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    {isProductsOpen && (
+                      <div className="pl-4">
+                        {item.dropdownItems.map((dropdownItem) => (
+                          <button
+                            key={dropdownItem.path}
+                            onClick={() => {
+                              navigate(dropdownItem.path);
+                              setIsOpen(false);
+                              setIsProductsOpen(false);
+                            }}
+                            className="block w-full text-left px-3 py-2 text-base font-medium text-white hover:bg-gray-900 rounded-md"
+                          >
+                            {dropdownItem.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      navigate(item.path);
+                      setIsOpen(false);
+                    }}
+                    className={`${
+                      route.includes(item.path.slice(1))
+                        ? "bg-white text-green-500"
+                        : "text-white hover:bg-gray-900"
+                    } block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200`}
+                  >
+                    {item.label}
+                  </button>
+                )}
+              </div>
             ))}
           </div>
         </div>
