@@ -9,7 +9,6 @@ const HeroSection = () => {
   return (
     <div className="relative min-h-[80vh] overflow-hidden">
       {/* Content */}
-
       {/* Main Card */}
       <div className="bg-white backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl max-w-4xl mx-auto mb-12 relative overflow-hidden">
         {/* Card Background Effect */}
