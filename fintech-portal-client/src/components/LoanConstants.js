@@ -1,0 +1,42 @@
+export const LOAN_LIMITS = {
+  "Personal Loan": {
+    maxAmount: 500000000,
+    maxDuration: 72,
+    minAmount: 15000,
+    minDuration: 1,
+    minInterest: 11.99,
+    maxInterest: 35,
+  },
+  "Business Loan": {
+    maxAmount: 5000000000,
+    maxDuration: 60,
+    minAmount: 100000,
+    minDuration: 1,
+    minInterest: 15.99,
+    maxInterest: 45,
+  },
+  "Home Loan": {
+    maxAmount: 10000000,
+    maxDuration: 60,
+    minAmount: 500000,
+    minDuration: 1,
+    minInterest: 8.99,
+    maxInterest: 15,
+  },
+  "Car Loan": {
+    maxAmount: 10000000,
+    maxDuration: 60,
+    minAmount: 100000,
+    minDuration: 1,
+    minInterest: 9.99,
+    maxInterest: 25,
+  },
+  "Two Wheeler Loan": {
+    maxAmount: 1000000,
+    maxDuration: 60,
+    minAmount: 50000,
+    minDuration: 1,
+    minInterest: 10.99,
+    maxInterest: 20,
+  },
+};

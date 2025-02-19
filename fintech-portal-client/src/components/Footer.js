@@ -10,8 +10,8 @@ const Footer = () => {
     <div id="footer-container">
       <div className="footer-sub-container">
         <HeadOffice />
-        <CorporateOffice />
-        <BrancheOffice />
+        {/* <CorporateOffice /> */}
+        {/* <BrancheOffice /> */}
         <OperationalPresence />
       </div>
       {/* <a className="navbar-brand" style={{ fontWeight: 100, fontSize: 'medium', paddingTop: "7px", color: "#000" }}>Frontiernext logo</a>
@@ -26,7 +26,7 @@ const Footer = () => {
             </div>  */}
       <div className="copyright">
         <i className="bi bi-c-circle" style={{ paddingTop: "3px" }}></i>{" "}
-        &nbsp;Capital Flex
+        &nbsp;CapitalFlex
       </div>
     </div>
   );

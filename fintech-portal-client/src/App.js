@@ -12,7 +12,7 @@ import TopMostNav from "./components/TopMostNav";
 
 const App = () => {
   return (
-    <div className="bg-gradient-to-r from-yellow-100 via-white to-blue-50 min-h-screen">
+    <div className="bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 min-h-screen">
       <BrowserRouter>
         <TopMostNav />
         <TopNav />

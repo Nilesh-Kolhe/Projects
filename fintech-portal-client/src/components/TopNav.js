@@ -33,7 +33,7 @@ const TopNav = () => {
     { label: "About Us", path: "/aboutus" },
     { label: "Contact Us", path: "/contact" },
     { label: "Track", path: "/track" },
-    { label: "Refer & Earn", path: "/refer" },
+    { label: "Refer & Earn", path: "/enquiry" },
   ];
 
   return (
@@ -55,15 +55,15 @@ const TopNav = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link to="/">
-                <img
+                {/* <img
                   src={fnt}
                   className="h-14 w-14 rounded-full"
                   alt="Company Logo"
-                />
+                /> */}
               </Link>
             </div>
-            <h5 className="ml-3 mt-2.5 text-white font-serif font-light hidden xl:text-lg md:block md:text-xs">
-              Capital Flex
+            <h5 className="ml-0 mt-2.5 text-white font-serif hidden xl:text-xl md:block md:text-md">
+              CapitalFlex
             </h5>
           </div>
 

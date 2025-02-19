@@ -1,11 +1,8 @@
-// import axios from 'axios';
-// import { useState } from "react";
 import ImageCarousel from "../components/ImageCarousel";
-import { useNavigate } from "react-router-dom";
 import LoanProductsGrid from "../components/LoanProductsGrid";
 import HeroSection from "../components/HeroSection";
 import LoanCalculator from "../components/LoanCalculator";
-// import { ArrowRight } from "lucide-react";
+import FinancialCalculator from "../components/FinancialCalculator";
 
 const Home = () => {
   return (
@@ -15,7 +12,8 @@ const Home = () => {
           <ImageCarousel />
           <LoanProductsGrid totalItemsPerPages={6} />
           <HeroSection />
-          <LoanCalculator />
+          {/* <LoanCalculator /> */}
+          <FinancialCalculator />
         </div>
       </div>
     </div>
