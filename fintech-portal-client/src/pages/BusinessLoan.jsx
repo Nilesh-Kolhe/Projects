@@ -7,9 +7,9 @@ const BusinessLoan = () => {
         defaultLoanType="Business Loan"
         allowLoanTypeChange={false}
         minAmount={100000}
-        maxAmount={5000000}
+        maxAmount={1000000000}
         minDuration={2}
-        maxDuration={8}
+        maxDuration={28}
         minInterest={13.99}
         maxInterest={28}
       />

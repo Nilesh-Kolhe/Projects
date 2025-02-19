@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { ChevronRight, X } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 
 import img1 from "../pages/images/CarLoan.png";
 import img2 from "../pages/images/banner2.png";
-import img3 from "../pages/images/K.PNG";
-import img4 from "../pages/images/R.PNG";
+import img3 from "../pages/images/HomeLoanBanner.png";
+import img4 from "../pages/images/ArtboardBanner.png";
 import img5 from "../pages/images/Untitled_design_3.PNG";
 import img6 from "../pages/images/ivan-samkov.jpg";
 import img7 from "../pages/images/ekaterina-bolovtsova.jpg";
@@ -16,6 +16,7 @@ import img7 from "../pages/images/ekaterina-bolovtsova.jpg";
 const ImageCarousel = () => {
   const navigate = useNavigate();
   const [showNotification, setShowNotification] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const settings = {
     dots: true,
@@ -103,7 +104,7 @@ const ImageCarousel = () => {
                   alt={image.label}
                   className="w-full h-[500px] object-fill"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent">
+                {/* <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent">
                   <div className="absolute top-1/4 left-16 text-white">
                     <h2 className="text-4xl font-bold mb-2">
                       {image.description}
@@ -122,76 +123,41 @@ const ImageCarousel = () => {
                       Apply Now
                     </button>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}
         </Slider>
       </div>
 
-      {/* {showNotification && (
-        <div className="container left-0 right-0 -mt-6 z-0">
-          <div className="flex justify-between items-center bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4">
-            <div className="flex-1 text-center">
-              <span className="mr-4">Consolidated Results Update</span>
-              <button className="underline hover:text-blue-100">
-                H1 results for FY 2024 - 2025
-              </button>
-            </div>
-            <div className="flex-1 text-center">
-              <Link to={"/track"} className="text-white">
-                <button className=" hover:text-blue-100 mr-2 font-bold">
-                  Track your application today <ChevronRight />
-                </button>
-              </Link>
-            </div>
-            <button
-              onClick={() => setShowNotification(false)}
-              className="ml-4 hover:text-gray-200"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )} */}
-
       {showNotification && (
-        <div className="container mx-auto -mt-4 z-0">
-          <div className="bg-gradient-to-r from-green-600 to-blue-500 text-white p-8 rounded-b-lg">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="w-full md:w-auto text-center md:text-left">
-                <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0">
-                  <span className="md:mr-4">Consolidated Results Update</span>
-                  <button className=" hover:text-blue-100 text-sm font-bold md:text-base">
-                    H1 results for FY 2024 - 2025
-                  </button>
-                </div>
-              </div>
-
-              <div className="w-full ml-52 md:w-auto text-center md:text-right">
+        <div className="container mx-auto -mt-3 z-0">
+          <div className="bg-gradient-to-r from-blue-600 to-green-500 text-white p-3 rounded-b-lg">
+            <div className="flex flex-col md:flex-row justify-end items-center space-y-4 md:space-y-0">
+              <div className="w-full mr-12 md:w-auto text-center md:text-right">
                 <Link
                   to="/track"
                   className="text-white inline-flex no-underline items-center"
                 >
-                  <button className="hover:text-blue-100 font-bold flex items-center space-x-1">
-                    <span>Track your application today</span>
-                    <ChevronRight className="w-5 h-5 mt-1" />
+                  <button
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    // onClick={() => navigate("/track")}
+                    className="group relative bg-gradient-to-r from-blue-500 to-blue-600 text-center 
+                                text-sm font-semibold uppercase inline-flex items-center gap-2 text-white rounded-xl
+                                shadow-lg shadow-green-500/30 transition-all duration-300 ease-in-out
+                                hover:shadow-violet-500/40 hover:translate-y-[-2px] active:translate-y-[1px]
+                                px-4 py-3"
+                  >
+                    Track Application Now
+                    <ArrowRight
+                      className={`w-5 h-5 transition-transform duration-300 ${
+                        isHovered ? "transform translate-x-1" : ""
+                      }`}
+                    />
                   </button>
                 </Link>
               </div>
-
               <button
                 onClick={() => setShowNotification(false)}
                 className="absolute top-2 right-2 md:relative md:top-0 md:right-0 hover:text-gray-200"

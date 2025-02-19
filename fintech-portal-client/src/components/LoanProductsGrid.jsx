@@ -71,7 +71,7 @@ const LoanProductsGrid = ({ totalItemsPerPages }) => {
     },
     {
       icon: <i className="bi bi-car-front text-blue-500" />,
-      title: "Auto Vehicle Loan",
+      title: "Vehicle Loan",
       description: "Get up to 95% of your car value and book your dream car.",
       route: "/autovehicleloan",
     },
@@ -94,6 +94,12 @@ const LoanProductsGrid = ({ totalItemsPerPages }) => {
       description:
         "Secure and convenient digital wallet for all your transactions.",
       route: "/workingcapital",
+    },
+    {
+      icon: <i className="bi bi-car-front text-blue-500" />,
+      title: "Two Wheeler Loan",
+      description: "Get your dream two wheeler bike.",
+      route: "/twowheelerloan",
     },
   ];
 
